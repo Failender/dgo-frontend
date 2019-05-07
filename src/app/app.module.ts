@@ -11,7 +11,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule, MatProgressSpinnerModule,
+  MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
   MatSidenavModule, MatSlideToggleModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -70,6 +70,7 @@ const routes: Routes = [
       {enableTracing: false}
     ),
     MatSlideToggleModule,
+    MatMenuModule,
   ],
   providers: [
     {

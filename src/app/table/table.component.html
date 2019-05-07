@@ -18,6 +18,16 @@
               <mat-slide-toggle [checked]="element[column.field]" (change)="onSlideChange(element, column, $event.checked)"></mat-slide-toggle>
 
             </div>
+            <div *ngSwitchCase="'actions'">
+              <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <mat-menu #menu>
+                <button mat-menu-item *ngFor="let action of column.actions" (click)="action.click(element)">
+                  {{action.name}}
+                </button>
+              </mat-menu>
+            </div>
 
             <div *ngSwitchDefault>
               Non mapped field {{column.field}}

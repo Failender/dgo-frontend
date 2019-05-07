@@ -32,6 +32,15 @@ export class MeineHeldenComponent implements OnInit {
       field: 'active',
       type: 'boolean-edit'
     },
+    {
+      header: '',
+      field: 'actions',
+      type: 'actions',
+      actions: [{
+        name: 'Held laden',
+        click: context => console.debug(context)
+      }]
+    }
 
   ]
 

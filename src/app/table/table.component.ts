@@ -48,6 +48,7 @@ export interface TableColumn {
   field: string;
   type: string;
   header: string;
+  actions?: any[];
 }
 
 export interface TableEditEvent {
