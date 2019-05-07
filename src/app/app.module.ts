@@ -1,16 +1,86 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {
+  BrowserModule,
+  BrowserTransferStateModule
+} from '@angular/platform-browser';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule, MatListModule, MatProgressSpinnerModule,
+  MatSidenavModule, MatSlideToggleModule, MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+import {MenuComponent} from './menu/menu.component';
+import {LoginDialogComponent} from './login/login-dialog.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Interceptor} from './authentication/interceptor';
+import {TokenService} from './authentication/token.service';
+import {RouterModule, Routes} from '@angular/router';
+import { HomeComponent } from './routes/home/home.component';
+import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
+import { TableComponent } from './table/table.component';
+
+
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'meine-helden', component: MeineHeldenComponent},
+
+  { path: '**', redirectTo : '/home' }
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+      AppComponent,
+      ToolbarComponent,
+      MenuComponent,
+      LoginDialogComponent,
+      HomeComponent,
+      MeineHeldenComponent,
+      TableComponent
   ],
+    entryComponents: [
+      LoginDialogComponent
+
+    ],
   imports: [
-    BrowserModule
+    HttpClientModule,
+    FormsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatListModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      routes,
+      {enableTracing: false}
+    ),
+    MatSlideToggleModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      deps: [TokenService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {}
+}

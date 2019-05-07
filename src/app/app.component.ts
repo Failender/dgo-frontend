@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Injector,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'dgo-frontend';
+export class AppComponent implements OnInit {
+
+  private component;
+
+  constructor() {}
+
+  ngOnInit() {
+  }
+
+
 }

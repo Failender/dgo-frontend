@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" style="width:100%">
+  <button mat-button (click)="toggleMenu.next()" class="left-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="header">
+    DSA-Gruppen-Online
+  </span>
+
+
+
+  <button *ngIf="authenticated | async; else loginTmpl" (click)="logout()" class="right-button">
+    <mat-icon>logout</mat-icon>
+  </button>
+  <ng-template #loginTmpl>
+
+    <button mat-button class="right-button" (click)="login()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </ng-template>
+
+</mat-toolbar>

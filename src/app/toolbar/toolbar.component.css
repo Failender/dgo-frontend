@@ -1,0 +1,16 @@
+
+.right-button {
+  width:64px;
+  flex-shrink:1;
+  cursor:pointer;
+}
+
+.left-button {
+    flex-shrink: 1;
+    padding:0px !important;
+}
+
+.header {
+    flex-grow:40;
+    text-align: center;
+}

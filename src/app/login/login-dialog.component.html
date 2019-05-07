@@ -1,0 +1,20 @@
+<div mat-dialog-title>Login</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password" (keydown.enter)="login()">
+    </mat-form-field>
+
+  </form>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Abbrechen</button>
+  <button mat-button (click)="login()" [disabled]="!form.valid">Login</button>
+</div>
