@@ -38,11 +38,18 @@ export class MeineHeldenComponent implements OnInit {
       type: 'actions',
       actions: [{
         name: 'Held laden',
-        click: context => console.debug(context)
+        click: context => this.loadHeld(context)
       }]
     }
-
   ]
+
+  private loadHeld(context) {
+    this.heldenService.getHeld(context.id)
+      .subscribe(daten => {
+        console.debug(daten);
+        this.heldenService.held = daten;
+      })
+  }
 
 
   constructor(private heldenService: HeldenService) {

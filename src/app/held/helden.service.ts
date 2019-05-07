@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 })
 export class HeldenService {
 
+  public held: HeldDaten;
 
   constructor(private http: HttpClient) {
 
@@ -17,6 +18,9 @@ export class HeldenService {
     return this.http.get<HeldDto[]>(`${environment.rest}helden/meine`);
   }
 
+  public getHeld(held: number): Observable<HeldDaten> {
+    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}`);
+  }
   public updateActive(held: number, value: boolean) {
     return this.http.put(`${environment.rest}helden/held/${held}/active/${value}`, null);
   }
@@ -27,6 +31,10 @@ export class HeldenService {
 
 
 
+}
+
+export interface HeldDaten {
+  [key: string]: any;
 }
 
 
