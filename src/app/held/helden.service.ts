@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -8,10 +8,14 @@ import {environment} from '../../environments/environment';
 })
 export class HeldenService {
 
-  public held: HeldDaten;
+  public heldSub = new BehaviorSubject<HeldDaten>(null);
 
   constructor(private http: HttpClient) {
 
+  }
+
+  public setHeld(held: HeldDaten) {
+    this.heldSub.next(held);
   }
 
   public getMeineHelden(): Observable<HeldDto[]> {
@@ -44,4 +48,5 @@ export interface HeldDto {
   gruppe: string;
   public: boolean;
   active: boolean;
+  lastChange: string;
 }

@@ -18,8 +18,8 @@ export class MeineHeldenComponent implements OnInit {
       type: 'string'
     },
     {
-      header: 'Gruppe',
-      field: 'gruppe',
+      header: 'Letzte Änderung',
+      field: 'lastChange',
       type: 'string'
     },
     {
@@ -46,9 +46,8 @@ export class MeineHeldenComponent implements OnInit {
   private loadHeld(context) {
     this.heldenService.getHeld(context.id)
       .subscribe(daten => {
-        console.debug(daten);
-        this.heldenService.held = daten;
-      })
+        this.heldenService.setHeld(daten);
+      });
   }
 
 

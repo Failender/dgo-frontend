@@ -16,7 +16,6 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {ToolbarComponent} from './toolbar/toolbar.component';
-import {MenuComponent} from './menu/menu.component';
 import {LoginDialogComponent} from './login/login-dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -26,6 +25,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
 import { TableComponent } from './table/table.component';
+import {MenuListItemComponent} from './menu/menu-list-item.component';
 
 
 const routes: Routes = [
@@ -39,8 +39,8 @@ const routes: Routes = [
   declarations: [
       AppComponent,
       ToolbarComponent,
-      MenuComponent,
       LoginDialogComponent,
+      MenuListItemComponent,
       HomeComponent,
       MeineHeldenComponent,
       TableComponent

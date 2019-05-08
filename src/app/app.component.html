@@ -1,12 +1,11 @@
-<dgo-toolbar (toggleMenu)="sidenav.toggle()"></dgo-toolbar>
+<dgo-toolbar (toggleMenu)="menu.toggle()"></dgo-toolbar>
 
 
-<mat-sidenav-container class="container">
-    <mat-sidenav #sidenav mode="side">
-        <dgo-menu></dgo-menu>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+<mat-sidenav-container>
+  <mat-sidenav #menu mode="side" opened="false">
+    <mat-nav-list>
+      <app-menu-list-item *ngFor="let item of menuItems | async" [item]="item"></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
 </mat-sidenav-container>
