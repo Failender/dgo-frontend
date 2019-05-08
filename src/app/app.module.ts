@@ -26,11 +26,21 @@ import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
 import { TableComponent } from './table/table.component';
 import {MenuListItemComponent} from './menu/menu-list-item.component';
+import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
 
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'meine-helden', component: MeineHeldenComponent},
+  {
+    path: 'held',
+    children: [
+      {
+        path: 'uebersicht',
+        component: UebersichtComponent
+      }
+    ]
+  },
 
   { path: '**', redirectTo : '/home' }
 ]
@@ -43,7 +53,8 @@ const routes: Routes = [
       MenuListItemComponent,
       HomeComponent,
       MeineHeldenComponent,
-      TableComponent
+      TableComponent,
+      UebersichtComponent
   ],
     entryComponents: [
       LoginDialogComponent

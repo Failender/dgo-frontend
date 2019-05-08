@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,14 @@ import {environment} from '../../environments/environment';
 export class HeldenService {
 
   public heldSub = new BehaviorSubject<HeldDaten>(null);
+  public currentHeld;
 
   constructor(private http: HttpClient) {
 
+  }
+
+  public activeHeld() {
+    return this.heldSub.value;
   }
 
   public setHeld(held: HeldDaten) {
@@ -23,7 +29,13 @@ export class HeldenService {
   }
 
   public getHeld(held: number): Observable<HeldDaten> {
-    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}`);
+    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}`)
+      .pipe(tap(data => {
+        this.currentHeld = {
+          id: held
+        };
+        this.setHeld(data)
+      }));
   }
   public updateActive(held: number, value: boolean) {
     return this.http.put(`${environment.rest}helden/held/${held}/active/${value}`, null);

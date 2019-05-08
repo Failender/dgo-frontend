@@ -46,7 +46,7 @@ export class MeineHeldenComponent implements OnInit {
   private loadHeld(context) {
     this.heldenService.getHeld(context.id)
       .subscribe(daten => {
-        this.heldenService.setHeld(daten);
+        console.debug(this.heldenService.currentHeld)
       });
   }
 

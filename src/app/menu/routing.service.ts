@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {NavigationEnd, Router} from '@angular/router';
+import {HeldenService} from '../held/helden.service';
+import {Location} from '@angular/common';
 
 
 @Injectable({
@@ -12,10 +14,17 @@ export class RoutingService {
   public menu: any;
   public currentUrl = new BehaviorSubject<string>(undefined);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location, private heldenService: HeldenService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.currentUrl.next(event.urlAfterRedirects);
+
+        let uri = event.urlAfterRedirects;
+        if (uri.indexOf('held=') === -1 && this.heldenService.currentHeld) {
+          uri += `?held=${this.heldenService.currentHeld.id}`;
+          this.location.go(uri);
+        }
+
+        this.currentUrl.next(uri);
       }
     });
   }
