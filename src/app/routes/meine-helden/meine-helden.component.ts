@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldDto, HeldenService} from '../../held/helden.service';
 import {TableColumn, TableEditEvent} from '../../table/table.component';
+import {RoutingService} from '../../menu/routing.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-meine-helden',
@@ -20,6 +22,11 @@ export class MeineHeldenComponent implements OnInit {
     {
       header: 'Letzte Änderung',
       field: 'lastChange',
+      type: 'string'
+    },
+    {
+      header: 'Version',
+      field: 'version',
       type: 'string'
     },
     {
@@ -44,14 +51,14 @@ export class MeineHeldenComponent implements OnInit {
   ]
 
   private loadHeld(context) {
-    this.heldenService.getHeld(context.id)
+    this.heldenService.loadHeld(context.id, context.version)
       .subscribe(daten => {
-        console.debug(this.heldenService.currentHeld)
+        this.router.navigateByUrl('/held/uebersicht');
       });
   }
 
 
-  constructor(private heldenService: HeldenService) {
+  constructor(private heldenService: HeldenService, private router: Router) {
 
   }
 
@@ -59,7 +66,6 @@ export class MeineHeldenComponent implements OnInit {
     if (event.column.field === 'active') {
       this.heldenService.updateActive(event.row.id, event.row.active)
         .subscribe(data => {
-          console.debug('DONE');
         });
     } else if(event.column.field === 'public') {
       this.heldenService.updatePublic(event.row.id, event.row.public)
@@ -78,3 +84,4 @@ export class MeineHeldenComponent implements OnInit {
   }
 
 }
+

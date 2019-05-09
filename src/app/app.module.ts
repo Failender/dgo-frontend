@@ -27,6 +27,9 @@ import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.compone
 import { TableComponent } from './table/table.component';
 import {MenuListItemComponent} from './menu/menu-list-item.component';
 import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
+import {HeldenService, initializeHeld} from './held/helden.service';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { PdfComponent } from './shared/pdf/pdf.component';
 
 
 const routes: Routes = [
@@ -54,13 +57,15 @@ const routes: Routes = [
       HomeComponent,
       MeineHeldenComponent,
       TableComponent,
-      UebersichtComponent
+      UebersichtComponent,
+      PdfComponent
   ],
     entryComponents: [
       LoginDialogComponent
 
     ],
   imports: [
+    PdfViewerModule,
     HttpClientModule,
     FormsModule,
     MatToolbarModule,
@@ -89,6 +94,12 @@ const routes: Routes = [
       useClass: Interceptor,
       deps: [TokenService],
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeHeld,
+      multi: true,
+      deps: [HeldenService]
     }
   ],
   bootstrap: [AppComponent]

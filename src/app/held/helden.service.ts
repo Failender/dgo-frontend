@@ -13,7 +13,6 @@ export class HeldenService {
   public currentHeld;
 
   constructor(private http: HttpClient) {
-
   }
 
   public activeHeld() {
@@ -28,13 +27,14 @@ export class HeldenService {
     return this.http.get<HeldDto[]>(`${environment.rest}helden/meine`);
   }
 
-  public getHeld(held: number): Observable<HeldDaten> {
-    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}`)
+  public loadHeld(held: number, version: number): Observable<HeldDaten> {
+    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}/${version}/daten`)
       .pipe(tap(data => {
         this.currentHeld = {
-          id: held
+          id: held,
+          version
         };
-        this.setHeld(data)
+        this.setHeld(data);
       }));
   }
   public updateActive(held: number, value: boolean) {
@@ -45,8 +45,23 @@ export class HeldenService {
     return this.http.put(`${environment.rest}helden/held/${held}/public/${value}`, null);
   }
 
+  public initialize() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has('held')) {
+      return Promise.resolve();
+    }
+    const held = parseInt(urlParams.get('held'),10);
+    const version = parseInt(urlParams.get('version'), 10);
+    return this.loadHeld(held, version).toPromise();
+
+  }
+
+}
 
 
+export function initializeHeld(heldenService: HeldenService) {
+  return () => heldenService.initialize();
 }
 
 export interface HeldDaten {

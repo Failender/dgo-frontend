@@ -20,7 +20,7 @@ export class RoutingService {
 
         let uri = event.urlAfterRedirects;
         if (uri.indexOf('held=') === -1 && this.heldenService.currentHeld) {
-          uri += `?held=${this.heldenService.currentHeld.id}`;
+          uri += `?held=${this.heldenService.currentHeld.id}&version=${this.heldenService.currentHeld.version}`;
           this.location.go(uri);
         }
 
