@@ -70,10 +70,8 @@ export class MeineHeldenComponent implements OnInit {
     } else if(event.column.field === 'public') {
       this.heldenService.updatePublic(event.row.id, event.row.public)
         .subscribe(data => {
-          console.debug('DONE');
         });
     }
-    console.debug(event)
   }
 
   ngOnInit() {
