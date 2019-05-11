@@ -6,7 +6,7 @@ jobs:
     - stage: build docker image
       script:
  
-      - docker build -t faileder/dgo-frontend:$TRAVIS_BRANCH .
+      - docker build -t failender/dgo-frontend:$TRAVIS_BRANCH .
       - docker login -u failender -p $DOCKER_PASS
-      - docker push faileder/dgo-frontend
+      - docker push failender/dgo-frontend
 
