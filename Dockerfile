@@ -1,5 +1,5 @@
 
-
+FROM node:10.14.1-alpine
 RUN mkdir -p /usr/src/app/app/
 WORKDIR /usr/src/app/app
 COPY app/package.json /usr/src/app/app
