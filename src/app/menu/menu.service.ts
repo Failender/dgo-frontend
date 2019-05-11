@@ -26,6 +26,12 @@ export class MenuService {
           displayName: 'Übersicht',
           iconName: '',
           route: 'held/uebersicht'
+        },
+        {
+          displayName: 'Zauber',
+          iconName: '',
+          route: 'held/zauber',
+          condition: this.hasZauber.bind(this)
         }
       ]
     }
@@ -41,6 +47,10 @@ export class MenuService {
 
   private heldLoaded() {
     return this.heldenService.currentHeld;
+  }
+
+  private hasZauber() {
+    return this.heldLoaded() && this.heldenService.activeHeld().zauberliste.zauber.length !== 0;
   }
 
 

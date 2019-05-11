@@ -26,7 +26,6 @@ export class UebersichtComponent extends HeldComponent {
         token: this.tokenService.token
       }
     };
-    console.debug(url);
   }
 
 

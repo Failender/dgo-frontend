@@ -65,7 +65,28 @@ export function initializeHeld(heldenService: HeldenService) {
 }
 
 export interface HeldDaten {
+  zauberliste: Zauberliste;
   [key: string]: any;
+}
+
+export interface Zauberliste {
+  zauber: Zauber[];
+}
+
+export interface Zauber {
+  name: string;
+  hauszauber: boolean;
+  komplexität: string;
+  lernkomplexität: string;
+  merkmale: string;
+  probe: string;
+  repraesentation: string;
+  probenwerte: string;
+  quelle: {
+    buch: string;
+    content: string;
+    seite: number;
+  };
 }
 
 

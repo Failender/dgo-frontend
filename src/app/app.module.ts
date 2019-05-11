@@ -30,6 +30,7 @@ import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.compone
 import {HeldenService, initializeHeld} from './held/helden.service';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
+import { ZauberComponent } from './routes/held/zauber/zauber.component';
 
 
 const routes: Routes = [
@@ -38,10 +39,8 @@ const routes: Routes = [
   {
     path: 'held',
     children: [
-      {
-        path: 'uebersicht',
-        component: UebersichtComponent
-      }
+      {path: 'uebersicht', component: UebersichtComponent},
+      {path: 'zauber', component: ZauberComponent}
     ]
   },
 
@@ -58,7 +57,8 @@ const routes: Routes = [
       MeineHeldenComponent,
       TableComponent,
       UebersichtComponent,
-      PdfComponent
+      PdfComponent,
+      ZauberComponent
   ],
     entryComponents: [
       LoginDialogComponent
