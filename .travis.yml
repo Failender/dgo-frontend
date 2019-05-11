@@ -1,0 +1,12 @@
+sudo: true
+dist: trusty
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker login -u failender -p $DOCKER_PASS
+      - docker build -t $REPO:$TRAVIS_BRANCH .
+      - echo $REPO
+      - docker push $REPO
+

@@ -28,9 +28,10 @@ import { TableComponent } from './table/table.component';
 import {MenuListItemComponent} from './menu/menu-list-item.component';
 import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
 import {HeldenService, initializeHeld} from './held/helden.service';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {PDFSource, PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
+import {SourcePdfComponent} from './routes/held/pdf/source-pdf.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
       {path: 'zauber', component: ZauberComponent}
     ]
   },
+  {path: 'pdf/:source/:id', component: SourcePdfComponent},
 
   { path: '**', redirectTo : '/home' }
 ]
@@ -58,6 +60,7 @@ const routes: Routes = [
       TableComponent,
       UebersichtComponent,
       PdfComponent,
+      SourcePdfComponent,
       ZauberComponent
   ],
     entryComponents: [
