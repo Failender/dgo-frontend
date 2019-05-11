@@ -12,7 +12,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSlideToggleModule, MatTableModule,
+  MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import {ToolbarComponent} from './toolbar/toolbar.component';
@@ -77,6 +77,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -92,7 +93,7 @@ const routes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
-      deps: [TokenService],
+      deps: [TokenService, MatSnackBar],
       multi: true
     },
     {

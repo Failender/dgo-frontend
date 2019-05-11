@@ -11,6 +11,8 @@
   </span>
 </a>
 <div *ngIf="expanded">
-  <app-menu-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
-  </app-menu-list-item>
+  <ng-container *ngFor="let child of item.children">
+    <app-menu-list-item *ngIf="!child.hidden" [item]="child" [depth]="depth+1"></app-menu-list-item>
+  </ng-container>
+
 </div>

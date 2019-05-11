@@ -4,7 +4,9 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #menu mode="side" opened="false">
     <mat-nav-list>
-      <app-menu-list-item *ngFor="let item of menuItems | async" [item]="item"></app-menu-list-item>
+      <ng-container *ngFor="let item of menuItems | async">
+        <app-menu-list-item *ngIf="!item.hidden" [item]="item"></app-menu-list-item>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>

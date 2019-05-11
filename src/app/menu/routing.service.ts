@@ -42,7 +42,9 @@ export interface NavItem {
   displayName: string;
   disabled?: boolean;
   iconName: string;
+  hidden?: boolean
   route?: string;
+  condition?: any;
   children?: NavItem[];
 }
 
