@@ -32,6 +32,7 @@ import {PDFSource, PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
 import {SourcePdfComponent} from './routes/held/pdf/source-pdf.component';
+import { ManageUserComponent } from './routes/admin/manage-user/manage-user.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,12 @@ const routes: Routes = [
     children: [
       {path: 'uebersicht', component: UebersichtComponent},
       {path: 'zauber', component: ZauberComponent}
+    ]
+  },
+  {
+    path: 'administration',
+    children: [
+      {path: 'manage-user', component: ManageUserComponent}
     ]
   },
   {path: 'pdf/:source/:id', component: SourcePdfComponent},
@@ -61,7 +68,8 @@ const routes: Routes = [
       UebersichtComponent,
       PdfComponent,
       SourcePdfComponent,
-      ZauberComponent
+      ZauberComponent,
+      ManageUserComponent
   ],
     entryComponents: [
       LoginDialogComponent

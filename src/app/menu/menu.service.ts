@@ -34,7 +34,13 @@ export class MenuService {
           condition: this.hasZauber.bind(this)
         }
       ]
-    }
+    },
+    {
+      displayName: 'Administration',
+      iconName: '',
+      route: 'administration/manage-user',
+      condition:  () => this.permission('CREATE_USER')
+    },
   ];
 
   private menuItemsSubject = new BehaviorSubject(this.items);
@@ -47,6 +53,10 @@ export class MenuService {
 
   private heldLoaded() {
     return this.heldenService.currentHeld;
+  }
+
+  private permission(permission: string) {
+    return this.tokenService.permissions.indexOf(permission) !== -1;
   }
 
   private hasZauber() {

@@ -50,7 +50,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
         click: context => this.loadHeld(context)
       }]
     }
-  ]
+  ];
 
   private loadHeld(context) {
     this.heldenService.loadHeld(context.id, context.version)
@@ -60,7 +60,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
   }
 
 
-  constructor(private heldenService: HeldenService, private router: Router, private tokenService: TokenService) {
+  constructor(private heldenService: HeldenService, router: Router, tokenService: TokenService) {
     super(tokenService, router);
   }
 
@@ -69,7 +69,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
       this.heldenService.updateActive(event.row.id, event.row.active)
         .subscribe(data => {
         });
-    } else if(event.column.field === 'public') {
+    } else if (event.column.field === 'public') {
       this.heldenService.updatePublic(event.row.id, event.row.public)
         .subscribe(data => {
         });

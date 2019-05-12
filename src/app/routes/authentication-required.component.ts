@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 export abstract class AuthenticationRequiredComponent implements OnInit {
 
-  constructor(private tokenService: TokenService, private router: Router) {
+  constructor(protected tokenService: TokenService, protected router: Router) {
 
   }
 
