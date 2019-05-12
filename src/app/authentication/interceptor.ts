@@ -30,6 +30,10 @@ export class Interceptor implements HttpInterceptor {
           if (token) {
             this.tokenService.token = token;
           }
+          const permissions = event.headers.get('permissions');
+          if (permissions) {
+            this.tokenService.permissions = permissions.split(',');
+          }
         }
         return event;
       }),

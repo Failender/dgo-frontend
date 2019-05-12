@@ -11,12 +11,18 @@ export class TokenService {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
     }
+
+    if (localStorage.getItem('permissions')) {
+      this._permissions = localStorage.getItem('permissions').split(',');
+    }
+
+
   }
 
 
   private tokenSubject = new BehaviorSubject<string>(null);
   public tokenObs = this.tokenSubject.asObservable();
-
+  private _permissions: string[];
   public set token(value: string) {
     localStorage.setItem('token', value);
     this.tokenSubject.next(value);
@@ -24,6 +30,15 @@ export class TokenService {
 
   public get token() {
     return this.tokenSubject.value;
+  }
+
+  public set permissions(value: string[]) {
+    localStorage.setItem('permissions', value.join(','));
+    this._permissions = value;
+  }
+
+  public get permissions() {
+    return this._permissions;
   }
 
   public isAuthenticated() {

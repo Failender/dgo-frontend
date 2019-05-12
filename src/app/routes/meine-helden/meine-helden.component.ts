@@ -3,13 +3,15 @@ import {HeldDto, HeldenService} from '../../held/helden.service';
 import {TableColumn, TableEditEvent} from '../../table/table.component';
 import {RoutingService} from '../../menu/routing.service';
 import {Router} from '@angular/router';
+import {AuthenticationRequiredComponent} from '../authentication-required.component';
+import {TokenService} from '../../authentication/token.service';
 
 @Component({
   selector: 'app-meine-helden',
   templateUrl: './meine-helden.component.html',
   styleUrls: ['./meine-helden.component.css']
 })
-export class MeineHeldenComponent implements OnInit {
+export class MeineHeldenComponent extends AuthenticationRequiredComponent{
 
   public helden: HeldDto[];
 
@@ -58,8 +60,8 @@ export class MeineHeldenComponent implements OnInit {
   }
 
 
-  constructor(private heldenService: HeldenService, private router: Router) {
-
+  constructor(private heldenService: HeldenService, private router: Router, private tokenService: TokenService) {
+    super(tokenService, router);
   }
 
   onEdit(event: TableEditEvent) {
@@ -74,7 +76,7 @@ export class MeineHeldenComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  doInit() {
     this.heldenService.getMeineHelden()
       .subscribe(data => {
         this.helden = data;
