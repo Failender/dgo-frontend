@@ -1,3 +1,35 @@
-<p>
-  manage-user works!
-</p>
+<mat-tab-group>
+  <mat-tab label="Nutzer anlegen">
+
+    <form [formGroup]="createForm" style="margin:10px">
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Gruppe" formControlName="gruppe">
+          <mat-option *ngFor="let gruppe of gruppen" [value]="gruppe.name">{{gruppe.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Token" formControlName="token">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" style="width:100px" [disabled]="!createForm.valid" (click)="createUser()">
+        <mat-icon *ngIf="creatingUser"><mat-spinner color="accent" diameter="20" ></mat-spinner></mat-icon><span *ngIf="!creatingUser">Erstellen</span>
+      </button>
+
+
+
+    </form>
+  </mat-tab>
+  <mat-tab label="Nutzer Rechte">
+    RECHTE
+  </mat-tab>
+</mat-tab-group>

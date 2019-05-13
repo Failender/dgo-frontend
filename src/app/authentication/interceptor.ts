@@ -3,11 +3,12 @@ import {TokenService} from './token.service';
 import {NEVER, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material';
+import {NotificationService} from '../shared/notification.service';
 
 
 export class Interceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenService, private snackbar: MatSnackBar) {
+  constructor(private tokenService: TokenService, private notificationService: NotificationService) {
 
   }
 
@@ -41,10 +42,10 @@ export class Interceptor implements HttpInterceptor {
         console.error(error);
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
-            this.snackbar.open('Bitte melden sie sich an um diese Funktion zu nutzen')
+            this.notificationService.error('Bitte melden sie sich an um diese Funktion zu nutzen')
             return NEVER;
-          } else if( error.status === 500) {
-            this.snackbar.open('Unerwarteter Fehler');
+          } else if ( error.status === 500) {
+            this.notificationService.error('Unerwarteter Fehler');
           }
         }
         return throwError(error);

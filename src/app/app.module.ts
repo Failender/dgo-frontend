@@ -11,8 +11,8 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule,
+  MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule,
+  MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {ToolbarComponent} from './toolbar/toolbar.component';
@@ -90,8 +90,10 @@ const routes: Routes = [
     MatTableModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatTabsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       routes,

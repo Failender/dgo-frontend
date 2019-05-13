@@ -22,7 +22,7 @@ export class TokenService {
 
   private tokenSubject = new BehaviorSubject<string>(null);
   public tokenObs = this.tokenSubject.asObservable();
-  private _permissions: string[];
+  private _permissions: string[] = [];
   public set token(value: string) {
     localStorage.setItem('token', value);
     this.tokenSubject.next(value);
