@@ -33,6 +33,8 @@ import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
 import {SourcePdfComponent} from './routes/held/pdf/source-pdf.component';
 import { ManageUserComponent } from './routes/admin/manage-user/manage-user.component';
+import { ZauberspeicherComponent } from './routes/held/zauberspeicher/zauberspeicher.component';
+import {NotificationService} from './shared/notification.service';
 
 
 const routes: Routes = [
@@ -42,7 +44,8 @@ const routes: Routes = [
     path: 'held',
     children: [
       {path: 'uebersicht', component: UebersichtComponent},
-      {path: 'zauber', component: ZauberComponent}
+      {path: 'zauber', component: ZauberComponent},
+      {path: 'zauberspeicher', component: ZauberspeicherComponent}
     ]
   },
   {
@@ -69,7 +72,8 @@ const routes: Routes = [
       PdfComponent,
       SourcePdfComponent,
       ZauberComponent,
-      ManageUserComponent
+      ManageUserComponent,
+      ZauberspeicherComponent
   ],
     entryComponents: [
       LoginDialogComponent
@@ -106,7 +110,7 @@ const routes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
-      deps: [TokenService, MatSnackBar],
+      deps: [TokenService, NotificationService],
       multi: true
     },
     {

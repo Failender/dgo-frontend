@@ -12,6 +12,14 @@ import {TableColumn} from '../../../table/table.component';
 })
 export class ZauberComponent extends HeldComponent{
 
+
+  private actionColumn = {
+    header: '',
+    field: 'actions',
+    type: 'inline-actions',
+    actions: []
+  };
+
   public tableData;
   public tableColumns: TableColumn[] = [
     {
@@ -34,24 +42,21 @@ export class ZauberComponent extends HeldComponent{
       field: 'wert',
       type: 'string'
     },
-    {
-      header: '',
-      field: 'actions',
-      type: 'actions',
-      actions: [{
-        name: 'Liber',
-        click: context => this.liber(context)
-      }]
-    }
+    this.actionColumn
   ]
 
-  constructor(heldenService: HeldenService, router: Router) {
+  constructor(heldenService: HeldenService, router: Router, private tokenService: TokenService) {
     super(heldenService, router);
   }
 
   doInit() {
-    console.debug(this.held);
     this.tableData = this.held.zauberliste.zauber;
+    if (this.tokenService.visiblePdfs.indexOf('lcd') !== -1) {
+      this.actionColumn.actions = [{
+        name: 'book',
+        click: context => this.liber(context)
+      }];
+    }
   }
 
   private liber(context: Zauber) {

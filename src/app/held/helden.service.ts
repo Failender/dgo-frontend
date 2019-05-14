@@ -66,11 +66,21 @@ export function initializeHeld(heldenService: HeldenService) {
 
 export interface HeldDaten {
   zauberliste: Zauberliste;
+  sonderfertigkeiten: Sonderfertigkeiten;
+
   [key: string]: any;
 }
 
 export interface Zauberliste {
   zauber: Zauber[];
+}
+
+export interface Sonderfertigkeiten {
+  sonderfertigkeit: Sonderfertigkeit[];
+}
+
+export interface Sonderfertigkeit {
+  name: string;
 }
 
 export interface Zauber {

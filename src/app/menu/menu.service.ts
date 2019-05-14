@@ -32,7 +32,13 @@ export class MenuService {
           iconName: '',
           route: 'held/zauber',
           condition: this.hasZauber.bind(this)
-        }
+        },
+        {
+          displayName: 'Zauberspeicher',
+          iconName: '',
+          route: 'held/zauberspeicher',
+          condition: () => this.sf('Stabzauber: Zauberspeicher')
+        },
       ]
     },
     {
@@ -57,6 +63,14 @@ export class MenuService {
 
   private permission(permission: string) {
     return this.tokenService.permissions.indexOf(permission) !== -1;
+  }
+
+  private sf(sf: string) {
+    if (!this.heldLoaded()) {
+      return false;
+    }
+    return this.heldenService.activeHeld().sonderfertigkeiten.sonderfertigkeit.find(entry => entry.name === sf);
+
   }
 
   private hasZauber() {

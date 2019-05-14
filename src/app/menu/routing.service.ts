@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {HeldenService} from '../held/helden.service';
 import {Location} from '@angular/common';
 
@@ -21,7 +21,7 @@ export class RoutingService {
         let uri = event.urlAfterRedirects;
         if (uri.indexOf('held=') === -1 && this.heldenService.currentHeld) {
           uri += `?held=${this.heldenService.currentHeld.id}&version=${this.heldenService.currentHeld.version}`;
-          this.location.go(uri);
+          this.location.replaceState(uri);
         }
 
         this.currentUrl.next(uri);

@@ -28,6 +28,11 @@
                 </button>
               </mat-menu>
             </div>
+            <div *ngSwitchCase="'inline-actions'">
+              <mat-icon *ngFor="let action of column.actions" (click)="action.click(element)" style="cursor:pointer">
+                {{action.name}}
+              </mat-icon>
+            </div>
 
             <div *ngSwitchDefault>
               Non mapped field {{column.field}}

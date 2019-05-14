@@ -16,6 +16,12 @@ export class TokenService {
       this._permissions = localStorage.getItem('permissions').split(',');
     }
 
+    if (localStorage.getItem('pdfs')) {
+      this._visiblePdfs = localStorage.getItem('pdfs').split(',');
+    }
+
+
+
 
   }
 
@@ -23,6 +29,7 @@ export class TokenService {
   private tokenSubject = new BehaviorSubject<string>(null);
   public tokenObs = this.tokenSubject.asObservable();
   private _permissions: string[] = [];
+  private _visiblePdfs: string[] = [];
   public set token(value: string) {
     localStorage.setItem('token', value);
     this.tokenSubject.next(value);
@@ -40,6 +47,16 @@ export class TokenService {
   public get permissions() {
     return this._permissions;
   }
+
+  public set visiblePdfs(value: string[]) {
+    localStorage.setItem('pdfs', value.join(','));
+    this._visiblePdfs = value;
+  }
+
+  public get visiblePdfs() {
+    return this._visiblePdfs;
+  }
+
 
   public isAuthenticated() {
     return this.tokenSubject.value != null;
