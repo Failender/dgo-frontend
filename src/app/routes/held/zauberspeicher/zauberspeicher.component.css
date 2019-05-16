@@ -1,0 +1,22 @@
+
+mat-form-field {
+  width: 100%;
+}
+
+
+.half-width {
+  width: 50%
+}
+
+
+mat-card {
+  float: left;
+  width: 40%;
+  margin: 10px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+}

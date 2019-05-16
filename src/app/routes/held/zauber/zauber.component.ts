@@ -60,9 +60,7 @@ export class ZauberComponent extends HeldComponent{
   }
 
   private liber(context: Zauber) {
-    console.debug(context)
     this.router.navigateByUrl(`/pdf/lcd/${context.quelle.seite}`);
-
 
   }
 

@@ -36,7 +36,7 @@ export class Interceptor implements HttpInterceptor {
             this.tokenService.permissions = permissions.split(',');
           }
           const pdfs = event.headers.get('pdfs');
-          if (pdfs) {
+          if (pdfs !== null) {
             this.tokenService.visiblePdfs = pdfs.split(',');
           }
 

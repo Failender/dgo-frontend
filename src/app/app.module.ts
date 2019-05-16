@@ -7,9 +7,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
@@ -94,6 +94,7 @@ const routes: Routes = [
     MatTableModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatCardModule,
     MatSelectModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -105,6 +106,7 @@ const routes: Routes = [
     ),
     MatSlideToggleModule,
     MatMenuModule,
+    MatGridListModule,
   ],
   providers: [
     {

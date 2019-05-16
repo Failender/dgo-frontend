@@ -1,0 +1,60 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Zauberspeicher</mat-card-title>
+    <app-table [data]="data" [columns]="tableColumns"></app-table>
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Zauber hinzufügen
+    </mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div>
+
+        </div>
+
+        <mat-form-field>
+          <mat-select formControlName="zauber" (valueChange)="zauberSelected($event)">
+            <mat-option *ngFor="let zauber of zauberOptions" [value]="zauber.value">{{zauber.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="kosten" type="number" formControlName="kosten">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Qualität" formControlName="qualitaet">
+        </mat-form-field>
+        <span>Modifikator: {{totalModifikator}}</span>
+
+        <mat-form-field>
+          <input matInput type="number" formControlName="varianteMod" placeholder="Varianten Modifikator">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select (selectionChange)="spomoSelected($event)" placeholder="Spontane Modifikationen" multiple>
+            <ng-container *ngFor="let spomo of spomos">
+              <mat-option *ngIf="!spomo.children" [value]="spomo.value">{{spomo.label}}</mat-option>
+              <mat-optgroup *ngIf="spomo.children" [label]="spomo.label">
+                <mat-option *ngFor="let child of spomo.children" [value]="child.value"> <span style="margin-left:5px">-{{child.label}}</span></mat-option>
+              </mat-optgroup>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled] ="!form.valid" (click)="addZauberspeicher()">Hinzufügen</button>
+
+      </form>
+
+
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+</div>
+
+
+
