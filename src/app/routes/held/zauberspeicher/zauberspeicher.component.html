@@ -17,17 +17,14 @@
         </div>
 
         <mat-form-field>
-          <mat-select formControlName="zauber" (valueChange)="zauberSelected($event)">
+          <mat-select formControlName="zauber" (valueChange)="zauberSelected($event)" placeholder="Zauber">
             <mat-option *ngFor="let zauber of zauberOptions" [value]="zauber.value">{{zauber.label}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="kosten" type="number" formControlName="kosten">
+          <input matInput placeholder="Kosten" type="number" formControlName="kosten">
         </mat-form-field>
-        <mat-form-field>
-          <input matInput type="number" placeholder="Qualität" formControlName="qualitaet">
-        </mat-form-field>
-        <span>Modifikator: {{totalModifikator}}</span>
+        <div style="margin-bottom:10px;">Modifikator: {{totalModifikator}}</div>
 
         <mat-form-field>
           <input matInput type="number" formControlName="varianteMod" placeholder="Varianten Modifikator">
@@ -42,6 +39,10 @@
             </ng-container>
           </mat-select>
         </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Qualität" formControlName="qualitaet">
+        </mat-form-field>
+
 
         <button mat-raised-button color="primary" [disabled] ="!form.valid" (click)="addZauberspeicher()">Hinzufügen</button>
 

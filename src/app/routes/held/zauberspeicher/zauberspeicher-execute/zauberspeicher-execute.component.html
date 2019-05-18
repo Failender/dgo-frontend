@@ -1,0 +1,24 @@
+<div mat-dialog-title>Zauberspeicher auslösen</div>
+
+<div mat-dialog-content>
+
+  <div>
+    <span>Name: {{zauber.zauber}}</span>
+  </div>
+  <div>
+    <span>Komplexität: {{zauber.komplexitaet}}</span>
+  </div>
+  <div>
+    <span>Modifikationen: {{zauber.spomos}}</span>
+  </div>
+
+  <div>
+    <span>Qualität: {{zauber.qualitaet}}</span>
+  </div>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Abbrechen</button>
+  <button mat-button (click)="execute()" >Auslösen</button>
+</div>

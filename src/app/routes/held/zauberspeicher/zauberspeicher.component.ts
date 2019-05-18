@@ -6,6 +6,8 @@ import {TableColumn} from '../../../table/table.component';
 import {ZauberspeicherService} from './zauberspeicher.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TokenService} from '../../../authentication/token.service';
+import {MatDialog} from '@angular/material';
+import {ZauberspeicherExecuteComponent} from './zauberspeicher-execute/zauberspeicher-execute.component';
 
 @Component({
   selector: 'app-zauberspeicher',
@@ -27,9 +29,9 @@ export class ZauberspeicherComponent extends HeldComponent {
   private actionColumn = {
     header: '',
     field: 'actions',
-    type: 'actions',
+    type: 'inline-actions',
     actions: [{
-      name: 'Auslösen',
+      name: 'delete',
       click: context => this.deleteSpeicher(context)
     }]
   };
@@ -43,6 +45,11 @@ export class ZauberspeicherComponent extends HeldComponent {
     {
       header: 'Kosten',
       field: 'kosten',
+      type: 'string'
+    },
+    {
+      header: 'Qualität',
+      field: 'qualitaet',
       type: 'string'
     },
     {
@@ -60,8 +67,17 @@ export class ZauberspeicherComponent extends HeldComponent {
 
 
   private deleteSpeicher(context) {
-    this.zauberspeicherService.deleteSpeicher(context.id)
-      .subscribe(() => this.loadZauberspeicher());
+    const dialogRef = this.matdialog.open(ZauberspeicherExecuteComponent, {
+      data: context
+    })
+    dialogRef.afterClosed()
+      .subscribe(data => {
+        if (data) {
+          this.zauberspeicherService.deleteSpeicher(context.id)
+            .subscribe(() => this.loadZauberspeicher());
+        }
+      });
+
   }
 
   public data = [];
@@ -82,9 +98,11 @@ export class ZauberspeicherComponent extends HeldComponent {
 
 
   public spomos = [];
-  constructor(heldenService: HeldenService, router: Router, private zauberspeicherService: ZauberspeicherService, private tokenService: TokenService) {
+  constructor(heldenService: HeldenService, router: Router, private zauberspeicherService: ZauberspeicherService, private tokenService: TokenService,
+              private matdialog: MatDialog) {
     super(heldenService, router);
     this.spomos.push(this.spomo(4, 'Zauberdauer'));
+    this.spomos.push(this.spomo(-5, 'Reichweite'));
     this.spomos.push(this.spomo(-3, 'Kosten senken 10%'));
     this.spomos.push(this.spomo(-6, 'Kosten senken 20%'));
     this.spomos.push(this.spomo(-9, 'Kosten senken 30%'));
@@ -94,14 +112,13 @@ export class ZauberspeicherComponent extends HeldComponent {
 
     if (this.tokenService.visiblePdfs.indexOf('lcd') !== -1) {
       this.actionColumn.actions.push({
-        name: 'Liber',
+        name: 'book',
         click: context => this.liber(context)
       });
     }
   }
 
   private liber(context: any) {
-    console.debug(context);
     const zauberName = context.zauber;
     const zauber = this.heldenService.activeHeld().zauberliste.zauber.find(entry => entry.name === zauberName);
     this.router.navigateByUrl(`/pdf/lcd/${zauber.quelle.seite}`);

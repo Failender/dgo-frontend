@@ -35,6 +35,7 @@ import {SourcePdfComponent} from './routes/held/pdf/source-pdf.component';
 import { ManageUserComponent } from './routes/admin/manage-user/manage-user.component';
 import { ZauberspeicherComponent } from './routes/held/zauberspeicher/zauberspeicher.component';
 import {NotificationService} from './shared/notification.service';
+import { ZauberspeicherExecuteComponent } from './routes/held/zauberspeicher/zauberspeicher-execute/zauberspeicher-execute.component';
 
 
 const routes: Routes = [
@@ -73,10 +74,11 @@ const routes: Routes = [
       SourcePdfComponent,
       ZauberComponent,
       ManageUserComponent,
-      ZauberspeicherComponent
+      ZauberspeicherComponent,
+      ZauberspeicherExecuteComponent
   ],
     entryComponents: [
-      LoginDialogComponent
+      LoginDialogComponent, ZauberspeicherExecuteComponent
 
     ],
   imports: [
