@@ -23,9 +23,14 @@ export class MenuService {
       iconName: '',
       children: [
         {
-          displayName: 'Übersicht',
+          displayName: 'PDF',
           iconName: '',
-          route: 'held/uebersicht'
+          route: 'held/pdf'
+        },
+        {
+          displayName: 'Inventar',
+          iconName: '',
+          route: 'held/inventar'
         },
         {
           displayName: 'Zauber',

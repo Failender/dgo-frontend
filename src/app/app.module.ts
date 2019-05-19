@@ -26,16 +26,18 @@ import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
 import { TableComponent } from './table/table.component';
 import {MenuListItemComponent} from './menu/menu-list-item.component';
-import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
 import {HeldenService, initializeHeld} from './held/helden.service';
 import {PDFSource, PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
-import {SourcePdfComponent} from './routes/held/pdf/source-pdf.component';
+import {SourcePdfComponent} from './routes/held/source-pdf/source-pdf.component';
 import { ManageUserComponent } from './routes/admin/manage-user/manage-user.component';
 import { ZauberspeicherComponent } from './routes/held/zauberspeicher/zauberspeicher.component';
 import {NotificationService} from './shared/notification.service';
 import { ZauberspeicherExecuteComponent } from './routes/held/zauberspeicher/zauberspeicher-execute/zauberspeicher-execute.component';
+import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
+import {HeldPdfComponent} from './routes/held/pdf/held-pdf.component';
+import { InventarComponent } from './routes/held/inventar/inventar.component';
 
 
 const routes: Routes = [
@@ -44,8 +46,9 @@ const routes: Routes = [
   {
     path: 'held',
     children: [
-      {path: 'uebersicht', component: UebersichtComponent},
+      {path: 'pdf', component: HeldPdfComponent},
       {path: 'zauber', component: ZauberComponent},
+      {path: 'inventar', component: InventarComponent},
       {path: 'zauberspeicher', component: ZauberspeicherComponent}
     ]
   },
@@ -69,13 +72,15 @@ const routes: Routes = [
       HomeComponent,
       MeineHeldenComponent,
       TableComponent,
-      UebersichtComponent,
       PdfComponent,
+      HeldPdfComponent,
       SourcePdfComponent,
       ZauberComponent,
       ManageUserComponent,
       ZauberspeicherComponent,
-      ZauberspeicherExecuteComponent
+      ZauberspeicherExecuteComponent,
+      UebersichtComponent,
+      InventarComponent
   ],
     entryComponents: [
       LoginDialogComponent, ZauberspeicherExecuteComponent

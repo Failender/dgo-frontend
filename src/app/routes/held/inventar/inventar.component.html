@@ -1,0 +1,46 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Inventar</mat-card-title>
+    <app-table [data]="inventar" [columns]="tableColumns"></app-table>
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Gegenstand hinzufügen
+    </mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="form">
+
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select formControlName="container" placeholder="Behälter"></mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" formControlName="anzahl" placeholder="Anzahl">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" formControlName="gewicht" placeholder="Gewicht">
+        </mat-form-field>
+
+
+
+        <button mat-raised-button color="primary" [disabled] ="!form.valid" (click)="addInventar()">Hinzufügen</button>
+
+      </form>
+
+
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+</div>
+
+
+
