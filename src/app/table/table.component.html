@@ -12,8 +12,12 @@
               {{element[column.field]}}
             </div>
             <div *ngSwitchCase="'boolean'">
-              {{element[column.field]}} bool
+              {{element[column.field]}}
             </div>
+            <div *ngSwitchCase="'number'">
+              {{element[column.field]}}
+            </div>
+
             <div *ngSwitchCase="'boolean-edit'">
               <mat-slide-toggle [checked]="element[column.field]" (change)="onSlideChange(element, column, $event.checked)"></mat-slide-toggle>
 
@@ -35,7 +39,7 @@
             </div>
 
             <div *ngSwitchDefault>
-              Non mapped field {{column.field}}
+              Non mapped field {{column.type}}
             </div>
 
           </ng-container>

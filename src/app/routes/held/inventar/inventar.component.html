@@ -18,13 +18,21 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select formControlName="container" placeholder="Behälter"></mat-select>
+          <mat-select formControlName="container" placeholder="Behälter">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let item of inventar" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="number" formControlName="anzahl" placeholder="Anzahl">
         </mat-form-field>
         <mat-form-field>
           <input matInput type="number" formControlName="gewicht" placeholder="Gewicht">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput formControlName="notiz" cdkTextareaAutosize placeholder="Notiz"></textarea>
         </mat-form-field>
 
 

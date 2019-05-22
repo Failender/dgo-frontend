@@ -19,13 +19,18 @@ export class HeldInventarService {
     return this.http.post(`${environment.rest}helden/inventar`, gegenstand);
   }
 
+  public delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.rest}helden/inventar/entry/${id}`);
+  }
+
 }
 
 
 export interface HeldInventar {
   id: number;
   name: string;
-  anzahL: number;
+  notiz: string;
+  anzahl: number;
   container: number;
   gewicht: number;
 }

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../held.component';
 import {HeldenService} from '../../../held/helden.service';
 import {Router} from '@angular/router';
-import {HeldInventarService} from './held-inventar.service';
+import {HeldInventar, HeldInventarService} from './held-inventar.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../../shared/notification.service';
+import {TableColumn} from '../../../table/table.component';
 
 @Component({
   selector: 'app-inventar',
@@ -17,18 +18,54 @@ export class InventarComponent extends HeldComponent {
   public form = new FormGroup({
     name: new FormControl('', Validators.required),
     heldid: new FormControl('', Validators.required),
+    notiz: new FormControl('', Validators.required),
     container: new FormControl(null),
     gewicht: new FormControl(0, Validators.required),
     anzahl: new FormControl(0, Validators.required)
   });
 
-  public inventar;
+  public inventar: HeldInventar[];
 
-  public tableColumns = [];
+  public tableColumns: TableColumn[] = [
+    {
+      field: 'anzahl',
+      header: 'Anzahl',
+      type: 'number'
+    },
+    {
+      field: 'name',
+      header: 'Name',
+      type: 'string'
+    },
+    {
+      field: 'gewicht',
+      header: 'Gewicht',
+      type: 'number'
+    },
+    {
+      header: '',
+      field: 'actions',
+      type: 'inline-actions',
+      actions: [
+        {
+          name: 'delete',
+          click: context => this.deleteEntry(context)
+        }
+      ]
+    }
+  ];
 
   constructor(heldService: HeldenService, router: Router, private heldInventarService: HeldInventarService, private notificationService: NotificationService) {
     super(heldService, router);
 
+  }
+
+  private deleteEntry(inventar: HeldInventar) {
+    this.heldInventarService.delete(inventar.id)
+      .subscribe(() => {
+        this.notificationService.info('Gegenstand entfernt');
+        this.loadInventar();
+      });
   }
 
 
@@ -46,7 +83,6 @@ export class InventarComponent extends HeldComponent {
   }
 
   public addInventar() {
-    console.debug(this.form.value)
     this.heldInventarService.addGegenstand(this.form.value)
       .subscribe(() => {
         this.loadInventar();
