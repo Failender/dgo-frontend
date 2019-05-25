@@ -13,7 +13,7 @@ import {
   MatIconModule,
   MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {LoginDialogComponent} from './login/login-dialog.component';
@@ -99,6 +99,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatTooltipModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatCardModule,

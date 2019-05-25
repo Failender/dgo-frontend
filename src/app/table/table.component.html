@@ -33,9 +33,16 @@
               </mat-menu>
             </div>
             <div *ngSwitchCase="'inline-actions'">
-              <mat-icon *ngFor="let action of column.actions" (click)="action.click(element)" style="cursor:pointer">
-                {{action.name}}
-              </mat-icon>
+              <ng-container *ngFor="let action of column.actions">
+                <mat-icon  (click)="action.click(element)" style="cursor:pointer" *ngIf="action.click">
+                  {{action.name}}
+                </mat-icon>
+                <mat-icon  style="cursor:pointer"  [matTooltip]="action.tooltip(element)" matTooltipPosition="above" *ngIf="action.tooltip">
+                  {{action.name}}
+                </mat-icon>
+
+              </ng-container>
+
             </div>
 
             <div *ngSwitchDefault>

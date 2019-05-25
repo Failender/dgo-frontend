@@ -18,7 +18,7 @@ export class InventarComponent extends HeldComponent {
   public form = new FormGroup({
     name: new FormControl('', Validators.required),
     heldid: new FormControl('', Validators.required),
-    notiz: new FormControl('', Validators.required),
+    notiz: new FormControl(''),
     container: new FormControl(null),
     gewicht: new FormControl(0, Validators.required),
     anzahl: new FormControl(0, Validators.required)
@@ -58,6 +58,10 @@ export class InventarComponent extends HeldComponent {
         {
           name: 'remove',
           click: context => this.decrementEntry(context)
+        },
+        {
+          name: 'info',
+          tooltip: context => context.notiz
         }
       ]
     }
@@ -109,6 +113,7 @@ export class InventarComponent extends HeldComponent {
         this.loadInventar();
         this.notificationService.info('Gegenstand hinzugefügt!');
       });
+    this.form.reset();
   }
 
 }
