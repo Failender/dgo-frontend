@@ -23,6 +23,11 @@ export class HeldInventarService {
     return this.http.delete(`${environment.rest}helden/inventar/entry/${id}`);
   }
 
+  public updateAnzahl(id: number, anzahl: number): Observable<any> {
+    return this.http.put(`${environment.rest}helden/inventar/entry/${id}/anzahl/${anzahl}`, null);
+
+  }
+
 }
 
 

@@ -50,6 +50,14 @@ export class InventarComponent extends HeldComponent {
         {
           name: 'delete',
           click: context => this.deleteEntry(context)
+        },
+        {
+          name: 'add',
+          click: context => this.incrementEntry(context)
+        },
+        {
+          name: 'remove',
+          click: context => this.decrementEntry(context)
         }
       ]
     }
@@ -67,6 +75,19 @@ export class InventarComponent extends HeldComponent {
         this.loadInventar();
       });
   }
+
+  private decrementEntry(inventar: HeldInventar) {
+    this.heldInventarService.updateAnzahl(inventar.id, inventar.anzahl - 1)
+      .subscribe(() => this.loadInventar());
+  }
+
+  private incrementEntry(inventar: HeldInventar) {
+
+    this.heldInventarService.updateAnzahl(inventar.id, inventar.anzahl + 1)
+      .subscribe(() => this.loadInventar());
+  }
+
+
 
 
   doInit() {
