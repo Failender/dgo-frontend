@@ -90,6 +90,7 @@ export interface Zauber {
   lernkomplexität: string;
   merkmale: string;
   probe: string;
+  wert: number;
   repraesentation: string;
   probenwerte: string;
   quelle: {

@@ -34,5 +34,7 @@ export interface ZauberSpeicher {
   komplexitaet: string;
   spomos: string;
   zauber: string;
+  zfw: number;
+  mr: number;
   qualitaet: number;
 }

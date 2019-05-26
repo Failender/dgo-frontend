@@ -110,7 +110,8 @@ export class InventarComponent extends HeldComponent {
   public addInventar() {
     this.heldInventarService.addGegenstand(this.form.value)
       .subscribe(() => {
-        this.loadInventar();
+
+        this.doInit();
         this.notificationService.info('Gegenstand hinzugefügt!');
       });
     this.form.reset();

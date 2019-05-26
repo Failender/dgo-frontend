@@ -18,11 +18,13 @@ export class ZauberspeicherComponent extends HeldComponent {
 
   public form = new FormGroup({
     zauber: new FormControl('', Validators.required),
+    zfw: new FormControl('', Validators.required),
     kosten: new FormControl('', Validators.required),
     komplexitaet: new FormControl('', Validators.required),
     varianteMod: new FormControl(0),
     qualitaet: new FormControl('', Validators.required),
     heldid: new FormControl('', Validators.required),
+    mr: new FormControl(),
     spomos: new FormControl('')
   })
 
@@ -41,6 +43,11 @@ export class ZauberspeicherComponent extends HeldComponent {
       header: 'Zauber',
       field: 'zauber',
       type: 'string'
+    },
+    {
+      header: 'ZfW',
+      field: 'zfw',
+      type: 'number'
     },
     {
       header: 'Kosten',
@@ -146,6 +153,7 @@ export class ZauberspeicherComponent extends HeldComponent {
   public zauberSelected(value) {
     const zauber = this.held.zauberliste.zauber.find(entry => entry.name === value);
     this.form.controls.komplexitaet.patchValue(zauber.komplexität);
+    this.form.controls.zfw.patchValue(zauber.wert);
   }
 
   public spomoSelected(event) {
@@ -162,7 +170,8 @@ export class ZauberspeicherComponent extends HeldComponent {
 
   public get totalModifikator() {
 
-    return this.modifikator - this.form.value.varianteMod;
+    const mr = this.form.value.mr || 0;
+    return this.modifikator - this.form.value.varianteMod - mr;
   }
 
   addZauberspeicher() {

@@ -55,7 +55,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
   private loadHeld(context) {
     this.heldenService.loadHeld(context.id, context.version)
       .subscribe(daten => {
-        this.router.navigateByUrl('/held/uebersicht');
+        this.router.navigateByUrl('/held/pdf');
       });
   }
 
