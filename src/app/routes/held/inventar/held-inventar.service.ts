@@ -2,33 +2,42 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
+import {HeldenService} from '../../../held/helden.service';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeldInventarService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private heldenService: HeldenService) {
+    this.heldenService.heldSub
+      .subscribe(() => {
+        this.refreshInventarForHeld();
+      });
+  }
 
   private inventarSubject = new BehaviorSubject(null);
-  public inventar
+  public inventar = this.inventarSubject.asObservable();
 
-
-  public getInventarForHeld(held: number): Observable<HeldInventar[]> {
-    return this.http.get<HeldInventar[]>(`${environment.rest}helden/inventar/held/${held}`);
+  public refreshInventarForHeld(){
+    this.http.get<HeldInventar[]>(`${environment.rest}helden/inventar/held/${this.heldenService.currentHeld.id}`)
+      .subscribe(data => this.inventarSubject.next(data));
   }
 
   public addGegenstand(gegenstand: HeldInventar): Observable<any> {
-    return this.http.post(`${environment.rest}helden/inventar`, gegenstand);
+    return this.http.post(`${environment.rest}helden/inventar`, gegenstand)
+      .pipe(tap(() => this.refreshInventarForHeld()))
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${environment.rest}helden/inventar/entry/${id}`);
+    return this.http.delete(`${environment.rest}helden/inventar/entry/${id}`)
+      .pipe(tap(() => this.refreshInventarForHeld()))
   }
 
   public updateAnzahl(id: number, anzahl: number): Observable<any> {
-    return this.http.put(`${environment.rest}helden/inventar/entry/${id}/anzahl/${anzahl}`, null);
-
+    return this.http.put(`${environment.rest}helden/inventar/entry/${id}/anzahl/${anzahl}`, null)
+      .pipe(tap(() => this.refreshInventarForHeld()))
   }
 
 }

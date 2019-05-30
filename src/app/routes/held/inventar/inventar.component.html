@@ -1,7 +1,8 @@
+<app-quicknav></app-quicknav>
 <div class="container">
   <mat-card>
     <mat-card-title>Inventar</mat-card-title>
-    <app-table [data]="inventar" [columns]="tableColumns"></app-table>
+    <app-table [data]="inventar | async" [columns]="tableColumns"></app-table>
 
   </mat-card>
 
@@ -20,7 +21,7 @@
         <mat-form-field>
           <mat-select formControlName="container" placeholder="Behälter">
             <mat-option></mat-option>
-            <mat-option *ngFor="let item of inventar" [value]="item.id">
+            <mat-option *ngFor="let item of inventar |async" [value]="item.id">
               {{item.name}}
             </mat-option>
           </mat-select>

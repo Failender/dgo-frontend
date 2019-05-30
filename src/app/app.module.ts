@@ -35,9 +35,10 @@ import { ManageUserComponent } from './routes/admin/manage-user/manage-user.comp
 import { ZauberspeicherComponent } from './routes/held/zauberspeicher/zauberspeicher.component';
 import {NotificationService} from './shared/notification.service';
 import { ZauberspeicherExecuteComponent } from './routes/held/zauberspeicher/zauberspeicher-execute/zauberspeicher-execute.component';
-import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
+
 import {HeldPdfComponent} from './routes/held/pdf/held-pdf.component';
 import { InventarComponent } from './routes/held/inventar/inventar.component';
+import { QuicknavComponent } from './routes/held/quicknav/quicknav.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,6 @@ const routes: Routes = [
       {path: 'pdf', component: HeldPdfComponent},
       {path: 'zauber', component: ZauberComponent},
       {path: 'inventar', component: InventarComponent},
-      {path: 'uebersicht', component: UebersichtComponent},
       {path: 'zauberspeicher', component: ZauberspeicherComponent}
     ]
   },
@@ -80,8 +80,8 @@ const routes: Routes = [
       ManageUserComponent,
       ZauberspeicherComponent,
       ZauberspeicherExecuteComponent,
-      UebersichtComponent,
-      InventarComponent
+      InventarComponent,
+      QuicknavComponent
   ],
     entryComponents: [
       LoginDialogComponent, ZauberspeicherExecuteComponent

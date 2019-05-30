@@ -24,7 +24,7 @@ export class InventarComponent extends HeldComponent {
     anzahl: new FormControl(0, Validators.required)
   });
 
-  public inventar: HeldInventar[];
+  public inventar;
 
   public tableColumns: TableColumn[] = [
     {
@@ -76,36 +76,29 @@ export class InventarComponent extends HeldComponent {
     this.heldInventarService.delete(inventar.id)
       .subscribe(() => {
         this.notificationService.info('Gegenstand entfernt');
-        this.loadInventar();
       });
   }
 
   private decrementEntry(inventar: HeldInventar) {
     this.heldInventarService.updateAnzahl(inventar.id, inventar.anzahl - 1)
-      .subscribe(() => this.loadInventar());
+      .subscribe();
   }
 
   private incrementEntry(inventar: HeldInventar) {
 
     this.heldInventarService.updateAnzahl(inventar.id, inventar.anzahl + 1)
-      .subscribe(() => this.loadInventar());
+      .subscribe(
+      );
   }
 
 
 
 
   doInit() {
-    this.loadInventar();
     this.form.controls.heldid.patchValue(this.heldenService.currentHeld.id);
+    this.inventar = this.heldInventarService.inventar;
   }
 
-  private loadInventar() {
-    this.heldInventarService.getInventarForHeld(this.heldenService.currentHeld.id)
-      .subscribe(inventar => {
-        this.inventar = inventar;
-      });
-
-  }
 
   public addInventar() {
     this.heldInventarService.addGegenstand(this.form.value)
