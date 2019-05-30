@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,9 @@ import {Observable} from 'rxjs';
 export class HeldInventarService {
 
   constructor(private http: HttpClient) { }
+
+  private inventarSubject = new BehaviorSubject(null);
+  public inventar
 
 
   public getInventarForHeld(held: number): Observable<HeldInventar[]> {

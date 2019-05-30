@@ -49,6 +49,7 @@ const routes: Routes = [
       {path: 'pdf', component: HeldPdfComponent},
       {path: 'zauber', component: ZauberComponent},
       {path: 'inventar', component: InventarComponent},
+      {path: 'uebersicht', component: UebersichtComponent},
       {path: 'zauberspeicher', component: ZauberspeicherComponent}
     ]
   },
