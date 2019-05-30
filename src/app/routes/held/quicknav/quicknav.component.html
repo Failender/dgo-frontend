@@ -1,9 +1,9 @@
 <div class="menu">
   <mat-card>
-    <button mat-stroked-button routerLink="/held/pdf">Pdf</button>
-    <button mat-stroked-button routerLink="/held/inventar">Inventar</button>
-    <button mat-stroked-button routerLink="/held/zauber">Zauber</button>
-    <button mat-stroked-button routerLink="/held/zauberspeicher">Zauberspeicher</button>
+    <button mat-stroked-button routerLink="/held/pdf" [disabled]="activate('/held/pdf')">Pdf</button>
+    <button mat-stroked-button routerLink="/held/inventar" [disabled]="activate('/held/inventar')">Inventar</button>
+    <button mat-stroked-button routerLink="/held/zauber" [disabled]="activate('/held/zauber')">Zauber</button>
+    <button mat-stroked-button routerLink="/held/zauberspeicher" [disabled]="activate('/held/zauberspeicher')">Zauberspeicher</button>
   </mat-card>
 
 

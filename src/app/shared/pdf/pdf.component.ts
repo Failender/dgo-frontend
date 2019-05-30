@@ -20,7 +20,8 @@ export class PdfComponent implements OnInit {
   }
 
   openWindowWithGet(url, data) {
-    url += `?username=${data.username}&password=${data.password}`
+    console.debug(data)
+    url += `?token=${data.token}`
     const iframe = document.createElement("iframe");
     iframe.setAttribute("src", url);
     iframe.setAttribute("style", "display: none");

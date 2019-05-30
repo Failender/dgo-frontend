@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-quicknav',
   templateUrl: './quicknav.component.html',
-  styleUrls: ['./quicknav.component.css']
+  styleUrls: ['./quicknav.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuicknavComponent implements OnInit {
 
@@ -16,7 +17,10 @@ export class QuicknavComponent implements OnInit {
   }
 
   private activate(route) {
-    return window.location.href.indexOf(route) !== -1;
+    const startIdx = window.location.href.indexOf('/held');
+    const endIdx = window.location.href.indexOf('?');
+
+    return window.location.href.substr(startIdx, endIdx - startIdx) === route;;
   }
 
 }
