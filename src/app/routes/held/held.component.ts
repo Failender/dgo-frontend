@@ -1,4 +1,4 @@
-import {HeldenService} from '../../held/helden.service';
+import {HeldDaten, HeldenService, HeldInfo} from '../../held/helden.service';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
@@ -10,7 +10,7 @@ export abstract class HeldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.heldenService.currentHeld === null) {
+    if (!this.heldenService.currentHeld) {
       this.router.navigateByUrl('/home');
       return;
     }
@@ -18,11 +18,11 @@ export abstract class HeldComponent implements OnInit {
   }
 
 
-  get held() {
+  get held(): HeldDaten {
     return this.heldenService.heldSub.value;
   }
 
-  get heldInfo() {
+  get heldInfo(): HeldInfo {
     return this.heldenService.currentHeld;
   }
 

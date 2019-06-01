@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {HeldenService} from '../../../held/helden.service';
 
 @Component({
   selector: 'app-quicknav',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class QuicknavComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private heldenService: HeldenService) { }
 
   ngOnInit() {
 
@@ -21,6 +22,14 @@ export class QuicknavComponent implements OnInit {
     const endIdx = window.location.href.indexOf('?');
 
     return window.location.href.substr(startIdx, endIdx - startIdx) === route;;
+  }
+
+  private hasZauber() {
+    return this.heldLoaded() && this.heldenService.activeHeld().zauberliste.zauber.length !== 0;
+  }
+
+  private heldLoaded() {
+    return this.heldenService.currentHeld;
   }
 
 }

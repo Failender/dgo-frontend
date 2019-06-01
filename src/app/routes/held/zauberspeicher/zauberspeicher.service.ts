@@ -12,15 +12,15 @@ export class ZauberspeicherService {
   }
 
   public getZauberSpeicherForHeld(held): Observable<ZauberSpeicher[]> {
-    return this.http.get<ZauberSpeicher[]>(`${environment.rest}zauberspeicher/helden/held/${held}`);
+    return this.http.get<ZauberSpeicher[]>(`${environment.rest}helden/zauberspeicher/held/${held}`);
   }
 
   public saveSpeicher(data): Observable<any> {
-    return this.http.post(`${environment.rest}zauberspeicher/helden`, data);
+    return this.http.post(`${environment.rest}helden/zauberspeicher`, data);
   }
 
   public deleteSpeicher(speicher): Observable<any> {
-    return this.http.delete(`${environment.rest}zauberspeicher/helden/speicher/${speicher}`);
+    return this.http.delete(`${environment.rest}helden/zauberspeicher/speicher/${speicher}`);
   }
 
 

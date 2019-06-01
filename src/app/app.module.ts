@@ -39,6 +39,7 @@ import { ZauberspeicherExecuteComponent } from './routes/held/zauberspeicher/zau
 import {HeldPdfComponent} from './routes/held/pdf/held-pdf.component';
 import { InventarComponent } from './routes/held/inventar/inventar.component';
 import { QuicknavComponent } from './routes/held/quicknav/quicknav.component';
+import { GeldComponent } from './routes/held/geld/geld.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
     path: 'held',
     children: [
       {path: 'pdf', component: HeldPdfComponent},
+      {path: 'geld', component: GeldComponent},
       {path: 'zauber', component: ZauberComponent},
       {path: 'inventar', component: InventarComponent},
       {path: 'zauberspeicher', component: ZauberspeicherComponent}
@@ -81,7 +83,8 @@ const routes: Routes = [
       ZauberspeicherComponent,
       ZauberspeicherExecuteComponent,
       InventarComponent,
-      QuicknavComponent
+      QuicknavComponent,
+      GeldComponent
   ],
     entryComponents: [
       LoginDialogComponent, ZauberspeicherExecuteComponent

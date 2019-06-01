@@ -92,8 +92,6 @@ export class InventarComponent extends HeldComponent {
   }
 
 
-
-
   doInit() {
     this.form.controls.heldid.patchValue(this.heldenService.currentHeld.id);
     this.inventar = this.heldInventarService.inventar;

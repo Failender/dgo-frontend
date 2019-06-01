@@ -44,13 +44,13 @@ export class Interceptor implements HttpInterceptor {
         return event;
       }),
       catchError(error => {
-        console.error(error);
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
             this.notificationService.error('Bitte melden sie sich an um diese Funktion zu nutzen')
-            return NEVER;
           } else if ( error.status === 500) {
             this.notificationService.error('Unerwarteter Fehler');
+          } else if(error.status === 404) {
+            this.notificationService.error(error.error);
           }
         }
         return throwError(error);

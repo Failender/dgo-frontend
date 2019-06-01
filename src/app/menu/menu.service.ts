@@ -33,6 +33,11 @@ export class MenuService {
           route: 'held/inventar'
         },
         {
+          displayName: 'Geld',
+          iconName: '',
+          route: 'held/geld'
+        },
+        {
           displayName: 'Zauber',
           iconName: '',
           route: 'held/zauber',

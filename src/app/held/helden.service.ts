@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 export class HeldenService {
 
   public heldSub = new BehaviorSubject<HeldDaten>(null);
-  public currentHeld;
+  public currentHeld: HeldInfo;
 
   constructor(private http: HttpClient) {
   }
@@ -29,12 +29,13 @@ export class HeldenService {
 
   public loadHeld(held: number, version: number): Observable<HeldDaten> {
     return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}/${version}/daten`)
-      .pipe(tap(data => {
+      .pipe(map(data => {
         this.currentHeld = {
           id: held,
           version
         };
         this.setHeld(data);
+        return data;
       }));
   }
   public updateActive(held: number, value: boolean) {
@@ -53,7 +54,7 @@ export class HeldenService {
     }
     const held = parseInt(urlParams.get('held'),10);
     const version = parseInt(urlParams.get('version'), 10);
-    return this.loadHeld(held, version).toPromise();
+    return this.loadHeld(held, version).pipe(catchError(() => of())).toPromise();
 
   }
 
@@ -62,6 +63,11 @@ export class HeldenService {
 
 export function initializeHeld(heldenService: HeldenService) {
   return () => heldenService.initialize();
+}
+
+export interface HeldInfo {
+  id: number;
+  version: number;
 }
 
 export interface HeldDaten {
