@@ -73,8 +73,48 @@ export interface HeldInfo {
 export interface HeldDaten {
   zauberliste: Zauberliste;
   sonderfertigkeiten: Sonderfertigkeiten;
+  eigenschaften: Eigenschaften;
 
   [key: string]: any;
+}
+
+export interface Eigenschaften {
+  astralenergie: Eigenschaft;
+  attacke: Eigenschaft;
+  ausdauer: Eigenschaft;
+  charisma: Eigenschaft;
+  fernkampfBasis: Eigenschaft;
+  fingerfertigkeit: Eigenschaft;
+  geschwindigkeit: Eigenschaft;
+  gewandtheit: Eigenschaft;
+  initiative: Eigenschaft;
+  intuition: Eigenschaft;
+  karmaenergie: Eigenschaft;
+  klugheit: Eigenschaft;
+  koerperkraft: Eigenschaft;
+  konstitution: Eigenschaft;
+  lebensenergie: Eigenschaft;
+  magieresistenz: Eigenschaft;
+  mut: Eigenschaft;
+  parade: Eigenschaft;
+  sozialstatus: Eigenschaft;
+}
+
+export interface Eigenschaft {
+  akt: number;
+  aktinklrueckkaufbarepasp: number;
+  aussonderfertigkeiten: number;
+  ausvornachteile: number;
+  bereich: string;
+  gekauft: number;
+  grossemeditation: number;
+  kaufbar: number;
+  modi: number;
+  muinch2: number;
+  name: string;
+  pasprueckkaufbar: number;
+  professionmod: number;
+  start: number;
 }
 
 export interface Zauberliste {

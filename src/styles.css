@@ -9,3 +9,12 @@ mat-toolbar > button {
   border: 0px;
   color: white;
 }
+
+
+.flex {
+  display: flex !important;
+}
+
+.flex.space-around {
+  justify-content: space-around;
+}

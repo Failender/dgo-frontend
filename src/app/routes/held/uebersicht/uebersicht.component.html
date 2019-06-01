@@ -1,0 +1,15 @@
+
+<app-quicknav></app-quicknav>
+<mat-spinner *ngIf="uebersicht === undefined; else display"></mat-spinner>
+
+<ng-template #display>
+
+  <div class="center-content">
+
+    <mat-card class="flex space-around">
+      <span *ngFor="let eigenschaft of eigenschaften">{{eigenschaft}}</span>
+    </mat-card>
+
+  </div>
+
+</ng-template>

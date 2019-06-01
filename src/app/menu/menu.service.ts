@@ -28,6 +28,11 @@ export class MenuService {
           route: 'held/pdf'
         },
         {
+          displayName: 'Übersicht',
+          iconName: '',
+          route: 'held/uebersicht'
+        },
+        {
           displayName: 'Inventar',
           iconName: '',
           route: 'held/inventar'
