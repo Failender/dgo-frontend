@@ -96,8 +96,67 @@ export interface KampfSet {
   ausweichenakrobatikmod: number;
   ausweichenausweichenmod: number;
   ausweichenmod: number;
-  fernkampfwaffen: FernkampfWaffen
+  fernkampfwaffen: FernkampfWaffen;
+  ruestungen: Ruestungen;
+  nahkampfwaffen: NahkampfWaffen;
+  ruestungzonen: Ruestung;
   ini: number;
+}
+
+export interface Ruestungen {
+  ruestung: Ruestung[];
+  inbenutzung: boolean;
+}
+
+export interface Ruestung {
+  bauch: number;
+  be: string;
+  behinderung: string;
+  brust: number;
+  gesamt: number;
+  gesamtzonenschutz: 3;
+  grundlage: string;
+  kopf: number;
+  linkerarm: number;
+  linkesbein: number;
+  name: string;
+  nummer: number;
+  rechterarm: number;
+  rechtesbein: number;
+  rs: string;
+  ruecken: number;
+}
+
+export interface NahkampfWaffen {
+  inbenutzung: boolean;
+  nahkampfwaffe: NahkampfWaffe[];
+}
+
+export interface NahkampfWaffe {
+  at: string;
+  be: string;
+  bereich: string;
+  bfakt: number;
+  bfmin: number;
+  dk: string;
+  ini: number;
+  möglich: boolean;
+  name: string;
+  nummer: number;
+  pa: string;
+  spalte2: string;
+  tp: string;
+  tpinkl: string;
+  tpkk: TpKK
+  waffentalent: string;
+  waffentalentkurz: string;
+  wm: string;
+}
+
+export interface TpKK {
+  value: string;
+  schrittweite: number;
+  schwelle: number;
 }
 
 export interface FernkampfWaffen {

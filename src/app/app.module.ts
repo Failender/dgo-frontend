@@ -55,6 +55,8 @@ import { QuicknavComponent } from './routes/held/quicknav/quicknav.component';
 import { GeldComponent } from './routes/held/geld/geld.component';
 import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
 import { FernkampfWaffenTabelleComponent } from './routes/held/uebersicht/fernkampf-waffen-tabelle/fernkampf-waffen-tabelle.component';
+import {WaffenTabelleComponent} from './routes/held/uebersicht/waffen-tabelle/waffen-tabelle.component';
+import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabelle/ruestung-tabelle.component';
 
 
 const routes: Routes = [
@@ -102,7 +104,9 @@ const routes: Routes = [
       QuicknavComponent,
       GeldComponent,
       UebersichtComponent,
-      FernkampfWaffenTabelleComponent
+      FernkampfWaffenTabelleComponent,
+      WaffenTabelleComponent,
+      RuestungTabelleComponent
   ],
     entryComponents: [
       LoginDialogComponent, ZauberspeicherExecuteComponent
