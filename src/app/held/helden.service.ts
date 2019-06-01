@@ -58,6 +58,14 @@ export class HeldenService {
 
   }
 
+  public hasZauber() {
+    return this.heldLoaded() && this.activeHeld().zauberliste.zauber.length !== 0;
+  }
+
+  private heldLoaded() {
+    return this.currentHeld;
+  }
+
 }
 
 
@@ -74,8 +82,38 @@ export interface HeldDaten {
   zauberliste: Zauberliste;
   sonderfertigkeiten: Sonderfertigkeiten;
   eigenschaften: Eigenschaften;
+  kampfsets: KampfSets;
 
   [key: string]: any;
+}
+
+export interface KampfSets {
+  kampfset: KampfSet[];
+}
+
+export interface KampfSet {
+  ausweichen: number;
+  ausweichenakrobatikmod: number;
+  ausweichenausweichenmod: number;
+  ausweichenmod: number;
+  fernkampfwaffen: FernkampfWaffen
+  ini: number;
+}
+
+export interface FernkampfWaffen {
+  fernkampfwaffe: FernkampfWaffe[];
+}
+
+export interface FernkampfWaffe {
+  at: string;
+  kampftalent: string;
+  ladezeit: number;
+  name: string;
+  nummer: number;
+  reichweite: string;
+  spalte2: string;
+  tp: string;
+  tpmod: string;
 }
 
 export interface Eigenschaften {

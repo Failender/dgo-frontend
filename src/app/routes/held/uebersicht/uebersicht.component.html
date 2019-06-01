@@ -7,7 +7,28 @@
   <div class="center-content">
 
     <mat-card class="flex space-around">
-      <span *ngFor="let eigenschaft of eigenschaften">{{eigenschaft}}</span>
+      <span class="eigenschaft" *ngFor="let eigenschaft of eigenschaften">{{eigenschaft}}</span>
+    </mat-card>
+
+    <mat-card>
+      <div class="flex space-around">
+        <div>
+          <span style="min-width:100px;display:inline-block">Leben: {{uebersicht.lep}} | {{maxLep}}</span>
+          <mat-slider [(value)]="uebersicht.lep" [max]="maxLep" thumbLabel (change)="onLepChange()"></mat-slider>
+        </div>
+
+
+        <div *ngIf="hasZauber">
+          <span style="min-width:150px;display:inline-block">Astralpunkte: {{uebersicht.asp}} | {{maxAsp}}</span>
+          <mat-slider [(value)]="uebersicht.asp" [max]="maxAsp" thumbLabel (change)="onAspChange()"></mat-slider>
+        </div>
+      </div>
+
+      <div>
+        <app-fernkampf-waffen-tabelle></app-fernkampf-waffen-tabelle>
+      </div>
+
+
     </mat-card>
 
   </div>

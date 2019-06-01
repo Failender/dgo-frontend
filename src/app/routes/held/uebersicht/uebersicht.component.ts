@@ -42,6 +42,33 @@ export class UebersichtComponent extends HeldComponent  {
     this.eigenschaften.push(EIGENSCHAFT_TO_SHORT[eigenschaft.name] + ' ' + eigenschaft.akt);
 
   }
+
+  public get hasZauber() {
+    return this.heldenService.hasZauber();
+  }
+
+  public get maxAsp() {
+    return this.held.eigenschaften.astralenergie.akt;
+  }
+
+  public get maxLep() {
+    return this.held.eigenschaften.lebensenergie.akt;
+  }
+
+  onAspChange() {
+    this.onChange();
+
+  }
+
+  onLepChange() {
+    this.onChange();
+
+  }
+
+  onChange() {
+    this.uebersichtService.updateUebersicht(this.uebersicht)
+      .subscribe();
+  }
 }
 
 export const EIGENSCHAFT_TO_SHORT = {};
