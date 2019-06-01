@@ -100,7 +100,11 @@ export class GeldComponent extends HeldComponent{
   }
 
   public getAmount(einheit, geldboerse: Geldboerse) {
-    return Math.floor(geldboerse.anzahl / einheit.einheit) % 10;
+    let value = Math.floor(geldboerse.anzahl / einheit.einheit);;
+    if(einheit.einheit === 1000) {
+      return value;
+    }
+    return value % 10;
   }
 
   private incrementEntry(context) {
