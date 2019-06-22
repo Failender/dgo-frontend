@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import {
   MatButtonModule, MatButtonToggleModule,
-  MatCardModule,
+  MatCardModule, MatChipsModule,
   MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
@@ -145,6 +145,7 @@ const routes: Routes = [
     MatMenuModule,
     MatGridListModule,
     MatButtonToggleModule,
+    MatChipsModule,
   ],
   providers: [
     {

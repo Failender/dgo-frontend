@@ -29,4 +29,5 @@ export interface Uebersicht {
   heldid: number;
   asp: number;
   lep: number;
+  wunden: number[];
 }

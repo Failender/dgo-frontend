@@ -95,6 +95,30 @@ export class UebersichtComponent extends HeldComponent  {
     this.uebersichtService.updateUebersicht(this.uebersicht)
       .subscribe();
   }
+
+  public wundeClick(index) {
+
+    let value = this.uebersicht.wunden[index];
+    if(value === -1) {
+      value = 7;
+    } else{
+      value -= 1;
+    }
+    this.uebersicht.wunden[index] = value;
+    this.onChange();
+  }
+
+  public wundeRightClick(index) {
+    let value = this.uebersicht.wunden[index];
+    if(value <= 0) {
+      value = 7;
+    } else{
+      value += 1;
+    }
+    this.uebersicht.wunden[index] = value;
+    this.onChange();
+    return false;
+  }
 }
 
 export const EIGENSCHAFT_TO_SHORT = {};

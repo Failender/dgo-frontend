@@ -6,7 +6,7 @@
 
   <div class="center-content">
 
-    <mat-card class="flex space-around">l
+    <mat-card class="flex space-around">
       <span class="eigenschaft" *ngFor="let eigenschaft of eigenschaften">{{eigenschaft}}</span>
     </mat-card>
 
@@ -36,12 +36,25 @@
               <mat-button-toggle value="{{false}}">-</mat-button-toggle>
             </mat-button-toggle-group>
           </span>
-
-
           <ng-container *ngFor="let value of lepButtons">
             <button class="lepButton" mat-raised-button (click)="onAspChange(value)">{{value}}</button>
           </ng-container>
         </div>
+
+        <div>
+          <mat-chip-list>
+            <mat-chip color="primary" selected *ngFor="let wunde of uebersicht.wunden; let i=index" (click)="wundeClick(i)" (contextmenu)="wundeRightClick(i)">
+              <ng-container *ngIf="wunde === -1; else wundeRender">X</ng-container>
+              <ng-template #wundeRender>
+                {{wunde}}
+              </ng-template>
+
+            </mat-chip>
+          </mat-chip-list>
+
+        </div>
+
+
     </mat-card>
 
     <mat-card>
