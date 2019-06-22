@@ -57,6 +57,7 @@ import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.compone
 import { FernkampfWaffenTabelleComponent } from './routes/held/uebersicht/fernkampf-waffen-tabelle/fernkampf-waffen-tabelle.component';
 import {WaffenTabelleComponent} from './routes/held/uebersicht/waffen-tabelle/waffen-tabelle.component';
 import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabelle/ruestung-tabelle.component';
+import { InventarTabelleComponent } from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
 
 
 const routes: Routes = [
@@ -106,7 +107,8 @@ const routes: Routes = [
       UebersichtComponent,
       FernkampfWaffenTabelleComponent,
       WaffenTabelleComponent,
-      RuestungTabelleComponent
+      RuestungTabelleComponent,
+      InventarTabelleComponent
   ],
     entryComponents: [
       LoginDialogComponent, ZauberspeicherExecuteComponent

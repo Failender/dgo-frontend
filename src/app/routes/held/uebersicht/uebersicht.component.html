@@ -6,7 +6,7 @@
 
   <div class="center-content">
 
-    <mat-card class="flex space-around">
+    <mat-card class="flex space-around">l
       <span class="eigenschaft" *ngFor="let eigenschaft of eigenschaften">{{eigenschaft}}</span>
     </mat-card>
 
@@ -14,7 +14,7 @@
       <div class="flex space-around">
         <div>
           <span style="min-width:100px;display:inline-block">Leben: {{uebersicht.lep}} | {{maxLep}}</span>
-          <mat-slider [(value)]="uebersicht.lep" [min]="-20" [max]="maxLep" thumbLabel (change)="onLepChange()"></mat-slider>
+          <mat-slider [(value)]="uebersicht.lep" [min]="-20" [max]="maxLep" thDumbLabel (change)="onLepChange()"></mat-slider>
         </div>
 
 
@@ -30,12 +30,16 @@
       <app-waffen-tabelle></app-waffen-tabelle>
 
     </mat-card>
-    <mat-card>
+    <mat-card *ngIf="hasFernkampf">
       <app-fernkampf-waffen-tabelle></app-fernkampf-waffen-tabelle>
 
     </mat-card>
     <mat-card>
       <app-ruestung-tabelle></app-ruestung-tabelle>
+    </mat-card>
+
+    <mat-card>
+      <app-inventar-tabelle></app-inventar-tabelle>
     </mat-card>
 
   </div>

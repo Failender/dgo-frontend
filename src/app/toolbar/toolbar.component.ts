@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material';
 import {TokenService} from '../authentication/token.service';
 import {LoginDialogComponent} from '../login/login-dialog.component';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'dgo-toolbar',
@@ -19,7 +20,7 @@ export class ToolbarComponent implements OnInit {
       .pipe(map(value => value != null));
   }
 
-  constructor(private dialog: MatDialog, private tokenService: TokenService) { }
+  constructor(private dialog: MatDialog, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,6 +32,7 @@ export class ToolbarComponent implements OnInit {
 
   logout() {
     this.tokenService.token = null;
+    this.router.navigateByUrl('/home')
   }
 
 }

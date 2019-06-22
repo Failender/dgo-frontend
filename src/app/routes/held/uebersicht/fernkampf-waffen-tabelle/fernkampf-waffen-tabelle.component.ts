@@ -56,10 +56,6 @@ export class FernkampfWaffenTabelleComponent extends HeldComponent{
 
   doInit() {
     this.data = this.held.kampfsets.kampfset[0].fernkampfwaffen.fernkampfwaffe;
-    console.debug(this.held.kampfsets.kampfset[0])
-    for (const fernkampfwaffe of this.held.kampfsets.kampfset[0].fernkampfwaffen.fernkampfwaffe) {
-      console.debug(fernkampfwaffe)
-    }
 
   }
 

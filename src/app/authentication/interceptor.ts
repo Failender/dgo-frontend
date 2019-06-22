@@ -44,6 +44,7 @@ export class Interceptor implements HttpInterceptor {
         return event;
       }),
       catchError(error => {
+
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
             this.notificationService.error('Bitte melden sie sich an um diese Funktion zu nutzen')
@@ -51,6 +52,8 @@ export class Interceptor implements HttpInterceptor {
             this.notificationService.error('Unerwarteter Fehler');
           } else if(error.status === 404) {
             this.notificationService.error(error.error);
+          } else if(error.status === 0) {
+            this.notificationService.error('Server nicht erreichbar');
           }
         }
         return throwError(error);

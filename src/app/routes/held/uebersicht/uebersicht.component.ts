@@ -47,6 +47,11 @@ export class UebersichtComponent extends HeldComponent  {
     return this.heldenService.hasZauber();
   }
 
+  public get hasFernkampf() {
+    return this.held.kampfsets.kampfset[0].fernkampfwaffen.fernkampfwaffe.length !== 0
+  }
+
+
   public get maxAsp() {
     return this.held.eigenschaften.astralenergie.akt;
   }
