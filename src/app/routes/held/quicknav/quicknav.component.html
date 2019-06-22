@@ -6,7 +6,7 @@
     <button mat-stroked-button routerLink="/held/inventar"  [disabled]="activate('/held/inventar')">Inventar</button>
     <button mat-stroked-button routerLink="/held/geld" [disabled]="activate('/held/geld')">Geld</button>
     <button mat-stroked-button routerLink="/held/zauber" *ngIf="hasZauber()"[disabled]="activate('/held/zauber')">Zauber</button>
-    <button mat-stroked-button routerLink="/held/zauberspeicher" *ngIf="hasZauber()" [disabled]="activate('/held/zauberspeicher')">Zauberspeicher</button>
+    <button mat-stroked-button routerLink="/held/zauberspeicher" *ngIf="hasZauberSpeicher()" [disabled]="activate('/held/zauberspeicher')">Zauberspeicher</button>
   </mat-card>
 
 

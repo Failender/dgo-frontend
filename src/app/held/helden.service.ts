@@ -58,6 +58,13 @@ export class HeldenService {
 
   }
 
+  public hasSonderfertigkeit(name): boolean {
+    if(!this.heldLoaded()) {
+      return false;
+    }
+    return this.heldSub.value.sonderfertigkeiten.sonderfertigkeit.find(sf => sf.name === name) !== undefined;
+  }
+
   public hasZauber() {
     return this.heldLoaded() && this.activeHeld().zauberliste.zauber.length !== 0;
   }

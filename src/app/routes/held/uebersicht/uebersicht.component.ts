@@ -56,6 +56,10 @@ export class UebersichtComponent extends HeldComponent  {
     return this.heldenService.hasZauber();
   }
 
+  public get hasZauberSpeicher() {
+    return this.heldenService.hasSonderfertigkeit('Stabzauber: Zauberspeicher')
+  }
+
   public get hasFernkampf() {
     return this.held.kampfsets.kampfset[0].fernkampfwaffen.fernkampfwaffe.length !== 0
   }

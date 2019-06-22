@@ -24,8 +24,12 @@ export class QuicknavComponent implements OnInit {
     return window.location.href.substr(startIdx, endIdx - startIdx) === route;;
   }
 
-  private hasZauber() {
+  public hasZauber() {
     return this.heldLoaded() && this.heldenService.activeHeld().zauberliste.zauber.length !== 0;
+  }
+
+  public hasZauberSpeicher() {
+    return this.heldenService.hasSonderfertigkeit('Stabzauber: Zauberspeicher')
   }
 
   private heldLoaded() {
