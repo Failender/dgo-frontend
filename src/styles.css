@@ -18,3 +18,9 @@ mat-toolbar > button {
 .flex.space-around {
   justify-content: space-around;
 }
+
+
+.lepRender {
+  width:250px;
+  display: inline-block;
+}

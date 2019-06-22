@@ -11,19 +11,37 @@
     </mat-card>
 
     <mat-card>
-      <div class="flex space-around">
+
         <div>
-          <span style="min-width:100px;display:inline-block">Leben: {{uebersicht.lep}} | {{maxLep}}</span>
-          <mat-slider [(value)]="uebersicht.lep" [min]="-20" [max]="maxLep" thDumbLabel (change)="onLepChange()"></mat-slider>
+
+          <span class="lepRender">
+          Leben: {{uebersicht.lep}} | {{maxLep}}
+          <mat-button-toggle-group (change)="addLep = $event.value" value="{{true}}">
+            <mat-button-toggle value="{{true}}">+</mat-button-toggle>
+            <mat-button-toggle value="{{false}}">-</mat-button-toggle>
+          </mat-button-toggle-group>
+          </span>
+
+
+          <ng-container *ngFor="let value of lepButtons">
+            <button class="lepButton" mat-raised-button (click)="onLepChange(value)">{{value}}</button>
+          </ng-container>
         </div>
 
 
         <div *ngIf="hasZauber">
-          <span style="min-width:150px;display:inline-block">Astralpunkte: {{uebersicht.asp}} | {{maxAsp}}</span>
-          <mat-slider [(value)]="uebersicht.asp" [max]="maxAsp" thumbLabel (change)="onAspChange()"></mat-slider>
-        </div>
-      </div>
+          <span class="lepRender ">Astralpunkte: {{uebersicht.asp}} | {{maxAsp}}
+            <mat-button-toggle-group (change)="addAsp = $event.value" value="{{true}}">
+              <mat-button-toggle value="{{true}}">+</mat-button-toggle>
+              <mat-button-toggle value="{{false}}">-</mat-button-toggle>
+            </mat-button-toggle-group>
+          </span>
 
+
+          <ng-container *ngFor="let value of lepButtons">
+            <button class="lepButton" mat-raised-button (click)="onAspChange(value)">{{value}}</button>
+          </ng-container>
+        </div>
     </mat-card>
 
     <mat-card>

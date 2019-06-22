@@ -15,12 +15,21 @@ export class UebersichtComponent extends HeldComponent  {
   public eigenschaften;
   public uebersicht: Uebersicht;
 
+
+  public lepButtons = [1,2,3,4,5,6,7,8,9];
+
+  public addLep = 'true';
+  public addAsp = 'true';
+
   constructor(heldenService: HeldenService, router: Router, private uebersichtService: UebersichtService) {
     super(heldenService, router);
   }
 
   doInit() {
-    console.debug(this.held)
+
+    if(window.innerWidth < 700) {
+      this.lepButtons = [1,2,3,4,5]
+    }
     this.uebersichtService.getUebersichtForHeld(this.heldInfo.id)
       .subscribe(data => this.uebersicht = data);
     this.prepareEigenschaften();
@@ -60,12 +69,24 @@ export class UebersichtComponent extends HeldComponent  {
     return this.held.eigenschaften.lebensenergie.akt;
   }
 
-  onAspChange() {
+  onAspChange(value) {
+
+    if(this.addAsp === 'false') {
+      value = -value;
+    }
+    this.uebersicht.asp+=value;
     this.onChange();
 
   }
 
-  onLepChange() {
+  onLepChange(value) {
+
+
+    if(this.addLep === 'false') {
+      value = -value;
+    }
+
+    this.uebersicht.lep += value;
     this.onChange();
 
   }

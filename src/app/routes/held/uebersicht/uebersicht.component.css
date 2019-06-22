@@ -9,3 +9,13 @@ mat-card {
 .eigenschaft {
   font-weight: bold;
 }
+
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 37px !important;
+}
+
+.lepButton {
+  min-width: unset!important;
+  width:40px !important;
+}
