@@ -16,7 +16,7 @@ import {MenuService} from './menu/menu.service';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('menu') menu: ElementRef;
+  @ViewChild('menu', { static: true }) menu: ElementRef;
 
   constructor(private routingService: RoutingService, private menuService: MenuService) {}
 
