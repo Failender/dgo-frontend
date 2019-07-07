@@ -3,7 +3,7 @@ import {
   BrowserTransferStateModule
 } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,13 +32,13 @@ import {LoginDialogComponent} from './login/login-dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Interceptor} from './authentication/interceptor';
-import {TokenService} from './authentication/token.service';
+import {TokenService} from 'dgo-components';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
 import { TableComponent } from './table/table.component';
 import {MenuListItemComponent} from './menu/menu-list-item.component';
-import {HeldenService, initializeHeld} from './held/helden.service';
+import {HeldenService, initializeHeld} from 'dgo-components';
 import {PDFSource, PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
@@ -57,6 +57,10 @@ import { FernkampfWaffenTabelleComponent } from './routes/held/uebersicht/fernka
 import {WaffenTabelleComponent} from './routes/held/uebersicht/waffen-tabelle/waffen-tabelle.component';
 import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabelle/ruestung-tabelle.component';
 import { InventarTabelleComponent } from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
+import {SharedModule} from "dgo-components";
+import {MenuService} from "./menu/menu.service";
+import {NavItem} from "./menu/routing.service";
+import {environment} from "../environments/environment";
 
 
 const routes: Routes = [
@@ -83,6 +87,9 @@ const routes: Routes = [
 
   { path: '**', redirectTo : '/home' }
 ]
+
+
+declare var env;
 
 @NgModule({
   declarations: [
@@ -114,8 +121,8 @@ const routes: Routes = [
 
     ],
   imports: [
+    SharedModule.forRoot(),
     PdfViewerModule,
-    HttpClientModule,
     FormsModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -163,5 +170,64 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {}
+
+
+
+  constructor(private menuService: MenuService) {
+    env = environment;
+    [
+      {
+        displayName: 'Meine Helden',
+        iconName: '',
+        route: 'meine-helden',
+        condition: menuService.authenticated.bind(menuService)
+      },
+      {
+        displayName: 'Held',
+        condition: menuService.heldLoaded.bind(menuService),
+        iconName: '',
+        children: [
+          {
+            displayName: 'PDF',
+            iconName: '',
+            route: 'held/pdf'
+          },
+          {
+            displayName: 'Übersicht',
+            iconName: '',
+            route: 'held/uebersicht'
+          },
+          {
+            displayName: 'Inventar',
+            iconName: '',
+            route: 'held/inventar'
+          },
+          {
+            displayName: 'Geld',
+            iconName: '',
+            route: 'held/geld'
+          },
+          {
+            displayName: 'Zauber',
+            iconName: '',
+            route: 'held/zauber',
+            condition: menuService.hasZauber.bind(menuService)
+          },
+          {
+            displayName: 'Zauberspeicher',
+            iconName: '',
+            route: 'held/zauberspeicher',
+            condition: () => menuService.sf('Stabzauber: Zauberspeicher')
+          },
+        ]
+      },
+      {
+        displayName: 'Administration',
+        iconName: '',
+        route: 'administration/manage-user',
+        condition:  () => menuService.permission('CREATE_USER')
+      },
+    ].forEach(item => menuService.registerItem(item));
+  }
 }
+

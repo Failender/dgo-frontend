@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TokenService} from '../../../authentication/token.service';
+import {TokenService} from 'dgo-components';
 import {environment} from '../../../../environments/environment';
 
 @Component({

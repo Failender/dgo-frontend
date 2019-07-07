@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../../held.component';
 import {TableColumn} from '../../../../table/table.component';
-import {HeldenService} from '../../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
-import {TokenService} from '../../../../authentication/token.service';
 
 @Component({
   selector: 'app-ruestung-tabelle',

@@ -1,5 +1,5 @@
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {TokenService} from './token.service';
+import {TokenService} from 'dgo-components';
 import {NEVER, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';

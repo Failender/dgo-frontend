@@ -1,4 +1,4 @@
-import {HeldDaten, HeldenService, HeldInfo} from '../../held/helden.service';
+import {HeldDaten, HeldenService, HeldInfo} from 'dgo-components';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 

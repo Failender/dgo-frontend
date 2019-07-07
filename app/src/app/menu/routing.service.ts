@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {HeldenService} from '../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Location} from '@angular/common';
 
 

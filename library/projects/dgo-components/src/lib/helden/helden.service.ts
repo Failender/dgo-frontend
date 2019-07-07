@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
-import {environment} from '../../environments/environment';
 import {catchError, map, tap} from 'rxjs/operators';
+import {SharedModule} from "../shared.module";
+
+declare var env;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: SharedModule
 })
 export class HeldenService {
 
@@ -24,11 +26,11 @@ export class HeldenService {
   }
 
   public getMeineHelden(): Observable<HeldDto[]> {
-    return this.http.get<HeldDto[]>(`${environment.rest}helden/meine`);
+    return this.http.get<HeldDto[]>(`${env.rest}helden/meine`);
   }
 
   public loadHeld(held: number, version: number): Observable<HeldDaten> {
-    return this.http.get<HeldDaten>(`${environment.rest}helden/held/${held}/${version}/daten`)
+    return this.http.get<HeldDaten>(`${env.rest}helden/held/${held}/${version}/daten`)
       .pipe(map(data => {
         this.currentHeld = {
           id: held,
@@ -39,14 +41,15 @@ export class HeldenService {
       }));
   }
   public updateActive(held: number, value: boolean) {
-    return this.http.put(`${environment.rest}helden/held/${held}/active/${value}`, null);
+    return this.http.put(`${env.rest}helden/held/${held}/active/${value}`, null);
   }
 
   public updatePublic(held: number, value: boolean) {
-    return this.http.put(`${environment.rest}helden/held/${held}/public/${value}`, null);
+    return this.http.put(`${env.rest}helden/held/${held}/public/${value}`, null);
   }
 
   public initialize() {
+    console.error('ENV IS :', env)
 
     const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has('held')) {

@@ -3,17 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dgo-frontend": {
+    "library": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dgo-frontend",
+            "outputPath": "dist/library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,10 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "preserveSymlinks": true,
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -60,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dgo-frontend:build"
+            "browserTarget": "library:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dgo-frontend:build:production"
+              "browserTarget": "library:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dgo-frontend:build"
+            "browserTarget": "library:build"
           }
         },
         "test": {
@@ -82,8 +84,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -106,7 +107,7 @@
         }
       }
     },
-    "dgo-frontend-e2e": {
+    "library-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dgo-frontend:serve"
+            "devServerTarget": "library:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dgo-frontend:serve:production"
+              "devServerTarget": "library:serve:production"
             }
           }
         },
@@ -133,7 +134,42 @@
           }
         }
       }
+    },
+    "dgo-components": {
+      "root": "projects/dgo-components",
+      "sourceRoot": "projects/dgo-components/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dgo-components/tsconfig.lib.json",
+            "project": "projects/dgo-components/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dgo-components/src/test.ts",
+            "tsConfig": "projects/dgo-components/tsconfig.spec.json",
+            "karmaConfig": "projects/dgo-components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dgo-components/tsconfig.lib.json",
+              "projects/dgo-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "dgo-frontend"
+  "defaultProject": "library"
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Geldboerse, GeldService} from './geld.service';
 import {HeldComponent} from '../held.component';
-import {HeldenService} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {TableColumn} from '../../../table/table.component';
 import {map} from 'rxjs/operators';

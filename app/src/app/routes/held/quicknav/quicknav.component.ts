@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HeldenService} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 
 @Component({
   selector: 'app-quicknav',

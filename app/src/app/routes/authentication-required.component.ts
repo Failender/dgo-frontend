@@ -1,4 +1,4 @@
-import {TokenService} from '../authentication/token.service';
+import {TokenService} from 'dgo-components';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 

@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {Eigenschaft, HeldenService} from '../../../held/helden.service';
+import {Eigenschaft, HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 
 import {Uebersicht, UebersichtService} from './uebersicht.service';

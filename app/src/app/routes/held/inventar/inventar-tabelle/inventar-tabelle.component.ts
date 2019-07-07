@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TableColumn} from '../../../../table/table.component';
 import {HeldInventar, HeldInventarService} from '../held-inventar.service';
-import {HeldenService} from '../../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {NotificationService} from '../../../../shared/notification.service';
 

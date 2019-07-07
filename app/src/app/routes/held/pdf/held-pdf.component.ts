@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {HeldenService} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
-import {TokenService} from '../../../authentication/token.service';
+import {TokenService} from 'dgo-components';
 
 @Component({
   selector: 'app-uebersicht',

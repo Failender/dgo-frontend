@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {HeldenService} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {HeldInventar, HeldInventarService} from './held-inventar.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';

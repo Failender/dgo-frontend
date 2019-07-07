@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {HeldDto, HeldenService} from '../../held/helden.service';
+import {HeldDto, HeldenService} from 'dgo-components';
 import {TableColumn, TableEditEvent} from '../../table/table.component';
-import {RoutingService} from '../../menu/routing.service';
 import {Router} from '@angular/router';
 import {AuthenticationRequiredComponent} from '../authentication-required.component';
-import {TokenService} from '../../authentication/token.service';
+import {TokenService} from 'dgo-components';
 
 @Component({
   selector: 'app-meine-helden',

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {TokenService} from '../authentication/token.service';
+import {TokenService} from 'dgo-components';
 import { MatDialogRef } from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';

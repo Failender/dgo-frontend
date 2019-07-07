@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {HeldenService, Zauber} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {TableColumn} from '../../../table/table.component';
 import {ZauberspeicherService} from './zauberspeicher.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {TokenService} from '../../../authentication/token.service';
+import {TokenService} from 'dgo-components';
 import { MatDialog } from '@angular/material/dialog';
 import {ZauberspeicherExecuteComponent} from './zauberspeicher-execute/zauberspeicher-execute.component';
 

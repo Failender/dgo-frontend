@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
-import {HeldenService} from '../../../held/helden.service';
+import {HeldenService} from 'dgo-components';
 import {tap} from 'rxjs/operators';
 
 @Injectable({
