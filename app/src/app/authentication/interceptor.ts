@@ -2,7 +2,7 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
 import {TokenService} from './token.service';
 import {NEVER, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {NotificationService} from '../shared/notification.service';
 
 

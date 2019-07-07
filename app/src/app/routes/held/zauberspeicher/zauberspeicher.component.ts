@@ -6,7 +6,7 @@ import {TableColumn} from '../../../table/table.component';
 import {ZauberspeicherService} from './zauberspeicher.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TokenService} from '../../../authentication/token.service';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {ZauberspeicherExecuteComponent} from './zauberspeicher-execute/zauberspeicher-execute.component';
 
 @Component({

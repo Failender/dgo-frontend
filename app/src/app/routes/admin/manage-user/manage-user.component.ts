@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Gruppe, GruppenService} from '../../../shared/gruppen.service';
 import {UserRegistration, UserService} from './user.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {NotificationService} from '../../../shared/notification.service';
 
 @Component({

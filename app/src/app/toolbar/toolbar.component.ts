@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {TokenService} from '../authentication/token.service';
 import {LoginDialogComponent} from '../login/login-dialog.component';
 import {map} from 'rxjs/operators';
