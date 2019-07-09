@@ -5,7 +5,6 @@ import {
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -27,8 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {ToolbarComponent} from './toolbar/toolbar.component';
-import {LoginDialogComponent} from './login/login-dialog.component';
+import {LoginDialogComponent} from '../../../library/projects/dgo-components/src/lib/app/login/login-dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Interceptor} from './authentication/interceptor';
@@ -37,9 +35,9 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
 import { TableComponent } from './table/table.component';
-import {MenuListItemComponent} from './menu/menu-list-item.component';
+
 import {HeldenService, initializeHeld} from 'dgo-components';
-import {PDFSource, PdfViewerModule} from 'ng2-pdf-viewer';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfComponent } from './shared/pdf/pdf.component';
 import { ZauberComponent } from './routes/held/zauber/zauber.component';
 import {SourcePdfComponent} from './routes/held/source-pdf/source-pdf.component';
@@ -57,9 +55,8 @@ import { FernkampfWaffenTabelleComponent } from './routes/held/uebersicht/fernka
 import {WaffenTabelleComponent} from './routes/held/uebersicht/waffen-tabelle/waffen-tabelle.component';
 import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabelle/ruestung-tabelle.component';
 import { InventarTabelleComponent } from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
-import {SharedModule} from "dgo-components";
-import {MenuService} from "./menu/menu.service";
-import {NavItem} from "./menu/routing.service";
+import {SharedModule, AppComponent, MenuService} from "dgo-components";
+
 import {environment} from "../environments/environment";
 
 
@@ -93,10 +90,8 @@ declare var env;
 
 @NgModule({
   declarations: [
-      AppComponent,
-      ToolbarComponent,
+
       LoginDialogComponent,
-      MenuListItemComponent,
       HomeComponent,
       MeineHeldenComponent,
       TableComponent,
@@ -116,8 +111,7 @@ declare var env;
       RuestungTabelleComponent,
       InventarTabelleComponent
   ],
-    entryComponents: [
-      LoginDialogComponent, ZauberspeicherExecuteComponent
+    entryComponents: [ZauberspeicherExecuteComponent
 
     ],
   imports: [

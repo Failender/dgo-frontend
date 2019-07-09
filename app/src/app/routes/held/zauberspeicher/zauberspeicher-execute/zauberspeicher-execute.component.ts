@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {LoginDialogComponent} from '../../../../login/login-dialog.component';
+import {LoginDialogComponent} from '../../../../../../../library/projects/dgo-components/src/lib/app/login/login-dialog.component';
 import {ZauberSpeicher} from '../zauberspeicher.service';
 
 @Component({

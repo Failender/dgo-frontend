@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {HeldenService} from 'dgo-components';
 import {Location} from '@angular/common';
+import {HeldenService} from "../helden/helden.service";
 
 
 @Injectable({

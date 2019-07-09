@@ -1,7 +1,8 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {NavItem, RoutingService} from './routing.service';
+import {NavItem, RoutingService} from "../routing/routing.service";
+
 
 
 @Component({

@@ -7,7 +7,7 @@ import {SharedModule} from "../shared.module";
 declare var env;
 
 @Injectable({
-  providedIn: SharedModule
+  providedIn: 'root'
 })
 export class HeldenService {
 
@@ -49,7 +49,6 @@ export class HeldenService {
   }
 
   public initialize() {
-    console.error('ENV IS :', env)
 
     const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has('held')) {

@@ -4,7 +4,7 @@ import {SharedModule} from "../shared.module";
 
 
 @Injectable({
-  providedIn: SharedModule
+  providedIn: 'root'
 })
 export class TokenService {
 

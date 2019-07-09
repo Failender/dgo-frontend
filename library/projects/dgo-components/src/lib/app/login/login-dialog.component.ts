@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {TokenService} from 'dgo-components';
 import { MatDialogRef } from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {TokenService} from "../../token/token.service";
 
 @Component({
   selector: 'dgo-login',
@@ -19,7 +18,7 @@ export class LoginDialogComponent implements OnInit {
     password: new FormControl('', Validators.required)
   })
 
-  constructor(private userService: TokenService, public dialogRef: MatDialogRef<LoginDialogComponent>, private http: HttpClient) {
+  constructor(private tokenService: TokenService, public dialogRef: MatDialogRef<LoginDialogComponent>, private http: HttpClient) {
 
   }
 
@@ -34,7 +33,7 @@ export class LoginDialogComponent implements OnInit {
     const options = {
       headers: new HttpHeaders(this.form.value)
     }
-    this.http.get(`${environment.rest}security/generate`, options)
+    this.http.get(`${env.rest}security/generate`, options)
       .subscribe(() => {
         this.dialogRef.close();
       });
@@ -42,3 +41,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
 }
+
+
+declare var env;

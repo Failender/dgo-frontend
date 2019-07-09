@@ -6,8 +6,8 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {NavItem, RoutingService} from './menu/routing.service';
-import {MenuService} from './menu/menu.service';
+import {RoutingService} from "../routing/routing.service";
+import {MenuService} from "../menu/menu.service";
 
 @Component({
   selector: 'app-root',
