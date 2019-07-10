@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
 	"postinstall": "ivy-ngcc",
     "serve:module": "http-server --cors -p 8888 dist/module-b/bundles",
-    "bundle:module": "ng build module-b",
+    "bundle:module": "ng build meister-plugin",
 	"postinstall": "ivy-ngcc"
   },
   "private": true,
