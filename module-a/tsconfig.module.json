@@ -5,7 +5,7 @@
     "types": []
   },
   "include": [
-    "projects/meister-plugin/src/public-api.ts"
+    "src/module.ts"
   ],
   "exclude": [
     "src/test.ts",
