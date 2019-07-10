@@ -10,7 +10,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import {MeisterPluginComponent} from './meister-plugin/meister-plugin.component';
-import {RouterModule} from '@angular/router';
+import {MeisterPluginRoutingModule} from './meister-plugin-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,12 +25,7 @@ import {RouterModule} from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: MeisterPluginComponent
-      }
-    ])
+    MeisterPluginRoutingModule
   ]
 })
 export class MeisterPluginModule {

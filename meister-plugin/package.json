@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ivy-ngcc",
-    "serve:module": "http-server --cors -p 8888 dist/module-b/bundles",
+    "watch": "ng build meister-plugin --watch",
+    "serve": "http-server --cors -p 8888 dist/meister-plugin/bundles",
     "bundle:module": "ng build meister-plugin"
   },
   "private": true,
@@ -29,7 +30,8 @@
     "ng2-pdf-viewer": "^5.0.1",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "http-server": "^0.11.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.0",

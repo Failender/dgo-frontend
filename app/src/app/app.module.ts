@@ -2,7 +2,7 @@ import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -58,6 +58,7 @@ import { InventarTabelleComponent } from './routes/held/inventar/inventar-tabell
 import {SharedModule, AppComponent, MenuService} from "dgo-components";
 
 import {environment} from "../environments/environment";
+import {routeInitializer} from './routes/route.service';
 
 
 const routes: Routes = [
@@ -82,7 +83,7 @@ const routes: Routes = [
   },
   {path: 'pdf/:source/:id', component: SourcePdfComponent},
 
-  { path: '**', redirectTo : '/home' }
+  { path: '**', redirectTo : '/meister' }
 ]
 
 
@@ -159,6 +160,12 @@ declare var env;
       useFactory: initializeHeld,
       multi: true,
       deps: [HeldenService]
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: routeInitializer,
+      deps: [Injector],
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

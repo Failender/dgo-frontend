@@ -23,30 +23,3 @@
     <tr mat-row *matRowDef="let row; columns: ['name', 'birthday']"></tr>
   </table>
 </mat-card>
-
-<mat-card>
-  <mat-card-header>
-    <h2 mat-card-title>Form</h2>
-  </mat-card-header>
-
-  <mat-form-field>
-    <input matInput
-           placeholder="Name"
-           type="text">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [matDatepicker]="myDatepicker" placeholder="Choose Date">
-    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-card-actions>
-    <button mat-raised-button
-            color="primary">
-      Submit
-    </button>
-    <button mat-button>
-      Cancel
-    </button>
-  </mat-card-actions>
-</mat-card>
