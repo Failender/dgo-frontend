@@ -7,23 +7,26 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
-  MatSidenavModule,
-  MatToolbarModule
-} from "@angular/material";
+  MatListModule, MatMenuModule, MatProgressSpinnerModule,
+  MatSidenavModule, MatSlideToggleModule, MatTableModule,
+  MatToolbarModule, MatTooltipModule
+} from '@angular/material';
 import {CommonModule} from "@angular/common";
 import {MenuListItemComponent} from "./menu/menu-list-item.component";
 import {RouterModule} from "@angular/router";
 import {LoginDialogComponent} from "./app/login/login-dialog.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
+import {TableComponent} from './components/table/table.component';
+import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
 
 
 @NgModule({
   providers: [],
-  imports: [HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule.forRoot([]), MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule],
-  declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent],
-  exports: [HttpClientModule],
-  entryComponents: [LoginDialogComponent]
+  imports: [HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule],
+  declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent, InputDialogComponent, TableComponent, InfoDialogComponent],
+  exports: [HttpClientModule, TableComponent],
+  entryComponents: [LoginDialogComponent, InputDialogComponent, InfoDialogComponent]
 })
 export class SharedModule {
 

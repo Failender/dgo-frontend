@@ -34,7 +34,6 @@ import {TokenService} from 'dgo-components';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
-import { TableComponent } from './table/table.component';
 
 import {HeldenService, initializeHeld} from 'dgo-components';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
@@ -76,6 +75,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'meister',
+    loadChildren: './routes/meister/meister.module#MeisterModule'
+  },
+  {
     path: 'administration',
     children: [
       {path: 'manage-user', component: ManageUserComponent}
@@ -83,7 +86,7 @@ const routes: Routes = [
   },
   {path: 'pdf/:source/:id', component: SourcePdfComponent},
 
-  { path: '**', redirectTo : '/meister' }
+  { path: '**', redirectTo : '/home' }
 ]
 
 
@@ -92,29 +95,28 @@ declare var env;
 @NgModule({
   declarations: [
 
-      LoginDialogComponent,
-      HomeComponent,
-      MeineHeldenComponent,
-      TableComponent,
-      PdfComponent,
-      HeldPdfComponent,
-      SourcePdfComponent,
-      ZauberComponent,
-      ManageUserComponent,
-      ZauberspeicherComponent,
-      ZauberspeicherExecuteComponent,
-      InventarComponent,
-      QuicknavComponent,
-      GeldComponent,
-      UebersichtComponent,
-      FernkampfWaffenTabelleComponent,
-      WaffenTabelleComponent,
-      RuestungTabelleComponent,
-      InventarTabelleComponent
+    LoginDialogComponent,
+    HomeComponent,
+    MeineHeldenComponent,
+    PdfComponent,
+    HeldPdfComponent,
+    SourcePdfComponent,
+    ZauberComponent,
+    ManageUserComponent,
+    ZauberspeicherComponent,
+    ZauberspeicherExecuteComponent,
+    InventarComponent,
+    QuicknavComponent,
+    GeldComponent,
+    UebersichtComponent,
+    FernkampfWaffenTabelleComponent,
+    WaffenTabelleComponent,
+    RuestungTabelleComponent,
+    InventarTabelleComponent
   ],
-    entryComponents: [ZauberspeicherExecuteComponent
+  entryComponents: [ZauberspeicherExecuteComponent
 
-    ],
+  ],
   imports: [
     SharedModule.forRoot(),
     PdfViewerModule,
@@ -182,6 +184,15 @@ export class AppModule {
         iconName: '',
         route: 'meine-helden',
         condition: menuService.authenticated.bind(menuService)
+      },
+      {
+        displayName: 'Meister',
+        children: [
+          {
+            displayName: 'Raumplan',
+            route: 'meister/raumplan'
+          }
+        ]
       },
       {
         displayName: 'Held',

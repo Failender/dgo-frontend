@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldDto, HeldenService} from 'dgo-components';
-import {TableColumn, TableEditEvent} from '../../table/table.component';
+import {TableColumn, TableEditEvent} from 'dgo-components';
 import {Router} from '@angular/router';
 import {AuthenticationRequiredComponent} from '../authentication-required.component';
 import {TokenService} from 'dgo-components';

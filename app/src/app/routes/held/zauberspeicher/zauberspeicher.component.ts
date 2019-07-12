@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {HeldenService} from 'dgo-components';
+import {HeldenService, TableColumn} from 'dgo-components';
 import {Router} from '@angular/router';
-import {TableColumn} from '../../../table/table.component';
 import {ZauberspeicherService} from './zauberspeicher.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TokenService} from 'dgo-components';

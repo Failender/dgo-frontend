@@ -3,7 +3,7 @@ import {Geldboerse, GeldService} from './geld.service';
 import {HeldComponent} from '../held.component';
 import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
-import {TableColumn} from '../../../table/table.component';
+import {TableColumn} from 'dgo-components';
 import {map} from 'rxjs/operators';
 
 @Component({

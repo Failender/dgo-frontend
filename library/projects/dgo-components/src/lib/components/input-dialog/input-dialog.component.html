@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+
+  <mat-form-field *ngFor="let field of fields">
+
+    <ng-container [ngSwitch]="field.type">
+
+      <textarea matInput formControlName="{{field.name}}" placeholder="{{field.label}}" *ngSwitchCase="'text'">
+
+      </textarea>
+      <input matInput placeholder="{{field.label}}" *ngSwitchDefault type="text" formControlName="{{field.name}}">
+    </ng-container>
+
+  </mat-form-field>
+
+  <button mat-raised-button (click)="submit()" [disabled]="!form.valid">OK</button>
+</form>

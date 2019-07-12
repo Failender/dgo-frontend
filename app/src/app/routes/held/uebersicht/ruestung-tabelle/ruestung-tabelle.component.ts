@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HeldComponent} from '../../held.component';
-import {TableColumn} from '../../../../table/table.component';
+import {TableColumn} from 'dgo-components';
 import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 

@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {HeldInventar, HeldInventarService} from './held-inventar.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../../shared/notification.service';
-import {TableColumn} from '../../../table/table.component';
+import {TableColumn} from 'dgo-components';
 
 @Component({
   selector: 'app-inventar',

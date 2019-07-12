@@ -75,7 +75,7 @@ export function loadModule(definition: ModuleDefinition): Promise<Type<any>> {
     };
   });
 }
-
+/*
 export const modules = [
   {
     path: "meister",
@@ -84,3 +84,6 @@ export const modules = [
     source: "http://localhost:8888/meister-plugin.umd.min.js"
   }
 ]
+*/
+
+const modules = [];

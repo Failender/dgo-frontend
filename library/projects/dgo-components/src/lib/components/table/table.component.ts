@@ -10,7 +10,7 @@ export class TableComponent implements OnInit {
   private _columns: TableColumn[];
 
   @Input() public data;
-  @Output('edit') public editOutput = new EventEmitter();
+  @Output('edit') public editOutput = new EventEmitter<TableEditEvent>();
 
   @Input('columns')
   public set columns(value) {
