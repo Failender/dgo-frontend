@@ -2,11 +2,17 @@
   <button mat-button (click)="toggleMenu.next()" class="left-button">
     <mat-icon>menu</mat-icon>
   </button>
+
   <span class="header">
     DSA-Gruppen-Online
   </span>
 
 
+  <mat-select placeholder="Gruppe" style="max-width:200px">
+    <mat-option *ngFor="let gruppe of gruppen" [value]="gruppe" (onSelectionChange)="onGruppeSelect($event)">
+      {{gruppe.name}}
+    </mat-option>
+  </mat-select>
 
   <button *ngIf="authenticated | async; else loginTmpl" (click)="logout()" class="right-button">
     <mat-icon>logout</mat-icon>

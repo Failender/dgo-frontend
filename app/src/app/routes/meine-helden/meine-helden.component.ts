@@ -21,6 +21,11 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
       type: 'string'
     },
     {
+      header: 'Gruppe',
+      field: 'gruppe',
+      type: 'string'
+    },
+    {
       header: 'Letzte Änderung',
       field: 'lastChange',
       type: 'string'

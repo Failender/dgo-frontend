@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {TokenService} from "../../token/token.service";
 import {LoginDialogComponent} from "../login/login-dialog.component";
+import {GruppenService} from '../../gruppen.service';
 
 @Component({
   selector: 'dgo-toolbar',
@@ -15,14 +16,18 @@ export class ToolbarComponent implements OnInit {
 
   @Output() public toggleMenu = new EventEmitter<void>();
 
+  public gruppen;
+
   public get authenticated() {
     return this.tokenService.tokenObs
       .pipe(map(value => value != null));
   }
 
-  constructor(private dialog: MatDialog, private tokenService: TokenService, private router: Router) { }
+  constructor(private gruppenService: GruppenService, private dialog: MatDialog, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit() {
+    this.gruppenService.findAll()
+      .subscribe(data => this.gruppen = data);
   }
 
   login() {
@@ -33,6 +38,10 @@ export class ToolbarComponent implements OnInit {
   logout() {
     this.tokenService.token = null;
     this.router.navigateByUrl('/home')
+  }
+
+  onGruppeSelect(event) {
+    console.debug(event.source.value);
   }
 
 }

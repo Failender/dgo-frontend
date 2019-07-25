@@ -1,6 +1,7 @@
 
 
 export * from './lib/shared.module';
+export * from './lib/gruppen.service';
 export * from './lib/token/token.service';
 export * from './lib/helden/helden.service';
 export * from './lib/menu/menu.service';

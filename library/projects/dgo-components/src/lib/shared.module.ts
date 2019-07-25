@@ -7,7 +7,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatMenuModule, MatProgressSpinnerModule,
+  MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule, MatSlideToggleModule, MatTableModule,
   MatToolbarModule, MatTooltipModule
 } from '@angular/material';
@@ -23,7 +23,7 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
 
 @NgModule({
   providers: [],
-  imports: [HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule],
+  imports: [HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule, MatSelectModule],
   declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent, InputDialogComponent, TableComponent, InfoDialogComponent],
   exports: [HttpClientModule, TableComponent],
   entryComponents: [LoginDialogComponent, InputDialogComponent, InfoDialogComponent]
