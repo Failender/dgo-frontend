@@ -26,7 +26,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private gruppenService: GruppenService, private dialog: MatDialog, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit() {
-    this.gruppenService.findAll()
+    this.gruppenService.getAll()
       .subscribe(data => this.gruppen = data);
   }
 
@@ -37,11 +37,11 @@ export class ToolbarComponent implements OnInit {
 
   logout() {
     this.tokenService.token = null;
-    this.router.navigateByUrl('/home')
+    this.router.navigateByUrl('/home');
   }
 
   onGruppeSelect(event) {
-    console.debug(event.source.value);
+    this.gruppenService.selectGroup(event.source.value);
   }
 
 }

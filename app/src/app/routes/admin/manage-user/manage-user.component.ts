@@ -27,7 +27,7 @@ export class ManageUserComponent implements OnInit {
   constructor(private gruppenService: GruppenService, private userService: UserService, private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.gruppenService.findAll()
+    this.gruppenService.getAll()
       .subscribe(data => this.gruppen = data);
   }
 

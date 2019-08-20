@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -124,9 +123,7 @@ declare var env;
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
-    MatDialogModule,
     MatListModule,
-    MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
