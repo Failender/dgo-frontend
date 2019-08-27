@@ -29,6 +29,11 @@ export class HeldenService {
     return this.http.get<HeldDto[]>(`${env.rest}helden/meine`);
   }
 
+  public getHeldenInGroup(gruppe: number, includePrivate: boolean, showInactive: boolean): Observable<HeldDto[]> {
+    return this.http.get<HeldDto[]>(`${env.rest}gruppen/gruppe/${gruppe}/helden?includePrivate=${includePrivate}&showInactive=${showInactive}`);
+
+  }
+
   public loadHeld(held: number, version: number): Observable<HeldDaten> {
     return this.http.get<HeldDaten>(`${env.rest}helden/held/${held}/${version}/daten`)
       .pipe(map(data => {

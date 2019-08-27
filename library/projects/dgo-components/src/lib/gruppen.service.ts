@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {first, share, shareReplay} from 'rxjs/operators';
+import {filter, first, share, shareReplay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,11 @@ export class GruppenService {
 
   public selectGroup(gruppe: Gruppe) {
     this.currentGroup.next(gruppe);
+  }
+
+  public getCurrentGroup(): Observable<Gruppe> {
+    return this.currentGroup
+      .pipe(filter(gruppe => gruppe !== null));
   }
 
 }

@@ -57,6 +57,7 @@ import {SharedModule, AppComponent, MenuService} from "dgo-components";
 
 import {environment} from "../environments/environment";
 import {routeInitializer} from './routes/route.service';
+import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
 
 
 const routes: Routes = [
@@ -78,6 +79,10 @@ const routes: Routes = [
     loadChildren: './routes/meister/meister.module#MeisterModule'
   },
   {
+    path: 'gruppe',
+    component: GruppeComponent
+  },
+  {
     path: 'administration',
     children: [
       {path: 'manage-user', component: ManageUserComponent}
@@ -93,7 +98,7 @@ declare var env;
 
 @NgModule({
   declarations: [
-
+    GruppeComponent,
     LoginDialogComponent,
     HomeComponent,
     MeineHeldenComponent,
@@ -190,6 +195,10 @@ export class AppModule {
             route: 'meister/raumplan'
           }
         ]
+      },
+      {
+        displayName: 'Gruppe',
+        route: 'gruppe'
       },
       {
         displayName: 'Held',

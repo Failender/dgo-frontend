@@ -44,4 +44,9 @@ export class ToolbarComponent implements OnInit {
     this.gruppenService.selectGroup(event.source.value);
   }
 
+  public getSelectedGruppe() {
+    return this.gruppenService.getAll()
+      .pipe(map(data => data[0]));
+  }
+
 }

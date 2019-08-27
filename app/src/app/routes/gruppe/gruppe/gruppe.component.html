@@ -1,0 +1,12 @@
+
+<div>
+  <mat-label>Zeige private Helden</mat-label><mat-slide-toggle (change)="onPrivateSliderChange($event.checked)"></mat-slide-toggle>
+
+</div>
+<div>
+  <mat-label>Zeige inaktive Helden</mat-label><mat-slide-toggle (change)="onActiveSliderChange($event.checked)"></mat-slide-toggle>
+
+</div>
+
+
+<app-table [data]="helden" [columns]="tableColumns"></app-table>
