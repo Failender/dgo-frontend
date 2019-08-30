@@ -1,0 +1,34 @@
+
+
+<mat-card>
+  <div>
+
+    <mat-form-field>
+      <input placeholder="Name" matInput [(ngModel)]="kampf.name">
+    </mat-form-field>
+  </div>
+
+  <mat-card *ngFor="let teilnehmer of kampf.teilnehmer; let i =index">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Name" matInput [(ngModel)]="teilnehmer.name">
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ini Basis" matInput type="number" [(ngModel)]="teilnehmer.iniBasis">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ini Wurf" matInput type="number" [(ngModel)]="teilnehmer.iniWurf">
+      </mat-form-field>
+      <button mat-mini-fab (click)="removeTeilnehmer(i)"><mat-icon>delete</mat-icon></button>
+    </div>
+
+
+  </mat-card>
+  <div>
+    <button mat-raised-button (click)="addTeilnehmer()">Teilnehmer hinzufügen</button>
+    <button mat-raised-button (click)="createKampf()" [disabled]="!kampfValid()">Kampf starten</button>
+
+  </div>
+
+</mat-card>

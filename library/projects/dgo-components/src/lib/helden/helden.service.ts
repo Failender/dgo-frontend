@@ -34,14 +34,16 @@ export class HeldenService {
 
   }
 
-  public loadHeld(held: number, version: number): Observable<HeldDaten> {
+  public loadHeld(held: number, version: number, setActive = true): Observable<HeldDaten> {
     return this.http.get<HeldDaten>(`${env.rest}helden/held/${held}/${version}/daten`)
       .pipe(map(data => {
-        this.currentHeld = {
-          id: held,
-          version
-        };
-        this.setHeld(data);
+        if(setActive) {
+          this.currentHeld = {
+            id: held,
+            version
+          };
+          this.setHeld(data);
+        }
         return data;
       }));
   }
@@ -97,12 +99,17 @@ export interface HeldDaten {
   sonderfertigkeiten: Sonderfertigkeiten;
   eigenschaften: Eigenschaften;
   kampfsets: KampfSets;
+  angaben: Angaben;
 
   [key: string]: any;
 }
 
 export interface KampfSets {
   kampfset: KampfSet[];
+}
+
+export interface Angaben {
+  name: string;
 }
 
 export interface KampfSet {

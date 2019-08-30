@@ -8,8 +8,8 @@
   </span>
 
 
-  <mat-select placeholder="Gruppe" style="max-width:200px" [ngModel]="getSelectedGruppe() | async">
-    <mat-option *ngFor="let gruppe of gruppen" [value]="gruppe" (onSelectionChange)="onGruppeSelect($event)">
+  <mat-select placeholder="Gruppe" style="max-width:200px" [ngModel]="getSelectedGruppe() | async" (valueChange)="onGruppeSelect($event)">
+    <mat-option *ngFor="let gruppe of gruppen" [value]="gruppe">
       {{gruppe.name}}
     </mat-option>
   </mat-select>

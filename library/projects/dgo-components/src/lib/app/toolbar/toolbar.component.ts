@@ -41,7 +41,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   onGruppeSelect(event) {
-    this.gruppenService.selectGroup(event.source.value);
+    this.gruppenService.selectGroup(event);
   }
 
   public getSelectedGruppe() {

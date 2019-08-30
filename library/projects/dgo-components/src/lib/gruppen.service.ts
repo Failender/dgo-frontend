@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {filter, first, share, shareReplay} from 'rxjs/operators';
+import {filter, first, share, shareReplay, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class GruppenService {
 
   private all: Observable<Gruppe[]>
   constructor(private http: HttpClient) {
-    this.all = this.findAll().pipe(shareReplay());
+    this.all = this.findAll().pipe(tap(data => this.currentGroup.next(data[0])), shareReplay());
   }
 
   private findAll(): Observable<Gruppe[]> {

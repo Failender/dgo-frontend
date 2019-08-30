@@ -1,0 +1,9 @@
+<ng-container *ngIf="kampf">
+  <button mat-raised-button (click)="nextTeilnehmer()">Next</button>
+  <mat-card *ngFor="let teilnehmer of kampf.teilnehmer; let i = index" [class.active]="i === kampf.currentTeilnehmer">
+    <mat-card-title>
+      {{teilnehmer.name}} {{teilnehmer.ini}}
+    </mat-card-title>
+
+  </mat-card>
+</ng-container>
