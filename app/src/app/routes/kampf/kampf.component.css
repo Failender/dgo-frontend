@@ -1,3 +1,19 @@
+mat-card.selected{
+  background-color:blue;
+}
+
+
+
 mat-card.active {
   background-color:red;
+}
+
+
+mat-card {
+  width: 50%;
+}
+
+
+mat-icon {
+  cursor: pointer;
 }

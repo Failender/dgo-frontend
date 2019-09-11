@@ -1,9 +1,30 @@
-<ng-container *ngIf="kampf">
-  <button mat-raised-button (click)="nextTeilnehmer()">Next</button>
-  <mat-card *ngFor="let teilnehmer of kampf.teilnehmer; let i = index" [class.active]="i === kampf.currentTeilnehmer">
-    <mat-card-title>
-      {{teilnehmer.name}} {{teilnehmer.ini}}
-    </mat-card-title>
 
-  </mat-card>
+<ng-container *ngIf="loading; else render">
+  <mat-spinner></mat-spinner>
 </ng-container>
+<ng-template #render>
+  <ng-container *ngIf="kampf">
+    <button mat-raised-button (click)="nextTeilnehmer()">Next</button>
+    <button mat-raised-button (click)="halten()">Halten</button>
+    <mat-card *ngFor="let teilnehmer of kampf.teilnehmer; let i = index" (click)="selectTeilnehmer(teilnehmer)" [class.selected]="selectedTeilnehmer === teilnehmer" [class.active]="i === kampf.currentTeilnehmer">
+      <mat-card-title>
+        {{teilnehmer.name}} {{teilnehmer.ini}} ({{teilnehmer.iniBasis}})
+        <mat-icon *ngIf="teilnehmer.atAktion; else noAktion" (click)="at(teilnehmer)">check_circle</mat-icon>
+        <mat-icon *ngIf="teilnehmer.paAktion; else noAktion" (click)="pa(teilnehmer)">check_circle</mat-icon>
+        <ng-template #noAktion>
+          <mat-icon >remove_circle</mat-icon>
+
+        </ng-template>
+      </mat-card-title>
+      <mat-card-content>
+        <!--
+        <button mat-raised-button *ngFor="let amount of iniButtons" (click)="changeIni(amount, teilnehmer)">
+          {{amount}}
+        </button>
+        -->
+      </mat-card-content>
+
+    </mat-card>
+  </ng-container>
+
+</ng-template>

@@ -78,7 +78,7 @@ export class UebersichtComponent extends HeldComponent  {
     if(this.addAsp === 'false') {
       value = -value;
     }
-    this.uebersicht.asp+=value;
+    this.uebersicht.asp += value;
     this.onChange();
 
   }

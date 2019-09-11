@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
 export interface Kampf {
   name: string;
   gruppe?: number;
+  currentTeilnehmer: number;
 
   teilnehmer: Kampfteilnehmer[];
 }
@@ -15,7 +16,11 @@ export interface Kampfteilnehmer {
   id?: number;
   iniBasis: number;
   iniWurf?: number;
-  readonly ini: number;
+  iniMod: number;
+  ini: number;
+  atAktion: boolean;
+  paAktion: boolean;
+  freieAktionen: number;
 
 }
 
@@ -38,6 +43,25 @@ export class KampfService {
   public nextTeilnehmer(gruppe: number): Observable<Kampf> {
     return this.http.post(`${environment.rest}kampf/${gruppe}/next`, null);
   }
+
+  public halten(gruppe: number): Observable<Kampf> {
+    return this.http.post(`${environment.rest}kampf/${gruppe}/halten`, null);
+  }
+
+  public at(gruppe: number, teilnehmer: number): Observable<Kampf> {
+    return this.http.post(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/at`, null);
+  }
+
+  public pa(gruppe: number, teilnehmer: number): Observable<Kampf> {
+    return this.http.post(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/pa`, null);
+  }
+
+
+
+
+
+
+
 
 
 
