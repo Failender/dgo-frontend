@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-title>
+    {{teilnehmer.name}} {{teilnehmer.ini}} ({{teilnehmer.iniBasis}})
+  </mat-card-title>
+  <mat-card-content>
+
+    <div>
+      <mat-button-toggle-group (change)="addIni = $event.value" value="{{true}}">
+        <mat-button-toggle value="{{true}}">+</mat-button-toggle>
+        <mat-button-toggle value="{{false}}">-</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <ng-container *ngFor="let value of iniButtons">
+        <button class="lepButton" mat-raised-button (click)="onIniChange(value)">{{value}}</button>
+      </ng-container>
+
+    </div>
+
+    <div class="focusSelect">
+      <mat-select>
+        <mat-select-option *ngFor="let teilnehmer of kampf.teilnehmer">
+          {{teilnehmer.name}}
+        </mat-select-option>
+      </mat-select>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>

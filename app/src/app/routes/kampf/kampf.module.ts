@@ -5,7 +5,8 @@ import {KampfComponent} from './kampf.component';
 import {SharedModule} from 'dgo-components';
 import { ErstellenComponent } from './erstellen/erstellen.component';
 import {FormsModule} from '@angular/forms';
-import {MatCardModule, MatIconModule} from '@angular/material';
+import {MatButtonToggleModule, MatCardModule, MatIconModule, MatSelectModule} from '@angular/material';
+import { TeilnehmerDetailComponent } from './teilnehmer-detail/teilnehmer-detail.component';
 
 
 
@@ -20,9 +21,9 @@ const routes: Routes = [
   }
 ]
 @NgModule({
-  declarations: [KampfComponent, ErstellenComponent],
+  declarations: [KampfComponent, ErstellenComponent, TeilnehmerDetailComponent],
   imports: [
-    CommonModule, RouterModule.forChild(routes), SharedModule, FormsModule, MatCardModule, MatIconModule
+    CommonModule, RouterModule.forChild(routes), SharedModule, FormsModule, MatCardModule, MatIconModule, MatButtonToggleModule, MatSelectModule
   ]
 })
 export class KampfModule { }

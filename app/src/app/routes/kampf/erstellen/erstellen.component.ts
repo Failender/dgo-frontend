@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Kampf, KampfService} from '../kampf.service';
 import {GruppenService} from 'dgo-components';
-import {Subject} from 'rxjs';
+import {from, Subject} from 'rxjs';
 import {flatMap, takeUntil, tap} from 'rxjs/operators';
 import {HeldenService} from 'dgo-components';
 import {HeldDaten} from 'dgo-components';
@@ -18,6 +18,7 @@ export class ErstellenComponent implements OnInit, OnDestroy {
 
   public kampf: Kampf = {
     teilnehmer: [],
+    name: ''
   };
 
   constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private kampfService: KampfService, private router: Router) { }
@@ -29,7 +30,7 @@ export class ErstellenComponent implements OnInit, OnDestroy {
       .pipe(
         tap(gruppe => this.kampf.gruppe = gruppe.id),
         flatMap(gruppe => this.heldenService.getHeldenInGroup(gruppe.id, false, false)),
-        flatMap(helden => helden),
+        flatMap(helden => from(helden)),
         flatMap(held => this.heldenService.loadHeld(held.id, held.version, false)),
         takeUntil(this.unsubscribe))
       .subscribe((held: HeldDaten) => {
@@ -50,7 +51,8 @@ export class ErstellenComponent implements OnInit, OnDestroy {
   addTeilnehmer() {
     this.kampf.teilnehmer.push({
       name: '',
-      iniBasis: 0
+      iniBasis: 0,
+      iniWurf: 1
     });
   }
 

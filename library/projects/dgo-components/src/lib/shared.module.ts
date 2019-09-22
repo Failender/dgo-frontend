@@ -24,10 +24,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   providers: [],
-  imports: [MatIconModule,
+  imports: [MatIconModule, MatSelectModule,
     MatDialogModule, HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule, MatSelectModule],
   declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent, InputDialogComponent, TableComponent, InfoDialogComponent],
-  exports: [HttpClientModule, TableComponent, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatTableModule, MatButtonModule, MatProgressSpinnerModule,
+  exports: [HttpClientModule, TableComponent, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatTableModule,
+    MatButtonModule, MatProgressSpinnerModule, MatSelectModule
   ],
   entryComponents: [LoginDialogComponent, InputDialogComponent, InfoDialogComponent]
 })

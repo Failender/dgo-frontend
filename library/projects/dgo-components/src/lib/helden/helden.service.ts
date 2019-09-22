@@ -272,4 +272,5 @@ export interface HeldDto {
   public: boolean;
   active: boolean;
   lastChange: string;
+  version: number;
 }

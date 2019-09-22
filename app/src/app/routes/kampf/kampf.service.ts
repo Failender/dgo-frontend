@@ -6,9 +6,13 @@ import {environment} from '../../../environments/environment';
 export interface Kampf {
   name: string;
   gruppe?: number;
-  currentTeilnehmer: number;
+  currentTeilnehmer?: number;
 
   teilnehmer: Kampfteilnehmer[];
+}
+
+export enum Distanzklasse {
+  H, N, S, P
 }
 
 export interface Kampfteilnehmer {
@@ -16,11 +20,13 @@ export interface Kampfteilnehmer {
   id?: number;
   iniBasis: number;
   iniWurf?: number;
-  iniMod: number;
-  ini: number;
-  atAktion: boolean;
-  paAktion: boolean;
-  freieAktionen: number;
+  iniMod?: number;
+  ini?: number;
+  atAktion?: boolean;
+  paAktion?: boolean;
+  freieAktionen?: number;
+  distanzklasse?: Distanzklasse;
+  focussedTeilnehmer?: number;
 
 }
 
@@ -33,39 +39,30 @@ export class KampfService {
   constructor(private http: HttpClient) { }
 
   public createKampf(kampf: Kampf): Observable<Kampf> {
-    return this.http.post(`${environment.rest}kampf`, kampf);
+    return this.http.post<Kampf>(`${environment.rest}kampf`, kampf);
   }
 
   public updateKampf(kampf: Kampf): Observable<Kampf> {
-    return this.http.put(`${environment.rest}kampf`, kampf);
+    return this.http.put<Kampf>(`${environment.rest}kampf`, kampf);
   }
 
   public nextTeilnehmer(gruppe: number): Observable<Kampf> {
-    return this.http.post(`${environment.rest}kampf/${gruppe}/next`, null);
+    return this.http.post<Kampf>(`${environment.rest}kampf/${gruppe}/next`, null);
   }
 
   public halten(gruppe: number): Observable<Kampf> {
-    return this.http.post(`${environment.rest}kampf/${gruppe}/halten`, null);
+    return this.http.post<Kampf>(`${environment.rest}kampf/${gruppe}/halten`, null);
   }
 
   public at(gruppe: number, teilnehmer: number): Observable<Kampf> {
-    return this.http.post(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/at`, null);
+    return this.http.post<Kampf>(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/at`, null);
   }
 
   public pa(gruppe: number, teilnehmer: number): Observable<Kampf> {
-    return this.http.post(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/pa`, null);
+    return this.http.post<Kampf>(`${environment.rest}kampf/${gruppe}/teilnehmer/${teilnehmer}/pa`, null);
   }
 
-
-
-
-
-
-
-
-
-
   public getKampf(gruppe: number): Observable<Kampf> {
-    return this.http.get(`${environment.rest}kampf/${gruppe}`);
+    return this.http.get<Kampf>(`${environment.rest}kampf/${gruppe}`);
   }
 }
