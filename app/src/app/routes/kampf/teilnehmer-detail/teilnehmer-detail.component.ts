@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {Kampf, KampfService, Kampfteilnehmer} from '../kampf.service';
+import {Distanzklasse, Kampf, KampfService, Kampfteilnehmer} from '../kampf.service';
 import {Subject} from 'rxjs';
-import {debounceTime, flatMap, takeUntil} from 'rxjs/operators';
+import {debounceTime, flatMap, takeUntil, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-teilnehmer-detail',
@@ -25,13 +25,14 @@ export class TeilnehmerDetailComponent implements OnInit, OnDestroy {
   @Output()
   public kampfChange = new EventEmitter<Kampf>();
 
-  private teilnehmerChange = new Subject();
+  public teilnehmerChange = new Subject();
 
   constructor(private kampfService: KampfService) { }
 
   ngOnInit() {
     this.teilnehmerChange
       .pipe(debounceTime(500),
+        tap(() => console.debug(this.kampf)),
         takeUntil(this.takeUntil),
         flatMap(() => this.kampfService.updateKampf(this.kampf)))
       .subscribe((kampf) => {
@@ -41,8 +42,6 @@ export class TeilnehmerDetailComponent implements OnInit, OnDestroy {
   }
 
   onIniChange(value) {
-
-
 
     if(this.addIni === 'false') {
       value = -value;
@@ -56,6 +55,11 @@ export class TeilnehmerDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.takeUntil.next();
+  }
+
+  public get distanzklassen() {
+    const keys = Object.keys(Distanzklasse);
+    return keys.slice(keys.length / 2);
   }
 
 }

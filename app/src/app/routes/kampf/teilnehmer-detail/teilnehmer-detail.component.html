@@ -16,12 +16,22 @@
 
     </div>
 
-    <div class="focusSelect">
-      <mat-select>
-        <mat-select-option *ngFor="let teilnehmer of kampf.teilnehmer">
-          {{teilnehmer.name}}
-        </mat-select-option>
+
+    <div class="focusSelect" style="margin-top:5px">
+      <mat-select [(value)]="teilnehmer.focussedTeilnehmer" (valueChange)="teilnehmerChange.next()">
+        <mat-option></mat-option>
+        <ng-container *ngFor="let member of kampf.teilnehmer">
+          <mat-option *ngIf="member !== teilnehmer" [value]="member.id">
+            {{member.name}}
+          </mat-option>
+        </ng-container>
       </mat-select>
+      <mat-select [(value)]="teilnehmer.distanzklasse" (valueChange)="teilnehmerChange.next()">
+        <mat-option *ngFor="let dk of distanzklassen" [value]="dk">
+          {{dk}}
+        </mat-option>
+      </mat-select>
+
     </div>
 
 

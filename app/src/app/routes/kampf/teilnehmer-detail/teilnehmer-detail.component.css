@@ -1,0 +1,11 @@
+
+
+.focusSelect mat-select {
+  width: 40%;
+  height: 30px;
+}
+
+
+::ng-deep .mat-select-content{
+  font-size: 20px;
+}
