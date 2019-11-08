@@ -61,5 +61,4 @@ export class TeilnehmerDetailComponent implements OnInit, OnDestroy {
     const keys = Object.keys(Distanzklasse);
     return keys.slice(keys.length / 2);
   }
-
 }

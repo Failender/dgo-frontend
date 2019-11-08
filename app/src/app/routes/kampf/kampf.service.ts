@@ -42,6 +42,10 @@ export class KampfService {
     return this.http.post<Kampf>(`${environment.rest}kampf`, kampf);
   }
 
+  public removeKampf(gruppe): Observable<void> {
+    return this.http.delete<void>(`${environment.rest}kampf/${gruppe}`);
+  }
+
   public updateKampf(kampf: Kampf): Observable<Kampf> {
     return this.http.put<Kampf>(`${environment.rest}kampf`, kampf);
   }

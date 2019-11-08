@@ -68,7 +68,7 @@ export class ErstellenComponent implements OnInit, OnDestroy {
   }
 
   kampfValid() {
-    return this.kampf.name && this.iniBasisFilled();
+    return this.iniBasisFilled();
   }
 
   private iniBasisFilled() {

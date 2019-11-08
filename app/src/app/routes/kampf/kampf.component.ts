@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Kampf, KampfService, Kampfteilnehmer} from './kampf.service';
 import {GruppenService} from 'dgo-components';
 import {NEVER, Subject} from 'rxjs';
@@ -37,6 +37,22 @@ export class KampfComponent implements OnInit, OnDestroy {
         this.setKampf(kampf);
         this.loading = false;
     });
+  }
+
+  @HostListener('keydown', ['$event'])
+  public onKeyDown(event) {
+    console.debug(event);
+
+    if (!event.ctrlKey) {
+      return;
+    }
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.key === 'n') {
+      this.nextTeilnehmer();
+    }
+
+    return false;
   }
 
   public selectTeilnehmer(teilnehmer: Kampfteilnehmer) {
@@ -83,7 +99,16 @@ export class KampfComponent implements OnInit, OnDestroy {
     this.kampfService
       .pa(this.gruppenService.currentGroup.value.id, teilnehmer.id)
       .subscribe(kampf => this.setKampf(kampf));
-
   }
+
+  public findTeilnehmer(id: number): Kampfteilnehmer {
+    return this.kampf.teilnehmer.find(entry => entry.id === id);
+  }
+
+  public removeKampf() {
+    this.kampfService.removeKampf(this.kampf.gruppe)
+      .subscribe(() => this.kampf = null);
+  }
+
 
 }

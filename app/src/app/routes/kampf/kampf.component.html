@@ -18,11 +18,13 @@
           </ng-template>
         </mat-card-title>
         <mat-card-content>
-          <!--
-          <button mat-raised-button *ngFor="let amount of iniButtons" (click)="changeIni(amount, teilnehmer)">
-            {{amount}}
-          </button>
-          -->
+          <div *ngIf="teilnehmer.focussedTeilnehmer !== null && teilnehmer.focussedTeilnehmer !== undefined">
+            <ng-container *ngIf="findTeilnehmer(teilnehmer.focussedTeilnehmer) as focus; else notFound">
+              {{focus.name}} ({{teilnehmer.distanzklasse}})
+            </ng-container>
+            <ng-template #notFound></ng-template>
+
+          </div>
         </mat-card-content>
 
       </mat-card>
@@ -34,3 +36,5 @@
   </ng-container>
 
 </ng-template>
+
+<button (click)="removeKampf()">Kampf beenden</button>
