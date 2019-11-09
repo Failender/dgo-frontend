@@ -53,6 +53,8 @@ import {SharedModule, AppComponent, MenuService} from "dgo-components";
 import {environment} from "../environments/environment";
 import {routeInitializer} from './routes/route.service';
 import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
+import { SteigernComponent } from './routes/held/steigern/steigern.component';
+import {AddEreignisDialogComponent} from './routes/held/steigern/add-ereignis.dialog/add-ereignis.dialog.component';
 
 
 const routes: Routes = [
@@ -63,6 +65,7 @@ const routes: Routes = [
     children: [
       {path: 'pdf', component: HeldPdfComponent},
       {path: 'geld', component: GeldComponent},
+      {path: 'steigern', component: SteigernComponent},
       {path: 'zauber', component: ZauberComponent},
       {path: 'uebersicht', component: UebersichtComponent},
       {path: 'inventar', component: InventarComponent},
@@ -98,6 +101,7 @@ declare var env;
 @NgModule({
   declarations: [
     GruppeComponent,
+    SteigernComponent,
     LoginDialogComponent,
     HomeComponent,
     MeineHeldenComponent,
@@ -115,10 +119,10 @@ declare var env;
     FernkampfWaffenTabelleComponent,
     WaffenTabelleComponent,
     RuestungTabelleComponent,
+    AddEreignisDialogComponent,
     InventarTabelleComponent,
   ],
-  entryComponents: [ZauberspeicherExecuteComponent
-
+  entryComponents: [ZauberspeicherExecuteComponent, AddEreignisDialogComponent
   ],
   imports: [
     SharedModule.forRoot(),
@@ -227,6 +231,10 @@ export class AppModule {
             displayName: 'Inventar',
             iconName: '',
             route: 'held/inventar'
+          },{
+            displayName: 'Steigern',
+            iconName: '',
+            route: 'held/steigern'
           },
           {
             displayName: 'Geld',

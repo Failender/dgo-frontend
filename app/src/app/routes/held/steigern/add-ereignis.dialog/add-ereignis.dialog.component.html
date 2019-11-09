@@ -1,0 +1,20 @@
+<div mat-dialog-title>Ereignis hinzufügen</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" matInput placeholder="AP" formControlName="ap" (keydown.enter)="send()">
+    </mat-form-field>
+
+  </form>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Abbrechen</button>
+  <button mat-button (click)="send()" [disabled]="!form.valid">Hinzufügen</button>
+</div>

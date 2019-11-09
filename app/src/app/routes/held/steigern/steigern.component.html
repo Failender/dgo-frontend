@@ -1,0 +1,8 @@
+<app-quicknav></app-quicknav>
+<mat-card *ngIf="ap">
+  <mat-card-title>
+    Abenteuerpunkte
+  </mat-card-title>
+  Gesamt: {{ap.gesamt}} | Frei: {{ap.frei}} <button mat-raised-button (click)="addEreignis()">Ereignis hinzufügen</button>
+
+</mat-card><app-table [data]="steigerungen" [columns]="tableColumns" (edit)="onEdit($event)"></app-table>
