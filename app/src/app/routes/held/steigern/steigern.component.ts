@@ -26,8 +26,12 @@ export class SteigernComponent extends HeldComponent implements OnDestroy{
 
   public tableColumns: TableColumn[] = [
     {
+      field: 'se',
+      header: 'SE',
+      type: 'boolean-edit'
+    },
+    {
       field: 'talent',
-
       header: 'Talent',
       type: 'string'
     },
@@ -77,7 +81,16 @@ export class SteigernComponent extends HeldComponent implements OnDestroy{
       actions: [
         {
           name: 'keyboard_arrow_up',
-          click: context => this.steigern(context)
+          click: context => this.steigern(context),
+          condition: context => {
+            if (context.kosten === '...') {
+              return false;
+            }
+            if (!this.ap) {
+              return false;
+            }
+            return context.kosten <= this.ap.frei;
+          }
         }
       ]
     }
@@ -107,12 +120,13 @@ export class SteigernComponent extends HeldComponent implements OnDestroy{
       });
   }
 
-  private steigern(context: SteigerungsTalent) {
+  private steigern(context) {
+    this.ap.frei -= context.kosten;
     this.steigernService.steigern(this.heldInfo.id, context)
       .subscribe(data => {
         this.steigerungen = data;
-        this.ap.frei -= context.kosten;
       });
+    context.kosten = '...';
   }
 
   public onEdit(event) {

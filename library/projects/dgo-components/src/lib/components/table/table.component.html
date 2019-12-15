@@ -18,6 +18,11 @@
               {{element[column.field]}}
             </div>
 
+            <div *ngSwitchCase="'date'">
+              {{element[column.field] | date}}
+            </div>
+
+
             <div *ngSwitchCase="'boolean-edit'">
               <mat-slide-toggle [checked]="element[column.field]" (change)="onSlideChange(element, column, $event.checked)"></mat-slide-toggle>
 
@@ -32,19 +37,25 @@
                 <mat-icon>menu</mat-icon>
               </button>
               <mat-menu #menu>
-                <button mat-menu-item *ngFor="let action of column.actions" (click)="action.click(element)">
-                  {{action.name}}
-                </button>
+                <ng-container *ngFor="let action of column.actions">
+                  <button mat-menu-item  (click)="action.click(element)" *ngIf="isVisible(action, element)">
+                    {{action.name}}
+                  </button>
+                </ng-container>
+
               </mat-menu>
             </div>
             <div *ngSwitchCase="'inline-actions'">
               <ng-container *ngFor="let action of column.actions">
-                <mat-icon  (click)="action.click(element)" style="cursor:pointer" *ngIf="action.click">
-                  {{action.name}}
-                </mat-icon>
-                <mat-icon  style="cursor:pointer"  [matTooltip]="action.tooltip(element)" matTooltipPosition="above" *ngIf="action.tooltip">
-                  {{action.name}}
-                </mat-icon>
+                <ng-container *ngIf="isVisible(action, element)">
+                  <mat-icon  (click)="action.click(element)" style="cursor:pointer" *ngIf="action.click">
+                    {{action.name}}
+                  </mat-icon>
+                  <mat-icon  style="cursor:pointer"  [matTooltip]="action.tooltip(element)" matTooltipPosition="above" *ngIf="action.tooltip">
+                    {{action.name}}
+                  </mat-icon>
+
+                </ng-container>
 
               </ng-container>
 

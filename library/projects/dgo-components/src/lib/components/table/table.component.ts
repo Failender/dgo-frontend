@@ -39,9 +39,16 @@ export class TableComponent implements OnInit {
   onEdit(row, column) {
     this.editOutput.next({
       row, column
-    })
+    });
   }
 
+  public isVisible(action, element) {
+    if (!action.condition) {
+      return true;
+    }
+
+    return action.condition(element);
+  }
 }
 
 export interface TableColumn {

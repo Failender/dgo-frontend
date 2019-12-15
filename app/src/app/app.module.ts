@@ -55,6 +55,7 @@ import {routeInitializer} from './routes/route.service';
 import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
 import { SteigernComponent } from './routes/held/steigern/steigern.component';
 import {AddEreignisDialogComponent} from './routes/held/steigern/add-ereignis.dialog/add-ereignis.dialog.component';
+import { AlleVersionenDialogComponent } from './shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
 
 
 const routes: Routes = [
@@ -121,8 +122,12 @@ declare var env;
     RuestungTabelleComponent,
     AddEreignisDialogComponent,
     InventarTabelleComponent,
+    AlleVersionenDialogComponent,
   ],
-  entryComponents: [ZauberspeicherExecuteComponent, AddEreignisDialogComponent
+  entryComponents: [
+    ZauberspeicherExecuteComponent,
+    AddEreignisDialogComponent,
+    AlleVersionenDialogComponent
   ],
   imports: [
     SharedModule.forRoot(),

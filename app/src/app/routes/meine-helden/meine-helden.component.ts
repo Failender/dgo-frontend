@@ -4,6 +4,8 @@ import {TableColumn, TableEditEvent} from 'dgo-components';
 import {Router} from '@angular/router';
 import {AuthenticationRequiredComponent} from '../authentication-required.component';
 import {TokenService} from 'dgo-components';
+import {MatDialog} from '@angular/material';
+import {AlleVersionenDialogComponent} from '../../shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
 
 @Component({
   selector: 'app-meine-helden',
@@ -49,10 +51,16 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
       header: '',
       field: 'actions',
       type: 'actions',
-      actions: [{
-        name: 'Held laden',
-        click: context => this.loadHeld(context)
-      }]
+      actions: [
+        {
+          name: 'Held laden',
+          click: context => this.loadHeld(context)
+        },
+        {
+          name: 'Alle Versionen anzeigen',
+          click: context => this.showAllVersions(context)
+        }
+      ]
     }
   ];
 
@@ -63,8 +71,15 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
       });
   }
 
+private showAllVersions(context) {
+    const id = context.id;
+    const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '80vw'})
+    dialogRef.componentInstance.held = id;
 
-  constructor(private heldenService: HeldenService, router: Router, tokenService: TokenService) {
+  }
+
+
+  constructor(private dialog: MatDialog, private heldenService: HeldenService, router: Router, tokenService: TokenService) {
     super(tokenService, router);
   }
 
