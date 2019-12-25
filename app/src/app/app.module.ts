@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -44,7 +44,6 @@ import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabell
 import {InventarTabelleComponent} from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
 
 import {environment} from '../environments/environment';
-import {routeInitializer} from './routes/route.service';
 import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
 import {SteigernComponent} from './routes/held/steigern/steigern.component';
 import {AddEreignisDialogComponent} from './routes/held/steigern/add-ereignis.dialog/add-ereignis.dialog.component';
@@ -165,12 +164,6 @@ declare var env;
       useFactory: initializeHeld,
       multi: true,
       deps: [HeldenService]
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: routeInitializer,
-      deps: [Injector],
-      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import {AuthenticationRequiredComponent} from '../authentication-required.compon
 import {AlleVersionenDialogComponent} from '../../shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
 import {HeldDto, HeldenService} from "../../lib/helden/helden.service";
 import {TableColumn, TableEditEvent} from "../../lib/components/table/table.component";
-import {MatDialog} from "@angular/material";
+import {MatDialog} from "@angular/material/dialog";
 import {TokenService} from "../../authentication/token.service";
 
 @Component({

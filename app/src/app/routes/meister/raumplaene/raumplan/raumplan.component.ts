@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RaumplanEbene, RaumplanService} from '../raumplan.service';
 import {ActivatedRoute} from '@angular/router';
 import {flatMap, map, tap} from 'rxjs/operators';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {TableColumn} from "../../../../lib/components/table/table.component";
 import {InfoDialogComponent} from "../../../../lib/components/info-dialog/info-dialog.component";
 import {InputDialogComponent} from "../../../../lib/components/input-dialog/input-dialog.component";

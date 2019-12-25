@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/dgo-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -52,6 +53,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -135,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "dgo-frontend"
+  "defaultProject": "dgo-frontend",
+  "cli": {
+    "analytics": "db10425b-36be-4624-944f-0a574888c037"
+  }
 }

@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 
 import {Subject} from 'rxjs';
 import {debounceTime, takeUntil} from 'rxjs/operators';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {AddEreignisDialogComponent} from './add-ereignis.dialog/add-ereignis.dialog.component';
 import {TableColumn} from "../../../lib/components/table/table.component";
 import {HeldenService} from "../../../lib/helden/helden.service";

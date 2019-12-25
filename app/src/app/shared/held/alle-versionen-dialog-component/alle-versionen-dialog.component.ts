@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Version, VersionService} from '../version/version.service';
 import {Router} from '@angular/router';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef} from '@angular/material/dialog';
 import {TableColumn} from "../../../lib/components/table/table.component";
 import {HeldenService} from "../../../lib/helden/helden.service";
 
