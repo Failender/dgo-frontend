@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
-import {GruppenService, HeldenService} from 'dgo-components';
 import {flatMap, takeUntil} from 'rxjs/operators';
-import {TableColumn} from 'dgo-components';
 import {Router} from '@angular/router';
+import {TableColumn} from "../../../lib/components/table/table.component";
+import {HeldenService} from "../../../lib/helden/helden.service";
+import {GruppenService} from "../../../lib/gruppen.service";
 
 @Component({
   selector: 'app-gruppe',

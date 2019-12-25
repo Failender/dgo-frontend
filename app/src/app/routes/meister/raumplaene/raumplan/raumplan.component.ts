@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RaumplanEbene, RaumplanService} from '../raumplan.service';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {flatMap, map, tap} from 'rxjs/operators';
-import {InfoDialogComponent, InputDialogComponent, TableColumn} from 'dgo-components';
 import {MatDialog} from '@angular/material';
+import {TableColumn} from "../../../../lib/components/table/table.component";
+import {InfoDialogComponent} from "../../../../lib/components/info-dialog/info-dialog.component";
+import {InputDialogComponent} from "../../../../lib/components/input-dialog/input-dialog.component";
 
 @Component({
   selector: 'app-raumplan',

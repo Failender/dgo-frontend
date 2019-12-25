@@ -1,6 +1,6 @@
-import {TokenService} from 'dgo-components';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {TokenService} from "../authentication/token.service";
 
 export abstract class AuthenticationRequiredComponent implements OnInit {
 

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TokenService} from 'dgo-components';
 import {environment} from '../../../../environments/environment';
+import {TokenService} from "../../../authentication/token.service";
 
 @Component({
   selector: 'app-source-pdf',

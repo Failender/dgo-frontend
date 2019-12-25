@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Version, VersionService} from '../version/version.service';
-import {HeldenService, TableColumn} from 'dgo-components';
 import {Router} from '@angular/router';
 import {MatDialogRef} from '@angular/material';
+import {TableColumn} from "../../../lib/components/table/table.component";
+import {HeldenService} from "../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-alle-versionen-dialog-component',

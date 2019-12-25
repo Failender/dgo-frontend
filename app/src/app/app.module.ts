@@ -1,61 +1,59 @@
-import {
-  BrowserModule,
-  BrowserTransferStateModule
-} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import {LoginDialogComponent} from '../../../library/projects/dgo-components/src/lib/app/login/login-dialog.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Interceptor} from './authentication/interceptor';
-import {TokenService} from 'dgo-components';
 import {RouterModule, Routes} from '@angular/router';
-import { HomeComponent } from './routes/home/home.component';
-import { MeineHeldenComponent } from './routes/meine-helden/meine-helden.component';
+import {HomeComponent} from './routes/home/home.component';
+import {MeineHeldenComponent} from './routes/meine-helden/meine-helden.component';
 
-import {HeldenService, initializeHeld} from 'dgo-components';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-import { PdfComponent } from './shared/pdf/pdf.component';
-import { ZauberComponent } from './routes/held/zauber/zauber.component';
+import {PdfComponent} from './shared/pdf/pdf.component';
+import {ZauberComponent} from './routes/held/zauber/zauber.component';
 import {SourcePdfComponent} from './routes/held/source-pdf/source-pdf.component';
-import { ManageUserComponent } from './routes/admin/manage-user/manage-user.component';
-import { ZauberspeicherComponent } from './routes/held/zauberspeicher/zauberspeicher.component';
+import {ManageUserComponent} from './routes/admin/manage-user/manage-user.component';
+import {ZauberspeicherComponent} from './routes/held/zauberspeicher/zauberspeicher.component';
 import {NotificationService} from './shared/notification.service';
-import { ZauberspeicherExecuteComponent } from './routes/held/zauberspeicher/zauberspeicher-execute/zauberspeicher-execute.component';
+import {ZauberspeicherExecuteComponent} from './routes/held/zauberspeicher/zauberspeicher-execute/zauberspeicher-execute.component';
 
 import {HeldPdfComponent} from './routes/held/pdf/held-pdf.component';
-import { InventarComponent } from './routes/held/inventar/inventar.component';
-import { QuicknavComponent } from './routes/held/quicknav/quicknav.component';
-import { GeldComponent } from './routes/held/geld/geld.component';
-import { UebersichtComponent } from './routes/held/uebersicht/uebersicht.component';
-import { FernkampfWaffenTabelleComponent } from './routes/held/uebersicht/fernkampf-waffen-tabelle/fernkampf-waffen-tabelle.component';
+import {InventarComponent} from './routes/held/inventar/inventar.component';
+import {QuicknavComponent} from './routes/held/quicknav/quicknav.component';
+import {GeldComponent} from './routes/held/geld/geld.component';
+import {UebersichtComponent} from './routes/held/uebersicht/uebersicht.component';
+import {FernkampfWaffenTabelleComponent} from './routes/held/uebersicht/fernkampf-waffen-tabelle/fernkampf-waffen-tabelle.component';
 import {WaffenTabelleComponent} from './routes/held/uebersicht/waffen-tabelle/waffen-tabelle.component';
 import {RuestungTabelleComponent} from './routes/held/uebersicht/ruestung-tabelle/ruestung-tabelle.component';
-import { InventarTabelleComponent } from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
-import {SharedModule, AppComponent, MenuService} from "dgo-components";
+import {InventarTabelleComponent} from './routes/held/inventar/inventar-tabelle/inventar-tabelle.component';
 
-import {environment} from "../environments/environment";
+import {environment} from '../environments/environment';
 import {routeInitializer} from './routes/route.service';
 import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
-import { SteigernComponent } from './routes/held/steigern/steigern.component';
+import {SteigernComponent} from './routes/held/steigern/steigern.component';
 import {AddEreignisDialogComponent} from './routes/held/steigern/add-ereignis.dialog/add-ereignis.dialog.component';
-import { AlleVersionenDialogComponent } from './shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
+import {AlleVersionenDialogComponent} from './shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
+import {SharedModule} from './lib/shared.module';
+import {TokenService} from './authentication/token.service';
+import {HeldenService, initializeHeld} from './lib/helden/helden.service';
+import {AppComponent} from './lib/app/app.component';
+import {MenuService} from './lib/menu/menu.service';
 
 
 const routes: Routes = [
@@ -94,7 +92,7 @@ const routes: Routes = [
   {path: 'pdf/:source/:id', component: SourcePdfComponent},
 
   { path: '**', redirectTo : '/home' }
-]
+];
 
 
 declare var env;
@@ -103,7 +101,6 @@ declare var env;
   declarations: [
     GruppeComponent,
     SteigernComponent,
-    LoginDialogComponent,
     HomeComponent,
     MeineHeldenComponent,
     PdfComponent,
@@ -236,7 +233,7 @@ export class AppModule {
             displayName: 'Inventar',
             iconName: '',
             route: 'held/inventar'
-          },{
+          }, {
             displayName: 'Steigern',
             iconName: '',
             route: 'held/steigern'

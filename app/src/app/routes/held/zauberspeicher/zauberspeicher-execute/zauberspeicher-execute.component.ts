@@ -1,6 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {LoginDialogComponent} from '../../../../../../../library/projects/dgo-components/src/lib/app/login/login-dialog.component';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ZauberSpeicher} from '../zauberspeicher.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class ZauberspeicherExecuteComponent {
 
   public zauber: ZauberSpeicher
 
-  constructor(public dialogRef: MatDialogRef<LoginDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(public dialogRef: MatDialogRef<ZauberspeicherExecuteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     console.debug(data);
     this.zauber = data;
   }

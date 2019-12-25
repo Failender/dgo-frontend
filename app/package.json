@@ -4,9 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
-    "link": "npm link dgo-components",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -18,7 +17,7 @@
     "@angular/compiler": "~8.2.0-next.0",
     "@angular/core": "~8.2.0-next.0",
     "@angular/forms": "~8.2.0-next.0",
-    "@angular/material": "^8.0.2",
+    "@angular/material": "~8.0.2",
     "@angular/platform-browser": "~8.2.0-next.0",
     "@angular/platform-browser-dynamic": "~8.2.0-next.0",
     "@angular/router": "~8.2.0-next.0",

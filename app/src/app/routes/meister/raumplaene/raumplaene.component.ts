@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Raumplan, RaumplanService} from './raumplan.service';
 import {MatDialog} from '@angular/material';
-import {InputDialogComponent, TableColumn} from 'dgo-components';
 import {Router} from '@angular/router';
+import {InputDialogComponent} from "../../../lib/components/input-dialog/input-dialog.component";
+import {TableColumn} from "../../../lib/components/table/table.component";
 
 @Component({
   selector: 'app-raumplaene',

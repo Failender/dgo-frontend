@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HeldenService} from 'dgo-components';
+import {HeldenService} from "../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-quicknav',
@@ -17,7 +17,7 @@ export class QuicknavComponent implements OnInit {
 
   }
 
-  private activate(route) {
+  public activate(route) {
     const startIdx = window.location.href.indexOf('/held');
     const endIdx = window.location.href.indexOf('?');
 

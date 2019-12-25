@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {HeldInventar, HeldInventarService} from './held-inventar.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../../shared/notification.service';
-import {TableColumn} from 'dgo-components';
+import {TableColumn} from "../../../lib/components/table/table.component";
+import {HeldenService} from "../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-inventar',

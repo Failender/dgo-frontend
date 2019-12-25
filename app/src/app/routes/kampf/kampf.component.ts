@@ -1,8 +1,8 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Kampf, KampfService, Kampfteilnehmer} from './kampf.service';
-import {GruppenService} from 'dgo-components';
 import {NEVER, Subject} from 'rxjs';
-import {catchError, debounce, debounceTime, flatMap, takeUntil, tap} from 'rxjs/operators';
+import {catchError, debounceTime, flatMap, takeUntil, tap} from 'rxjs/operators';
+import {GruppenService} from "../../lib/gruppen.service";
 
 @Component({
   selector: 'app-kampf',

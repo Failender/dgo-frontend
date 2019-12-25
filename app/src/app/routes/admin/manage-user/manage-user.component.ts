@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Gruppe, GruppenService} from 'dgo-components';
 import {UserService} from './user.service';
 import {NotificationService} from '../../../shared/notification.service';
+import {Gruppe, GruppenService} from "../../../lib/gruppen.service";
 
 @Component({
   selector: 'app-manage-user',

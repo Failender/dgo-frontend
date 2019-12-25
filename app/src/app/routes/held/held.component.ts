@@ -1,6 +1,6 @@
-import {HeldDaten, HeldenService, HeldInfo} from 'dgo-components';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {HeldDaten, HeldenService, HeldInfo} from "../../lib/helden/helden.service";
 
 export abstract class HeldComponent implements OnInit {
 

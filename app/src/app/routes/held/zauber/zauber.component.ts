@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {HeldenService, TableColumn, Zauber} from 'dgo-components';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {TokenService} from 'dgo-components';
 import {HeldComponent} from '../held.component';
+import {TableColumn} from "../../../lib/components/table/table.component";
+import {HeldenService, Zauber} from "../../../lib/helden/helden.service";
+import {TokenService} from "../../../authentication/token.service";
 
 @Component({
   selector: 'app-zauber',

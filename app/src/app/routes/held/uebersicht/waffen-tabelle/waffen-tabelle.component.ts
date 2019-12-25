@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {HeldComponent} from '../../held.component';
-import {HeldenService, TableColumn} from 'dgo-components';
 import {Router} from '@angular/router';
+import {HeldenService} from "../../../../lib/helden/helden.service";
+import {TableColumn} from "../../../../lib/components/table/table.component";
 
 @Component({
   selector: 'app-waffen-tabelle',

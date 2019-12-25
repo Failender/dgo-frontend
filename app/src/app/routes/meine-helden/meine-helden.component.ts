@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {HeldDto, HeldenService} from 'dgo-components';
-import {TableColumn, TableEditEvent} from 'dgo-components';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationRequiredComponent} from '../authentication-required.component';
-import {TokenService} from 'dgo-components';
-import {MatDialog} from '@angular/material';
 import {AlleVersionenDialogComponent} from '../../shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
+import {HeldDto, HeldenService} from "../../lib/helden/helden.service";
+import {TableColumn, TableEditEvent} from "../../lib/components/table/table.component";
+import {MatDialog} from "@angular/material";
+import {TokenService} from "../../authentication/token.service";
 
 @Component({
   selector: 'app-meine-helden',

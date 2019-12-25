@@ -1,9 +1,9 @@
-import { Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {HeldComponent} from '../held.component';
-import {Eigenschaft, HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 
 import {Uebersicht, UebersichtService} from './uebersicht.service';
+import {Eigenschaft, HeldenService} from "../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-uebersicht',

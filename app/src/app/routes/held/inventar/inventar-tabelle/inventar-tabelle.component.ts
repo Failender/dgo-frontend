@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {TableColumn} from 'dgo-components';
+import {Component, OnInit} from '@angular/core';
 import {HeldInventar, HeldInventarService} from '../held-inventar.service';
-import {HeldenService} from 'dgo-components';
 import {Router} from '@angular/router';
 import {NotificationService} from '../../../../shared/notification.service';
+import {TableColumn} from "../../../../lib/components/table/table.component";
+import {HeldenService} from "../../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-inventar-tabelle',

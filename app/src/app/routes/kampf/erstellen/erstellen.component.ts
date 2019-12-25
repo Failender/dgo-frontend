@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Kampf, KampfService} from '../kampf.service';
-import {GruppenService} from 'dgo-components';
 import {from, Subject} from 'rxjs';
 import {flatMap, takeUntil, tap} from 'rxjs/operators';
-import {HeldenService} from 'dgo-components';
-import {HeldDaten} from 'dgo-components';
 import {Router} from '@angular/router';
+import {GruppenService} from "../../../lib/gruppen.service";
+import {HeldDaten, HeldenService} from "../../../lib/helden/helden.service";
 
 @Component({
   selector: 'app-erstellen',
@@ -34,11 +33,11 @@ export class ErstellenComponent implements OnInit, OnDestroy {
         flatMap(held => this.heldenService.loadHeld(held.id, held.version, false)),
         takeUntil(this.unsubscribe))
       .subscribe((held: HeldDaten) => {
-        const iniWurf = Math.floor(Math.random() * 6) +1;
+        const iniWurf = Math.floor(Math.random() * 6) + 1;
         this.kampf.teilnehmer.push({
           name: held.angaben.name,
           iniBasis: held.kampfsets.kampfset[0].ini,
-          iniWurf: iniWurf
+          iniWurf
         });
       });
 

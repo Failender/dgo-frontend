@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {KampfComponent} from './kampf.component';
-import {SharedModule} from 'dgo-components';
-import { ErstellenComponent } from './erstellen/erstellen.component';
+import {ErstellenComponent} from './erstellen/erstellen.component';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule, MatCardModule, MatIconModule, MatSelectModule} from '@angular/material';
-import { TeilnehmerDetailComponent } from './teilnehmer-detail/teilnehmer-detail.component';
-
+import {TeilnehmerDetailComponent} from './teilnehmer-detail/teilnehmer-detail.component';
+import {SharedModule} from "../../lib/shared.module";
 
 
 const routes: Routes = [

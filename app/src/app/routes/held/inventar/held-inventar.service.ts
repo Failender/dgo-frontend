@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
-import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
-import {HeldenService} from 'dgo-components';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {HeldenService} from "../../../lib/helden/helden.service";
 
 @Injectable({
   providedIn: 'root'

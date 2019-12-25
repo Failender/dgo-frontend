@@ -1,13 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {AP, SteigernService, SteigerungsTalent} from './steigern.service';
 import {HeldComponent} from '../held.component';
 import {Router} from '@angular/router';
 
-import {HeldenService, TableColumn} from 'dgo-components';
 import {Subject} from 'rxjs';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import {AddEreignisDialogComponent} from './add-ereignis.dialog/add-ereignis.dialog.component';
+import {TableColumn} from "../../../lib/components/table/table.component";
+import {HeldenService} from "../../../lib/helden/helden.service";
+
 @Component({
   selector: 'app-steigern',
   templateUrl: './steigern.component.html',
