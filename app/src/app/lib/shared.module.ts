@@ -24,15 +24,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputDialogComponent} from './components/input-dialog/input-dialog.component';
 import {TableComponent} from './components/table/table.component';
 import {InfoDialogComponent} from './components/info-dialog/info-dialog.component';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
   providers: [],
-  imports: [MatIconModule, MatSelectModule,
+  imports: [MatIconModule, MatSelectModule, MatSortModule,
     MatDialogModule, HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule, MatSelectModule],
   declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent, InputDialogComponent, TableComponent, InfoDialogComponent],
   exports: [HttpClientModule, TableComponent, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatTableModule,
-    MatButtonModule, MatProgressSpinnerModule, MatSelectModule
+    MatButtonModule, MatProgressSpinnerModule, MatSelectModule, MatSortModule
   ],
   entryComponents: [LoginDialogComponent, InputDialogComponent, InfoDialogComponent]
 })

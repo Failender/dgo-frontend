@@ -95,6 +95,7 @@ export interface HeldInfo {
 
 export interface HeldDaten {
   zauberliste: Zauberliste;
+  talentliste: TalentListe;
   sonderfertigkeiten: Sonderfertigkeiten;
   eigenschaften: Eigenschaften;
   kampfsets: KampfSets;
@@ -238,14 +239,6 @@ export interface Zauberliste {
   zauber: Zauber[];
 }
 
-export interface Sonderfertigkeiten {
-  sonderfertigkeit: Sonderfertigkeit[];
-}
-
-export interface Sonderfertigkeit {
-  name: string;
-}
-
 export interface Zauber {
   name: string;
   hauszauber: boolean;
@@ -261,6 +254,44 @@ export interface Zauber {
     content: string;
     seite: number;
   };
+}
+
+export interface TalentListe {
+  talent: Talent[];
+}
+
+export interface Talent {
+  name: string;
+  meisterhandwerk: boolean;
+  leittalent: boolean;
+  basis: boolean;
+  nameausfuehrlich: string;
+  wert: string;
+  probe: string;
+  probenwerte: string;
+  nameausfuehrlichmitprobe: string;
+  at: string;
+  pa: string;
+  sprachkomplexitaet: string;
+  muttersprache: boolean;
+  schriftmuttersprache: boolean;
+  behinderung: string;
+  mirakelplus: boolean;
+  mirakelminus: boolean;
+  metatalent: boolean;
+  bereich: string;
+  komplexitaet: string;
+  lernkomplexitaet: string;
+  spezialisierungen: string;
+
+}
+
+export interface Sonderfertigkeiten {
+  sonderfertigkeit: Sonderfertigkeit[];
+}
+
+export interface Sonderfertigkeit {
+  name: string;
 }
 
 

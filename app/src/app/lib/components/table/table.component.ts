@@ -1,4 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +11,17 @@ export class TableComponent implements OnInit {
 
   private _columns: TableColumn[];
 
-  @Input() public data;
+  public dataSource: MatTableDataSource<any[]>;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  @Input()
+  public set data(value) {
+    this.dataSource = new MatTableDataSource(value);
+    if(this.sort) {
+      this.dataSource.sort = this.sort;
+    }
+  }
   @Output('edit') public editOutput = new EventEmitter<TableEditEvent>();
 
   @Input('columns')
@@ -29,6 +41,9 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.dataSource) {
+      this.dataSource.sort = this.sort;
+    }
   }
 
   onSlideChange(row, column: TableColumn, value) {

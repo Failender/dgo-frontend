@@ -53,6 +53,7 @@ import {TokenService} from './authentication/token.service';
 import {HeldenService, initializeHeld} from './lib/helden/helden.service';
 import {AppComponent} from './lib/app/app.component';
 import {MenuService} from './lib/menu/menu.service';
+import { TalenteComponent } from './routes/held/talente/talente.component';
 
 
 const routes: Routes = [
@@ -67,7 +68,8 @@ const routes: Routes = [
       {path: 'zauber', component: ZauberComponent},
       {path: 'uebersicht', component: UebersichtComponent},
       {path: 'inventar', component: InventarComponent},
-      {path: 'zauberspeicher', component: ZauberspeicherComponent}
+      {path: 'zauberspeicher', component: ZauberspeicherComponent},
+      {path: 'talente', component: TalenteComponent}
     ]
   },
   {
@@ -119,6 +121,7 @@ declare var env;
     AddEreignisDialogComponent,
     InventarTabelleComponent,
     AlleVersionenDialogComponent,
+    TalenteComponent,
   ],
   entryComponents: [
     ZauberspeicherExecuteComponent,

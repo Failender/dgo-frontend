@@ -24,3 +24,7 @@ mat-toolbar > button {
   width:250px;
   display: inline-block;
 }
+
+.hidden {
+  display: none !important;
+}
