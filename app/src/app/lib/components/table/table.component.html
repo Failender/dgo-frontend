@@ -12,7 +12,9 @@
               {{element[column.field]}}
             </div>
             <div *ngSwitchCase="'boolean'">
-              {{element[column.field]}}
+
+              <mat-checkbox [checked]="element[column.field]" disabled="true"></mat-checkbox>
+
             </div>
             <div *ngSwitchCase="'number'">
               {{element[column.field]}}

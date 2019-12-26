@@ -36,7 +36,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout() {
-    this.tokenService.token = null;
+    this.tokenService.logout();
     this.router.navigateByUrl('/home');
   }
 

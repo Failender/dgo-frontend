@@ -2,9 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
 import {flatMap, takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {TableColumn} from "../../../lib/components/table/table.component";
+import {TableColumn, TableEditEvent} from "../../../lib/components/table/table.component";
 import {HeldenService} from "../../../lib/helden/helden.service";
 import {GruppenService} from "../../../lib/gruppen.service";
+import {TokenService} from "../../../authentication/token.service";
 
 @Component({
   selector: 'app-gruppe',
@@ -44,12 +45,12 @@ export class GruppeComponent implements OnInit, OnDestroy {
     {
       header: 'Öffentlich',
       field: 'public',
-      type: 'boolean-edit'
+      type: 'boolean'
     },
     {
       header: 'Aktiv',
       field: 'active',
-      type: 'boolean-edit'
+      type: 'boolean'
     },
     {
       header: '',
@@ -62,7 +63,7 @@ export class GruppeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private router: Router) {
+  constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private router: Router, private tokenService: TokenService) {
   }
 
   ngOnInit() {
@@ -71,7 +72,7 @@ export class GruppeComponent implements OnInit, OnDestroy {
     this.gruppenService
       .getCurrentGroup())
       .pipe(  takeUntil(this.unsubscribe),
-        flatMap(([showPrivate,showInactive,  gruppe]) => this.heldenService.getHeldenInGroup(gruppe.id, showPrivate, showInactive)))
+        flatMap(([showPrivate, showInactive,  gruppe]) => this.heldenService.getHeldenInGroup(gruppe.id, showPrivate, showInactive)))
       .subscribe(helden => this.helden = helden);
 
   }
@@ -93,6 +94,20 @@ export class GruppeComponent implements OnInit, OnDestroy {
 
   public onActiveSliderChange(value) {
     this.showInactive.next(value);
+  }
+
+  public canViewAll() {
+    return this.tokenService.hasPermission('VIEW_ALL');
+  }
+
+  onEdit(event: TableEditEvent) {
+    if (event.column.field === 'active') {
+      this.heldenService.updateActive(event.row.id, event.row.active)
+        .subscribe();
+    } else if (event.column.field === 'public') {
+      this.heldenService.updatePublic(event.row.id, event.row.public)
+        .subscribe();
+    }
   }
 
 

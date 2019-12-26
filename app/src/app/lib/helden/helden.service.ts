@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, flatMap, mapTo, tap} from 'rxjs/operators';
+import {SteigernService} from "../../routes/held/steigern/steigern.service";
 
 declare var env;
 
@@ -13,7 +14,7 @@ export class HeldenService {
   public heldSub = new BehaviorSubject<HeldDaten>(null);
   public currentHeld: HeldInfo;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private steigernService: SteigernService) {
   }
 
   public activeHeld() {
@@ -35,15 +36,22 @@ export class HeldenService {
 
   public loadHeld(held: number, version: number, setActive = true): Observable<HeldDaten> {
     return this.http.get<HeldDaten>(`${env.rest}helden/held/${held}/${version}/daten`)
-      .pipe(map(data => {
+      .pipe(flatMap(data => {
         if(setActive) {
-          this.currentHeld = {
-            id: held,
-            version
-          };
-          this.setHeld(data);
+          return this.steigernService.getCanSteigernForHeld(held)
+            .pipe(tap(answer => {
+              this.currentHeld = {
+                id: held,
+                version,
+                steigern: answer.steigern
+              };
+              this.setHeld(data);
+
+            }),
+              mapTo(data));
         }
-        return data;
+        this.setHeld(data);
+        return of(data);
       }));
   }
   public updateActive(held: number, value: boolean) {
@@ -91,6 +99,7 @@ export function initializeHeld(heldenService: HeldenService) {
 export interface HeldInfo {
   id: number;
   version: number;
+  steigern: boolean;
 }
 
 export interface HeldDaten {

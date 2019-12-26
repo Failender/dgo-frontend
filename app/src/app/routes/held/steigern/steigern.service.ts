@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs';
@@ -12,6 +12,11 @@ export class SteigernService {
 
   public getSteigerungsTalente(held: number) {
     return this.http.get<SteigerungsTalent[]>(`${environment.rest}helden/steigern/held/${held}`);
+
+  }
+
+  public getCanSteigernForHeld(held: number): Observable<{steigern: boolean}> {
+    return this.http.get<{steigern: boolean}>(`${environment.rest}helden/steigern/held/${held}/allowed`);
 
   }
 

@@ -25,12 +25,13 @@ import {InputDialogComponent} from './components/input-dialog/input-dialog.compo
 import {TableComponent} from './components/table/table.component';
 import {InfoDialogComponent} from './components/info-dialog/info-dialog.component';
 import {MatSortModule} from '@angular/material/sort';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
   providers: [],
   imports: [MatIconModule, MatSelectModule, MatSortModule,
-    MatDialogModule, HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule, MatSelectModule],
+    MatDialogModule, HttpClientModule, MatSidenavModule, MatListModule, CommonModule, RouterModule, MatIconModule, MatToolbarModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatSlideToggleModule, MatMenuModule, MatTableModule, MatTooltipModule, MatSelectModule, MatCheckboxModule],
   declarations: [AppComponent, ToolbarComponent, MenuListItemComponent, LoginDialogComponent, InputDialogComponent, TableComponent, InfoDialogComponent],
   exports: [HttpClientModule, TableComponent, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatTableModule,
     MatButtonModule, MatProgressSpinnerModule, MatSelectModule, MatSortModule

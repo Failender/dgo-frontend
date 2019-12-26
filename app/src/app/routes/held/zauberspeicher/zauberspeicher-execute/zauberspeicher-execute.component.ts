@@ -12,7 +12,6 @@ export class ZauberspeicherExecuteComponent {
   public zauber: ZauberSpeicher
 
   constructor(public dialogRef: MatDialogRef<ZauberspeicherExecuteComponent>, @Inject(MAT_DIALOG_DATA) data) {
-    console.debug(data);
     this.zauber = data;
   }
 

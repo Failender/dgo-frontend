@@ -38,7 +38,7 @@ export class Interceptor implements HttpInterceptor {
             this.tokenService.token = token;
           }
           const permissions = event.headers.get('permissions');
-          if (permissions) {
+          if (permissions !== undefined && permissions !== null) {
             this.tokenService.permissions = permissions.split(',');
           }
           const pdfs = event.headers.get('pdfs');

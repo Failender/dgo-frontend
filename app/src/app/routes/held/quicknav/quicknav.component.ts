@@ -29,7 +29,11 @@ export class QuicknavComponent implements OnInit {
   }
 
   public hasZauberSpeicher() {
-    return this.heldenService.hasSonderfertigkeit('Stabzauber: Zauberspeicher')
+    return this.heldenService.hasSonderfertigkeit('Stabzauber: Zauberspeicher');
+  }
+
+  public canSteigern() {
+    return this.heldenService.currentHeld.steigern;
   }
 
   private heldLoaded() {

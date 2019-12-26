@@ -19,10 +19,6 @@ export class TokenService {
     if (localStorage.getItem('pdfs')) {
       this._visiblePdfs = localStorage.getItem('pdfs').split(',');
     }
-
-
-
-
   }
 
 
@@ -31,7 +27,11 @@ export class TokenService {
   private _permissions: string[] = [];
   private _visiblePdfs: string[] = [];
   public set token(value: string) {
-    localStorage.setItem('token', value);
+    if (!value) {
+      localStorage.removeItem('token');
+    } else {
+      localStorage.setItem('token', value);
+    }
     this.tokenSubject.next(value);
   }
 
@@ -59,6 +59,15 @@ export class TokenService {
 
 
   public isAuthenticated() {
-    return this.tokenSubject.value != null;
+    return this.tokenSubject.value !== null;
+  }
+
+  public hasPermission(permission) {
+    return this.permissions.indexOf(permission) !== -1;
+  }
+
+  logout() {
+    this.token = null;
+    this.permissions = [];
   }
 }

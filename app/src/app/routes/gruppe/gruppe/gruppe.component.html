@@ -1,5 +1,5 @@
 
-<div>
+<div *ngIf="canViewAll()">
   <mat-label>Zeige private Helden</mat-label><mat-slide-toggle (change)="onPrivateSliderChange($event.checked)"></mat-slide-toggle>
 
 </div>
@@ -9,4 +9,4 @@
 </div>
 
 
-<app-table [data]="helden" [columns]="tableColumns"></app-table>
+<app-table [data]="helden" [columns]="tableColumns" (edit)="onEdit($event)"></app-table>
