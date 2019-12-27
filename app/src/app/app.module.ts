@@ -188,6 +188,9 @@ export class AppModule {
         displayName: 'Gruppe',
         route: 'gruppe'
       },
+      /*
+
+
       {
         displayName: 'Kampf',
         children: [
@@ -201,6 +204,8 @@ export class AppModule {
           }
         ]
       },
+       */
+       /*
       {
         displayName: 'Meister',
         children: [
@@ -210,6 +215,8 @@ export class AppModule {
           }
         ]
       },
+
+        */
       {
         displayName: 'Held',
         condition: menuService.heldLoaded.bind(menuService),
