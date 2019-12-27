@@ -35,6 +35,14 @@ export class TableComponent implements OnInit {
     return this._columns;
   }
 
+  public calcType(column: TableColumn, row: any): string {
+    if (column.typeEvaluator) {
+      return column.typeEvaluator(row);
+    }
+    return column.type;
+
+  }
+
 
   public displayedColumns;
 
@@ -68,7 +76,8 @@ export class TableComponent implements OnInit {
 
 export interface TableColumn {
   field: string;
-  type: string;
+  type?: string;
+  typeEvaluator?: (row: any) => string;
   header: string;
   lookups?: {identifier: string, description: string}[];
   actions?: any[];

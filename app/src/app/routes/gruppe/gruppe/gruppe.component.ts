@@ -45,12 +45,12 @@ export class GruppeComponent implements OnInit, OnDestroy {
     {
       header: 'Öffentlich',
       field: 'public',
-      type: 'boolean'
+      typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
     },
     {
       header: 'Aktiv',
       field: 'active',
-      type: 'boolean'
+      typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
     },
     {
       header: '',
