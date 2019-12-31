@@ -117,7 +117,7 @@ export class SteigernComponent extends HeldComponent implements OnDestroy{
           .subscribe(data => this.steigerungen = data);
 
         this.editedRows = {};
-        this.steigerungen = null;
+        this.steigerungen = [];
 
       });
   }

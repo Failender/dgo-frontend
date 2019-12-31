@@ -40,4 +40,8 @@ export class QuicknavComponent implements OnInit {
     return this.heldenService.currentHeld;
   }
 
+  public isMobile() {
+    return window.innerWidth < 1000;
+  }
+
 }

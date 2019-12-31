@@ -34,10 +34,20 @@ export class HeldenService {
 
   }
 
+  public syncDso(): Observable<SynchronizationResult> {
+    return this.http.post<SynchronizationResult>(`${env.rest}helden/meine/sync/dso`, null);
+  }
+
+  public syncHeldenOnline(): Observable<SynchronizationResult> {
+    return this.http.post<SynchronizationResult>(`${env.rest}helden/meine/sync/helden-online`, null);
+  }
+
+
+
   public loadHeld(held: number, version: number, setActive = true): Observable<HeldDaten> {
     return this.http.get<HeldDaten>(`${env.rest}helden/held/${held}/${version}/daten`)
       .pipe(flatMap(data => {
-        if(setActive) {
+        if (setActive) {
           return this.steigernService.getCanSteigernForHeld(held)
             .pipe(tap(answer => {
               this.currentHeld = {
@@ -68,7 +78,7 @@ export class HeldenService {
     if (!urlParams.has('held')) {
       return Promise.resolve();
     }
-    const held = parseInt(urlParams.get('held'),10);
+    const held = parseInt(urlParams.get('held'), 10);
     const version = parseInt(urlParams.get('version'), 10);
     return this.loadHeld(held, version).pipe(catchError(() => of())).toPromise();
 
@@ -177,7 +187,7 @@ export interface NahkampfWaffe {
   spalte2: string;
   tp: string;
   tpinkl: string;
-  tpkk: TpKK
+  tpkk: TpKK;
   waffentalent: string;
   waffentalentkurz: string;
   wm: string;
@@ -312,4 +322,9 @@ export interface HeldDto {
   active: boolean;
   lastChange: string;
   version: number;
+}
+
+export interface SynchronizationResult {
+  created: number;
+  updated: number;
 }

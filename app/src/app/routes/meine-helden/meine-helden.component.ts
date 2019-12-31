@@ -6,6 +6,7 @@ import {HeldDto, HeldenService} from "../../lib/helden/helden.service";
 import {TableColumn, TableEditEvent} from "../../lib/components/table/table.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TokenService} from "../../authentication/token.service";
+import {NotificationService} from "../../shared/notification.service";
 
 @Component({
   selector: 'app-meine-helden',
@@ -79,7 +80,7 @@ private showAllVersions(context) {
   }
 
 
-  constructor(private dialog: MatDialog, private heldenService: HeldenService, router: Router, tokenService: TokenService) {
+  constructor(private dialog: MatDialog, private heldenService: HeldenService, router: Router, tokenService: TokenService, private notificationService: NotificationService) {
     super(tokenService, router);
   }
 
@@ -99,6 +100,35 @@ private showAllVersions(context) {
     this.heldenService.getMeineHelden()
       .subscribe(data => {
         this.helden = data;
+      });
+  }
+
+  public syncHeldenOnline() {
+    this.heldenService.syncHeldenOnline()
+      .subscribe(result => {
+        let message = 'Synchronization abgeschlossen. ';
+        if (result.created) {
+          message += `${result.created} Helden erstellt. `;
+        }
+        if (result.updated) {
+          message += `${result.updated} Helden aktualisiert. `;
+        }
+        if(result.created || result.updated) {
+          this.doInit();
+        }
+        this.notificationService.info(message);
+      });
+  }
+
+  public syncDso() {
+    this.heldenService.syncDso()
+      .subscribe(result => {
+        let message = 'Synchronization abgeschlossen. ';
+        if (result.updated) {
+          message += `${result.updated} Helden aktualisiert. `;
+          this.doInit();
+        }
+        this.notificationService.info(message);
       });
   }
 

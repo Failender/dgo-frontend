@@ -21,47 +21,52 @@ export class GruppeComponent implements OnInit, OnDestroy {
   private showInactive = new BehaviorSubject(false);
   public helden;
 
-  public tableColumns: TableColumn[] = [
-    {
+  private buildColumns() {
+    const columns = [];
+    columns.push({
       header: 'Name',
       field: 'name',
       type: 'string'
-    },
-    {
-      header: 'Gruppe',
-      field: 'gruppe',
-      type: 'string'
-    },
-    {
-      header: 'Letzte Änderung',
-      field: 'lastChange',
-      type: 'string'
-    },
-    {
-      header: 'Version',
-      field: 'version',
-      type: 'string'
-    },
-    {
-      header: 'Öffentlich',
-      field: 'public',
-      typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
-    },
-    {
-      header: 'Aktiv',
-      field: 'active',
-      typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
-    },
-    {
-      header: '',
-      field: 'actions',
-      type: 'actions',
-      actions: [{
-        name: 'Held laden',
-        click: context => this.loadHeld(context)
-      }]
+    });
+
+    if (window.innerWidth > 1000) {
+      columns.push({
+        header: 'Letzte Änderung',
+        field: 'lastChange',
+        type: 'string'
+      });
     }
-  ];
+
+    columns.push(...[{
+        header: 'Version',
+        field: 'version',
+        type: 'string'
+      },
+      {
+        header: 'Öffentlich',
+        field: 'public',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: 'Aktiv',
+        field: 'active',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: '',
+        field: 'actions',
+        type: 'actions',
+        actions: [{
+          name: 'Held laden',
+          click: context => this.loadHeld(context)
+        }]
+      }]);
+    return columns;
+  }
+
+  public tableColumns: TableColumn[] = this.buildColumns();
+
+
 
   constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private router: Router, private tokenService: TokenService) {
   }
