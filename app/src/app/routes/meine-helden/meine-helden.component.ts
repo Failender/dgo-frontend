@@ -62,7 +62,6 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
     this.heldenService.getMeineHelden()
       .subscribe(data => {
         this.helden = data;
-        this.compareWithVersion(data[0]);
       });
   }
 

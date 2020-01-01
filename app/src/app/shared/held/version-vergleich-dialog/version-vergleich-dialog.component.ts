@@ -124,7 +124,6 @@ export class VersionVergleichDialogComponent implements OnInit {
 
   ngOnInit() {
     this.to = this.biggestVersion;
-    this.from = 1 ;
     this.onValueChange();
 
     this.versions = [];
