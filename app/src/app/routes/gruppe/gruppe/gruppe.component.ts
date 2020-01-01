@@ -3,9 +3,12 @@ import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
 import {flatMap, takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {TableColumn, TableEditEvent} from "../../../lib/components/table/table.component";
-import {HeldenService} from "../../../lib/helden/helden.service";
+import {HeldDto, HeldenService} from "../../../lib/helden/helden.service";
 import {GruppenService} from "../../../lib/gruppen.service";
 import {TokenService} from "../../../authentication/token.service";
+import {VersionVergleichDialogComponent} from '../../../shared/held/version-vergleich-dialog/version-vergleich-dialog.component';
+import {AlleVersionenDialogComponent} from '../../../shared/held/alle-versionen-dialog/alle-versionen-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-gruppe',
@@ -21,54 +24,14 @@ export class GruppeComponent implements OnInit, OnDestroy {
   private showInactive = new BehaviorSubject(false);
   public helden;
 
-  private buildColumns() {
-    const columns = [];
-    columns.push({
-      header: 'Name',
-      field: 'name',
-      type: 'string'
-    });
 
-    if (window.innerWidth > 1000) {
-      columns.push({
-        header: 'Letzte Änderung',
-        field: 'lastChange',
-        type: 'string'
-      });
-    }
-
-    columns.push(...[{
-        header: 'Version',
-        field: 'version',
-        type: 'string'
-      },
-      {
-        header: 'Öffentlich',
-        field: 'public',
-        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
-      },
-      {
-        header: 'Aktiv',
-        field: 'active',
-        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
-      },
-      {
-        header: '',
-        field: 'actions',
-        type: 'actions',
-        actions: [{
-          name: 'Held laden',
-          click: context => this.loadHeld(context)
-        }]
-      }]);
-    return columns;
-  }
 
   public tableColumns: TableColumn[] = this.buildColumns();
 
 
 
-  constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private router: Router, private tokenService: TokenService) {
+  constructor(private gruppenService: GruppenService, private heldenService: HeldenService, private router: Router, private tokenService: TokenService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -79,6 +42,20 @@ export class GruppeComponent implements OnInit, OnDestroy {
       .pipe(  takeUntil(this.unsubscribe),
         flatMap(([showPrivate, showInactive,  gruppe]) => this.heldenService.getHeldenInGroup(gruppe.id, showPrivate, showInactive)))
       .subscribe(helden => this.helden = helden);
+
+  }
+
+  private compareWithVersion(context: HeldDto) {
+    const dialogRef = this.dialog.open(VersionVergleichDialogComponent, {minWidth: '100vw'});
+    dialogRef.componentInstance.held = context.id;
+    dialogRef.componentInstance.biggestVersion = context.version;
+
+  }
+
+  private showAllVersions(context) {
+    const id = context.id;
+    const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '100vw'})
+    dialogRef.componentInstance.held = id;
 
   }
 
@@ -113,6 +90,59 @@ export class GruppeComponent implements OnInit, OnDestroy {
       this.heldenService.updatePublic(event.row.id, event.row.public)
         .subscribe();
     }
+  }
+
+  private buildColumns() {
+    const columns = [];
+    columns.push({
+      header: 'Name',
+      field: 'name',
+      type: 'string'
+    });
+
+    if (window.innerWidth > 1000) {
+      columns.push({
+        header: 'Letzte Änderung',
+        field: 'lastChange',
+        type: 'string'
+      });
+    }
+
+    columns.push(...[{
+      header: 'Version',
+      field: 'version',
+      type: 'string'
+    },
+      {
+        header: 'Öffentlich',
+        field: 'public',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: 'Aktiv',
+        field: 'active',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: '',
+        field: 'actions',
+        type: 'actions',
+        actions: [
+          {
+            name: 'Held laden',
+            click: context => this.loadHeld(context)
+          },
+          {
+            name: 'Alle Versionen anzeigen',
+            click: context => this.showAllVersions(context)
+          },
+          {
+            name: 'Mit voriger Version vergleichen',
+            click: context => this.compareWithVersion(context)
+          }
+        ]
+      }]);
+    return columns;
   }
 
 

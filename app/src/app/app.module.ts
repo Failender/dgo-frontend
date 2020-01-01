@@ -55,6 +55,7 @@ import {AppComponent} from './lib/app/app.component';
 import {MenuService} from './lib/menu/menu.service';
 import {TalenteComponent} from './routes/held/talente/talente.component';
 import {VersionVergleichDialogComponent} from './shared/held/version-vergleich-dialog/version-vergleich-dialog.component';
+import {EreignisseComponent} from './routes/held/ereignisse/ereignisse.component';
 
 
 const routes: Routes = [
@@ -70,7 +71,8 @@ const routes: Routes = [
       {path: 'uebersicht', component: UebersichtComponent},
       {path: 'inventar', component: InventarComponent},
       {path: 'zauberspeicher', component: ZauberspeicherComponent},
-      {path: 'talente', component: TalenteComponent}
+      {path: 'talente', component: TalenteComponent},
+      {path: 'ereignisse', component: EreignisseComponent},
     ]
   },
   {
@@ -123,6 +125,7 @@ declare var env;
     InventarTabelleComponent,
     AlleVersionenDialogComponent,
     TalenteComponent,
+    EreignisseComponent,
     VersionVergleichDialogComponent,
   ],
   entryComponents: [

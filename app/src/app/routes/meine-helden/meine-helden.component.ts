@@ -18,57 +18,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
 
   public helden: HeldDto[];
 
-  public tableColumns: TableColumn[] = [
-    {
-      header: 'Name',
-      field: 'name',
-      type: 'string'
-    },
-    {
-      header: 'Gruppe',
-      field: 'gruppe',
-      type: 'string'
-    },
-    {
-      header: 'Letzte Änderung',
-      field: 'lastChange',
-      type: 'string'
-    },
-    {
-      header: 'Version',
-      field: 'version',
-      type: 'string'
-    },
-    {
-      header: 'Öffentlich',
-      field: 'public',
-      type: 'boolean-edit'
-    },
-    {
-      header: 'Aktiv',
-      field: 'active',
-      type: 'boolean-edit'
-    },
-    {
-      header: '',
-      field: 'actions',
-      type: 'actions',
-      actions: [
-        {
-          name: 'Held laden',
-          click: context => this.loadHeld(context)
-        },
-        {
-          name: 'Alle Versionen anzeigen',
-          click: context => this.showAllVersions(context)
-        },
-        {
-          name: 'Mit voriger Version vergleichen',
-          click: context => this.compareWithVersion(context)
-        }
-      ]
-    }
-  ];
+  public tableColumns: TableColumn[] = this.buildColumns();
 
   private loadHeld(context) {
     this.heldenService.loadHeld(context.id, context.version)
@@ -143,6 +93,59 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
         }
         this.notificationService.info(message);
       });
+  }
+
+  private buildColumns() {
+    const columns = [];
+    columns.push({
+      header: 'Name',
+      field: 'name',
+      type: 'string'
+    });
+
+    if (window.innerWidth > 1000) {
+      columns.push({
+        header: 'Letzte Änderung',
+        field: 'lastChange',
+        type: 'string'
+      });
+    }
+
+    columns.push(...[{
+      header: 'Version',
+      field: 'version',
+      type: 'string'
+    },
+      {
+        header: 'Öffentlich',
+        field: 'public',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: 'Aktiv',
+        field: 'active',
+        typeEvaluator: column => column.editable ? 'boolean-edit' : 'boolean'
+      },
+      {
+        header: '',
+        field: 'actions',
+        type: 'actions',
+        actions: [
+          {
+            name: 'Held laden',
+            click: context => this.loadHeld(context)
+          },
+          {
+            name: 'Alle Versionen anzeigen',
+            click: context => this.showAllVersions(context)
+          },
+          {
+            name: 'Mit voriger Version vergleichen',
+            click: context => this.compareWithVersion(context)
+          }
+        ]
+      }]);
+    return columns;
   }
 
 }

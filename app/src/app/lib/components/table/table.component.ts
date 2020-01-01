@@ -72,12 +72,20 @@ export class TableComponent implements OnInit {
 
     return action.condition(element);
   }
+
+  public getValue(column: TableColumn, row: any) {
+    if (column.formatter) {
+      return column.formatter(row);
+    }
+    return row[column.field];
+  }
 }
 
 export interface TableColumn {
   field: string;
   type?: string;
   typeEvaluator?: (row: any) => string;
+  formatter?: (row: any) => string;
   header: string;
   lookups?: {identifier: string, description: string}[];
   actions?: any[];

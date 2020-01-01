@@ -119,6 +119,7 @@ export interface HeldDaten {
   eigenschaften: Eigenschaften;
   kampfsets: KampfSets;
   angaben: Angaben;
+  ereignisse: Ereignisse;
 
   [key: string]: any;
 }
@@ -130,6 +131,26 @@ export interface KampfSets {
 export interface Angaben {
   name: string;
 }
+
+export interface Ereignisse {
+  ereignis: Ereignis[];
+}
+
+export interface Ereignis {
+  aktion: string;
+  alterzustand: string;
+  ap: number;
+  asp: number;
+  bemerkung: string;
+  date: string;
+  kp: number;
+  kommentar: string;
+  lep: number;
+  neuerzustand: string;
+  object: string;
+  version: string;
+}
+
 
 export interface KampfSet {
   ausweichen: number;
