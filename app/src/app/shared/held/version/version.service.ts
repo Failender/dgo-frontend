@@ -29,6 +29,7 @@ export interface Differences {
   vorteile: Difference[];
   eigenschaften: Difference[];
   sonderfertigkeiten: Difference[];
+  steigerungen: Steigerung[];
 }
 
 export interface Difference {
@@ -38,6 +39,14 @@ export interface Difference {
   tooltip: string;
 }
 
+export interface Steigerung {
+  name: string;
+  lehrmeisterTaw: number;
+  ap: number;
+  kostenHeller: number;
+  kostenDukaten: string;
+  modifier: number;
+}
 
 export interface Version {
   letztesAbenteuer: number;

@@ -52,7 +52,10 @@
           </div>
 
         </mat-tab>
+        <mat-tab label="Lehrmeisterkosten">
+          <app-table [data]="differences.steigerungen" [columns]="steigernColumns" ></app-table>
 
+        </mat-tab>
 
       </mat-tab-group>
     </div>

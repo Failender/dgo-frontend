@@ -38,6 +38,11 @@ export class VersionVergleichDialogComponent implements OnInit {
       type: 'string'
     },
     {
+      header: 'Kosten',
+      field: 'kosten',
+      type: 'string'
+    },
+    {
       header: 'Steigerung',
       field: 'tooltip',
       type: 'string'
@@ -72,7 +77,7 @@ export class VersionVergleichDialogComponent implements OnInit {
     },
     {
       header: 'Kosten',
-      field: 'oldValue',
+      field: 'kosten',
       type: 'string'
     },
     {
@@ -80,6 +85,39 @@ export class VersionVergleichDialogComponent implements OnInit {
       field: 'tooltip',
       type: 'string'
     }
+  ]
+
+  public steigernColumns: TableColumn[] = [
+    {
+      header: 'Name',
+      field: 'name',
+      type: 'string'
+    },
+    {
+      header: 'Steigerung',
+      field: 'tooltip',
+      type: 'string'
+    },
+    {
+      header: 'AP',
+      field: 'ap',
+      type: 'string'
+    },
+    {
+      header: 'Lehrmeister',
+      field: 'lehrmeisterTaw',
+      type: 'string'
+    },
+    {
+      header: 'Kostenmodifikator',
+      field: 'modifier',
+      type: 'string'
+    },
+    {
+      header: 'Kosten (D)',
+      field: 'kostenDukaten',
+      type: 'string'
+    },
   ]
 
   constructor(private versionService: VersionService) { }
