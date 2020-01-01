@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationRequiredComponent} from '../authentication-required.component';
-import {AlleVersionenDialogComponent} from '../../shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
+import {AlleVersionenDialogComponent} from '../../shared/held/alle-versionen-dialog/alle-versionen-dialog.component';
 import {HeldDto, HeldenService} from "../../lib/helden/helden.service";
 import {TableColumn, TableEditEvent} from "../../lib/components/table/table.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TokenService} from "../../authentication/token.service";
 import {NotificationService} from "../../shared/notification.service";
+import {VersionVergleichDialogComponent} from "../../shared/held/version-vergleich-dialog/version-vergleich-dialog.component";
 
 @Component({
   selector: 'app-meine-helden',
@@ -60,6 +61,10 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
         {
           name: 'Alle Versionen anzeigen',
           click: context => this.showAllVersions(context)
+        },
+        {
+          name: 'Mit voriger Version vergleichen',
+          click: context => this.compareWithVersion(context)
         }
       ]
     }
@@ -72,12 +77,19 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
       });
   }
 
-private showAllVersions(context) {
-    const id = context.id;
-    const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '80vw'})
-    dialogRef.componentInstance.held = id;
+  private compareWithVersion(context: HeldDto) {
+    const dialogRef = this.dialog.open(VersionVergleichDialogComponent, {minWidth: '100vw'});
+    dialogRef.componentInstance.held = context.id;
+    dialogRef.componentInstance.biggestVersion = context.version;
 
   }
+
+  private showAllVersions(context) {
+      const id = context.id;
+      const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '100vw'})
+      dialogRef.componentInstance.held = id;
+
+    }
 
 
   constructor(private dialog: MatDialog, private heldenService: HeldenService, router: Router, tokenService: TokenService, private notificationService: NotificationService) {
@@ -100,6 +112,7 @@ private showAllVersions(context) {
     this.heldenService.getMeineHelden()
       .subscribe(data => {
         this.helden = data;
+        this.compareWithVersion(data[0]);
       });
   }
 

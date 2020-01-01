@@ -1,0 +1,62 @@
+
+<div class="content">
+  <mat-form-field>
+    <mat-select [(value)]="from" placeholder="Von" (valueChange)="onValueChange()">
+      <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(value)]="to" placeholder="Bis" (valueChange)="onValueChange()">
+      <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <ng-container *ngIf="loading;else differenceRender">
+    <mat-spinner></mat-spinner>
+  </ng-container>
+  <ng-template #differenceRender>
+    <div class="tabber">
+      <mat-tab-group *ngIf="differences">
+        <mat-tab label="Talente" *ngIf="differences.talente.length !== 0">
+          <div class="tab-content">
+            <app-table [data]="differences.talente" [columns]="columns" ></app-table>
+
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Zauber" *ngIf="differences.zauber.length !== 0">
+          <div class="tab-content">
+            <app-table [data]="differences.zauber" [columns]="columns" ></app-table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Vor/Nachteile" *ngIf="differences.vorteile.length !== 0">
+          <div class="tab-content">
+            <app-table [data]="differences.vorteile" [columns]="vorteilColumns" ></app-table>
+
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Eigenschaften" *ngIf="differences.eigenschaften.length !== 0">
+          <div class="tab-content">
+            <app-table [data]="differences.eigenschaften" [columns]="columns" ></app-table>
+          </div>
+
+        </mat-tab>
+
+        <mat-tab label="Sonfertigkeiten" *ngIf="differences.sonderfertigkeiten.length !== 0">
+          <div class="tab-content">
+            <app-table [data]="differences.sonderfertigkeiten" [columns]="sfColumns" ></app-table>
+          </div>
+
+        </mat-tab>
+
+
+      </mat-tab-group>
+    </div>
+
+  </ng-template>
+
+</div>

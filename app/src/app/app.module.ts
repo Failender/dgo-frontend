@@ -47,13 +47,14 @@ import {environment} from '../environments/environment';
 import {GruppeComponent} from './routes/gruppe/gruppe/gruppe.component';
 import {SteigernComponent} from './routes/held/steigern/steigern.component';
 import {AddEreignisDialogComponent} from './routes/held/steigern/add-ereignis.dialog/add-ereignis.dialog.component';
-import {AlleVersionenDialogComponent} from './shared/held/alle-versionen-dialog-component/alle-versionen-dialog.component';
+import {AlleVersionenDialogComponent} from './shared/held/alle-versionen-dialog/alle-versionen-dialog.component';
 import {SharedModule} from './lib/shared.module';
 import {TokenService} from './authentication/token.service';
 import {HeldenService, initializeHeld} from './lib/helden/helden.service';
 import {AppComponent} from './lib/app/app.component';
 import {MenuService} from './lib/menu/menu.service';
-import { TalenteComponent } from './routes/held/talente/talente.component';
+import {TalenteComponent} from './routes/held/talente/talente.component';
+import {VersionVergleichDialogComponent} from './shared/held/version-vergleich-dialog/version-vergleich-dialog.component';
 
 
 const routes: Routes = [
@@ -122,11 +123,13 @@ declare var env;
     InventarTabelleComponent,
     AlleVersionenDialogComponent,
     TalenteComponent,
+    VersionVergleichDialogComponent,
   ],
   entryComponents: [
     ZauberspeicherExecuteComponent,
     AddEreignisDialogComponent,
-    AlleVersionenDialogComponent
+    AlleVersionenDialogComponent,
+    VersionVergleichDialogComponent
   ],
   imports: [
     SharedModule.forRoot(),
