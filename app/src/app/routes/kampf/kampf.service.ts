@@ -27,6 +27,7 @@ export interface Kampfteilnehmer {
   freieAktionen?: number;
   distanzklasse?: Distanzklasse;
   focussedTeilnehmer?: number;
+  konva?: any;
 
 }
 

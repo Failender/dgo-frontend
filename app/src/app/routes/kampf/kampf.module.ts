@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {TeilnehmerDetailComponent} from './teilnehmer-detail/teilnehmer-detail.component';
 import {SharedModule} from "../../lib/shared.module";
+import { KampfRenderComponent } from './kampf-render/kampf-render.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
   }
 ]
 @NgModule({
-  declarations: [KampfComponent, ErstellenComponent, TeilnehmerDetailComponent],
+  declarations: [KampfComponent, ErstellenComponent, TeilnehmerDetailComponent, KampfRenderComponent],
   imports: [
     CommonModule, RouterModule.forChild(routes), SharedModule, FormsModule, MatCardModule, MatIconModule, MatButtonToggleModule, MatSelectModule
   ]

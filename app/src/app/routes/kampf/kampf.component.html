@@ -4,7 +4,8 @@
 </ng-container>
 <ng-template #render>
   <ng-container *ngIf="kampf">
-    <div class="left-render">
+    <app-kampf-render [kampf]="kampf"></app-kampf-render>
+    <div class="left-render" style="">
       <button mat-raised-button (click)="nextTeilnehmer()">Next</button>
       <button mat-raised-button (click)="halten()">Halten</button>
       <mat-card *ngFor="let teilnehmer of kampf.teilnehmer; let i = index" (click)="selectTeilnehmer(teilnehmer)" [class.selected]="selectedTeilnehmer === teilnehmer" [class.active]="i === kampf.currentTeilnehmer">

@@ -197,19 +197,7 @@ export class AppModule {
       /*
 
 
-      {
-        displayName: 'Kampf',
-        children: [
-          {
-            displayName: 'Anzeige',
-            route: 'kampf'
-          },
-          {
-            displayName: 'Erstellen',
-            route: 'kampf/erstellen'
-          }
-        ]
-      },
+      ,
        */
        /*
       {
@@ -273,6 +261,22 @@ export class AppModule {
         condition:  () => menuService.permission('CREATE_USER')
       },
     ].forEach(item => menuService.registerItem(item));
+
+    if (!environment.production) {
+      menuService.registerItem({
+        displayName: 'Kampf',
+        children: [
+          {
+            displayName: 'Anzeige',
+            route: 'kampf'
+          },
+          {
+            displayName: 'Erstellen',
+            route: 'kampf/erstellen'
+          }
+        ]
+      });
+    }
   }
 }
 

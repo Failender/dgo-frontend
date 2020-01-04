@@ -28,7 +28,9 @@
               "src/styles.css"
             ],
             "preserveSymlinks": true,
-            "scripts": [],
+            "scripts": [
+              "node_modules/konva/konva.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

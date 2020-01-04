@@ -25,7 +25,8 @@
     "ng2-pdf-viewer": "^5.0.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "konva": "^3.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.7",
