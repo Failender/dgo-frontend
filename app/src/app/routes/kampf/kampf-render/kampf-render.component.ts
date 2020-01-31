@@ -47,6 +47,7 @@ export class KampfRenderComponent implements OnInit, OnChanges {
 
     const image = `assets/icons/grid.png`;
     this.addImage(image, () => {});
+    this.addSidenav();
     this.addToolbar();
 
     this.setKampf(this.kampf);
@@ -118,7 +119,36 @@ export class KampfRenderComponent implements OnInit, OnChanges {
     this.stage.draw();
   }
 
+
+
   private addToolbar() {
+    const sizeX = 100;
+    const height = 100;
+    const groupX = this.stage.width() - sizeX;
+    const group = createGroup(groupX, 0);
+    const rect = createRect(0, 0, sizeX, height, 'gray', 'black', 4);
+    group.add(rect);
+    this.addPaintTool(group);
+    this.toolbarLayer.add(group);
+
+
+  }
+
+  private addPaintTool(parent) {
+    const group = createGroup(30 , 30);
+    const circle = createCircle(0, 0, 16, 'blue');
+    createImage(-16, -16, 'assets/icons/paint.png', image => {
+      group.add(image);
+      group.draw();
+    });
+    group.add(circle);
+
+    parent.add(group);
+
+
+  }
+
+  private addSidenav() {
     const sizeX = 100;
     const height = 500;
 
@@ -148,7 +178,6 @@ export class KampfRenderComponent implements OnInit, OnChanges {
 
   private createIcon(imageLink: string, xIndex: number, yIndex: number, color: string) {
     const group = createGroup(30  + yIndex* 32, 30  + xIndex * 32);
-
 
     group.on('click', data => {
       this.addDragableIcon(30, 30 * ++this.teilnehmerSpanwed, imageLink, color);

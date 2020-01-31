@@ -7,7 +7,7 @@ import {TableColumn, TableEditEvent} from "../../lib/components/table/table.comp
 import {MatDialog} from "@angular/material/dialog";
 import {TokenService} from "../../authentication/token.service";
 import {NotificationService} from "../../shared/notification.service";
-import {VersionVergleichDialogComponent} from "../../shared/held/version-vergleich-dialog/version-vergleich-dialog.component";
+import {VersionVergleichComponent} from "../../shared/held/version-vergleich/version-vergleich.component";
 
 @Component({
   selector: 'app-meine-helden',
@@ -28,9 +28,7 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
   }
 
   private compareWithVersion(context: HeldDto) {
-    const dialogRef = this.dialog.open(VersionVergleichDialogComponent, {minWidth: '100vw'});
-    dialogRef.componentInstance.held = context.id;
-    dialogRef.componentInstance.biggestVersion = context.version;
+    this.router.navigateByUrl(`/held/vergleich/${context.id}/${context.version-1}/${context.version}`)
 
   }
 

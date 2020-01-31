@@ -6,7 +6,7 @@ import {TableColumn, TableEditEvent} from "../../../lib/components/table/table.c
 import {HeldDto, HeldenService} from "../../../lib/helden/helden.service";
 import {GruppenService} from "../../../lib/gruppen.service";
 import {TokenService} from "../../../authentication/token.service";
-import {VersionVergleichDialogComponent} from '../../../shared/held/version-vergleich-dialog/version-vergleich-dialog.component';
+import {VersionVergleichComponent} from '../../../shared/held/version-vergleich/version-vergleich.component';
 import {AlleVersionenDialogComponent} from '../../../shared/held/alle-versionen-dialog/alle-versionen-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -46,9 +46,7 @@ export class GruppeComponent implements OnInit, OnDestroy {
   }
 
   private compareWithVersion(context: HeldDto) {
-    const dialogRef = this.dialog.open(VersionVergleichDialogComponent, {minWidth: '100vw'});
-    dialogRef.componentInstance.held = context.id;
-    dialogRef.componentInstance.biggestVersion = context.version;
+    this.router.navigateByUrl(`/held/vergleich/${context.id}/${context.version - 1}/${context.version}`);
 
   }
 

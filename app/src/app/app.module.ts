@@ -54,7 +54,7 @@ import {HeldenService, initializeHeld} from './lib/helden/helden.service';
 import {AppComponent} from './lib/app/app.component';
 import {MenuService} from './lib/menu/menu.service';
 import {TalenteComponent} from './routes/held/talente/talente.component';
-import {VersionVergleichDialogComponent} from './shared/held/version-vergleich-dialog/version-vergleich-dialog.component';
+import {VersionVergleichComponent} from './shared/held/version-vergleich/version-vergleich.component';
 import {EreignisseComponent} from './routes/held/ereignisse/ereignisse.component';
 
 
@@ -73,6 +73,7 @@ const routes: Routes = [
       {path: 'zauberspeicher', component: ZauberspeicherComponent},
       {path: 'talente', component: TalenteComponent},
       {path: 'ereignisse', component: EreignisseComponent},
+      {path: 'vergleich/:id/:from/:to', component: VersionVergleichComponent}
     ]
   },
   {
@@ -126,13 +127,12 @@ declare var env;
     AlleVersionenDialogComponent,
     TalenteComponent,
     EreignisseComponent,
-    VersionVergleichDialogComponent,
+    VersionVergleichComponent,
   ],
   entryComponents: [
     ZauberspeicherExecuteComponent,
     AddEreignisDialogComponent,
     AlleVersionenDialogComponent,
-    VersionVergleichDialogComponent
   ],
   imports: [
     SharedModule.forRoot(),

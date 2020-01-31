@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Differences, VersionService} from '../version/version.service';
 import {TableColumn} from '../../../lib/components/table/table.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-version-vergleich-dialog',
-  templateUrl: './version-vergleich-dialog.component.html',
-  styleUrls: ['./version-vergleich-dialog.component.css']
+  selector: 'app-version-vergleich',
+  templateUrl: './version-vergleich.component.html',
+  styleUrls: ['./version-vergleich.component.css']
 })
-export class VersionVergleichDialogComponent implements OnInit {
+export class VersionVergleichComponent implements OnInit {
 
 
   public from;
@@ -120,20 +121,30 @@ export class VersionVergleichDialogComponent implements OnInit {
     },
   ]
 
-  constructor(private versionService: VersionService) { }
+  constructor(private versionService: VersionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.to = this.biggestVersion;
-    this.onValueChange();
 
-    this.versions = [];
-    for (let i = 0; i < this.biggestVersion; i++) {
-      this.versions.push(i + 1);
-    }
+    this.route.params.subscribe(params => {
+      this.to = parseInt(params.to, 10);
+      this.held = params.id;
+      this.from = parseInt(params.from, 10);
+      this.onValueChange();
+
+      this.versionService.getVersionenForHeld(this.held)
+        .subscribe(versions => {
+          this.biggestVersion = versions.length;
+          this.versions = [];
+          for (let i = 0; i < this.biggestVersion; i++) {
+            this.versions.push(i + 1);
+          }
+        });
+    });
+
   }
 
   public onValueChange() {
-    if (this.from !== undefined) {
+    if (this.from !== undefined && this.from !== this.to) {
       this.loading = true;
       this.versionService.compare(this.held, this.from, this.to)
         .subscribe(data => {
@@ -142,6 +153,5 @@ export class VersionVergleichDialogComponent implements OnInit {
         });
     }
   }
-
 
 }
