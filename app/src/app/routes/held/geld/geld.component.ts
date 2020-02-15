@@ -1,17 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Geldboerse, GeldService} from './geld.service';
 import {HeldComponent} from '../held.component';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {debounceTime, map, takeUntil} from 'rxjs/operators';
 import {TableColumn} from "../../../lib/components/table/table.component";
 import {HeldenService} from "../../../lib/helden/helden.service";
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-geld',
   templateUrl: './geld.component.html',
   styleUrls: ['./geld.component.css']
 })
-export class GeldComponent extends HeldComponent{
+export class GeldComponent extends HeldComponent implements OnDestroy{
+
+  private unsubscribe = new Subject();
 
   public tableColumns: TableColumn[] = [
     {
@@ -69,12 +72,18 @@ export class GeldComponent extends HeldComponent{
   public geldboerse: Geldboerse;
   public mappedGeldboerse;
 
+  private geldBoersePersist = new Subject();
+
   constructor(heldenService: HeldenService, router: Router, private geldService: GeldService) {
     super(heldenService, router);
   }
 
   doInit() {
       this.loadGeldboerse();
+      this.geldBoersePersist.pipe(takeUntil(this.unsubscribe), debounceTime(5000))
+        .subscribe(() => {
+          this.doPersistGeldboerse();
+        });
   }
 
   private mapGeldboerse(boerse: Geldboerse) {
@@ -86,7 +95,7 @@ export class GeldComponent extends HeldComponent{
         label: einheit.label,
         anzahl: amount,
         einheit: einheit.einheit
-      })
+      });
     })
     return mappedGeldboerse;
   }
@@ -100,8 +109,8 @@ export class GeldComponent extends HeldComponent{
   }
 
   public getAmount(einheit, geldboerse: Geldboerse) {
-    let value = Math.floor(geldboerse.anzahl / einheit.einheit);;
-    if(einheit.einheit === 1000) {
+    const value = Math.floor(geldboerse.anzahl / einheit.einheit);;
+    if (einheit.einheit === 1000) {
       return value;
     }
     return value % 10;
@@ -109,31 +118,32 @@ export class GeldComponent extends HeldComponent{
 
   private incrementEntry(context) {
 
+    console.debug(context);
     this.geldboerse.anzahl += context.einheit;
+    this.mappedGeldboerse = this.mapGeldboerse(this.geldboerse);
     this.persistGeldboerse();
 
   }
 
   private decrementEntry(context) {
     this.geldboerse.anzahl -= context.einheit;
+    this.mappedGeldboerse = this.mapGeldboerse(this.geldboerse);
+
     this.persistGeldboerse();
   }
 
   private persistGeldboerse() {
-    if(!this.geldboerse.id) {
-      this.mappedGeldboerse = null;
-      //This entity is not persistant yet, save it once and request wait for the return of the id..
-      this.geldService.updateGeldboerse(this.geldboerse)
-        .subscribe(data => {
-          this.geldboerse = data;
-          this.mappedGeldboerse = this.mapGeldboerse(this.geldboerse);
-        })
-    } else {
-      this.mappedGeldboerse = this.mapGeldboerse(this.geldboerse);
-      this.geldService.updateGeldboerse(this.geldboerse)
-        .subscribe();
-    }
+    this.geldBoersePersist.next();
 
+  }
+
+  private doPersistGeldboerse() {
+    this.geldService.updateGeldboerse(this.geldboerse)
+      .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
   }
 
 
