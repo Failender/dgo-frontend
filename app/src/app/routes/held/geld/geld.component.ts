@@ -79,11 +79,14 @@ export class GeldComponent extends HeldComponent implements OnDestroy{
   }
 
   doInit() {
-      this.loadGeldboerse();
-      this.geldBoersePersist.pipe(takeUntil(this.unsubscribe), debounceTime(5000))
-        .subscribe(() => {
-          this.doPersistGeldboerse();
-        });
+    if (!this.heldInfo.steigern) {
+      return;
+    }
+    this.loadGeldboerse();
+    this.geldBoersePersist.pipe(takeUntil(this.unsubscribe), debounceTime(5000))
+      .subscribe(() => {
+        this.doPersistGeldboerse();
+      });
   }
 
   private mapGeldboerse(boerse: Geldboerse) {
@@ -118,7 +121,6 @@ export class GeldComponent extends HeldComponent implements OnDestroy{
 
   private incrementEntry(context) {
 
-    console.debug(context);
     this.geldboerse.anzahl += context.einheit;
     this.mappedGeldboerse = this.mapGeldboerse(this.geldboerse);
     this.persistGeldboerse();

@@ -1,8 +1,14 @@
 <app-quicknav></app-quicknav>
-<mat-card *ngIf="ap">
-  <mat-card-title>
-    Abenteuerpunkte
-  </mat-card-title>
-  Gesamt: {{ap.gesamt}} | Frei: {{ap.frei}} <button mat-raised-button (click)="addEreignis()">Ereignis hinzufügen</button>
 
-</mat-card><app-table [data]="steigerungen" [columns]="tableColumns" (edit)="onEdit($event)"></app-table>
+<ng-container *ngIf="heldInfo.steigern; else noSteigern">
+  <mat-card *ngIf="ap">
+    <mat-card-title>
+      Abenteuerpunkte
+    </mat-card-title>
+    Gesamt: {{ap.gesamt}} | Frei: {{ap.frei}} <button mat-raised-button (click)="addEreignis()">Ereignis hinzufügen</button>
+
+  </mat-card><app-table [data]="steigerungen" [columns]="tableColumns" (edit)="onEdit($event)"></app-table>
+</ng-container>
+<ng-template #noSteigern>
+  <div style="margin-top:20px">Für diese Funktion ist ein Token mit Schreib-Funktion erforderlich</div>
+</ng-template>

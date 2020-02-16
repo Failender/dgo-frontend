@@ -1,4 +1,11 @@
 
 <app-quicknav></app-quicknav>
-<app-table [columns]="tableColumns" [data]="mappedGeldboerse"></app-table>
+
+<ng-container *ngIf="heldInfo.steigern; else noSteigern">
+  <app-table [columns]="tableColumns" [data]="mappedGeldboerse"></app-table>
+
+</ng-container>
+<ng-template #noSteigern>
+  <div style="margin-top:20px">Für diese Funktion ist ein Token mit Schreib-Funktion erforderlich</div>
+</ng-template>
 
