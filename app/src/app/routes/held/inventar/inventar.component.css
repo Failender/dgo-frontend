@@ -4,6 +4,7 @@ mat-form-field {
 }
 
 
+/*
 @media only screen and (max-width: 600px) {
 
   mat-card {
@@ -19,3 +20,4 @@ mat-form-field {
     margin: 10px;
   }
 }
+*/
