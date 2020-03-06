@@ -30,6 +30,7 @@ export class InventarTabelleComponent implements OnInit {
       header: 'Gewicht',
       type: 'number'
     },
+    /*
     {
       header: '',
       field: 'actions',
@@ -53,6 +54,8 @@ export class InventarTabelleComponent implements OnInit {
         }
       ]
     }
+
+     */
   ];
 
   constructor(heldService: HeldenService, router: Router, private heldInventarService: HeldInventarService, private notificationService: NotificationService) {

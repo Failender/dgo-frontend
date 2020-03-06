@@ -20,13 +20,13 @@ export class HeldInventarService {
   private inventarSubject = new BehaviorSubject(null);
   public inventar = this.inventarSubject.asObservable();
 
-  public refreshInventarForHeld(){
+  public refreshInventarForHeld() {
     this.http.get<HeldInventar[]>(`${environment.rest}helden/inventar/held/${this.heldenService.currentHeld.id}`)
       .subscribe(data => this.inventarSubject.next(data));
   }
 
-  public addGegenstand(gegenstand: HeldInventar): Observable<any> {
-    return this.http.post(`${environment.rest}helden/inventar`, gegenstand)
+  public addGegenstand(gegenstand: HeldInventar): Observable<void> {
+    return this.http.post<void>(`${environment.rest}helden/inventar`, gegenstand)
       .pipe(tap(() => this.refreshInventarForHeld()))
   }
 

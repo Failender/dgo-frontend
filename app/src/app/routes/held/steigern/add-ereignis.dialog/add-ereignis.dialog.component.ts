@@ -11,6 +11,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 export class AddEreignisDialogComponent implements OnInit {
 
   public held;
+  public inventar;
   public form = new FormGroup({
     name: new FormControl('', Validators.required),
     ap: new FormControl('', Validators.required)

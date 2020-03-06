@@ -6,6 +6,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../../shared/notification.service';
 import {TableColumn} from "../../../lib/components/table/table.component";
 import {HeldenService} from "../../../lib/helden/helden.service";
+import {MatDialog} from '@angular/material/dialog';
+import {AddGegenstandComponent} from './add-gegenstand/add-gegenstand.component';
 
 @Component({
   selector: 'app-inventar',
@@ -15,59 +17,10 @@ import {HeldenService} from "../../../lib/helden/helden.service";
 export class InventarComponent extends HeldComponent {
 
 
-  public form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    heldid: new FormControl('', Validators.required),
-    notiz: new FormControl(''),
-    container: new FormControl(null),
-    gewicht: new FormControl(0, Validators.required),
-    anzahl: new FormControl(0, Validators.required)
-  });
-
   public inventar;
 
-  public tableColumns: TableColumn[] = [
-    {
-      field: 'anzahl',
-      header: 'Anzahl',
-      type: 'number'
-    },
-    {
-      field: 'name',
-      header: 'Name',
-      type: 'string'
-    },
-    {
-      field: 'gewicht',
-      header: 'Gewicht',
-      type: 'number'
-    },
-    {
-      header: '',
-      field: 'actions',
-      type: 'inline-actions',
-      actions: [
-        {
-          name: 'delete',
-          click: context => this.deleteEntry(context)
-        },
-        {
-          name: 'add',
-          click: context => this.incrementEntry(context)
-        },
-        {
-          name: 'remove',
-          click: context => this.decrementEntry(context)
-        },
-        {
-          name: 'info',
-          tooltip: context => context.notiz
-        }
-      ]
-    }
-  ];
-
-  constructor(heldService: HeldenService, router: Router, private heldInventarService: HeldInventarService, private notificationService: NotificationService) {
+  constructor(heldService: HeldenService, router: Router, private heldInventarService: HeldInventarService, private notificationService: NotificationService,
+              private dialog: MatDialog) {
     super(heldService, router);
 
   }
@@ -93,12 +46,14 @@ export class InventarComponent extends HeldComponent {
 
 
   doInit() {
-    this.form.controls.heldid.patchValue(this.heldenService.currentHeld.id);
+    // this.form.controls.heldid.patchValue(this.heldenService.currentHeld.id);
     this.inventar = this.heldInventarService.inventar;
   }
 
 
   public addInventar() {
+    this.dialog.open(AddGegenstandComponent);
+    /*
     this.heldInventarService.addGegenstand(this.form.value)
       .subscribe(() => {
 
@@ -106,6 +61,8 @@ export class InventarComponent extends HeldComponent {
         this.notificationService.info('Gegenstand hinzugefügt!');
       });
     this.form.reset();
+
+     */
   }
 
 }

@@ -56,6 +56,7 @@ import {MenuService} from './lib/menu/menu.service';
 import {TalenteComponent} from './routes/held/talente/talente.component';
 import {VersionVergleichComponent} from './shared/held/version-vergleich/version-vergleich.component';
 import {EreignisseComponent} from './routes/held/ereignisse/ereignisse.component';
+import { AddGegenstandComponent } from './routes/held/inventar/add-gegenstand/add-gegenstand.component';
 
 
 const routes: Routes = [
@@ -128,11 +129,13 @@ declare var env;
     TalenteComponent,
     EreignisseComponent,
     VersionVergleichComponent,
+    AddGegenstandComponent,
   ],
   entryComponents: [
     ZauberspeicherExecuteComponent,
     AddEreignisDialogComponent,
     AlleVersionenDialogComponent,
+    AddGegenstandComponent
   ],
   imports: [
     SharedModule.forRoot(),
