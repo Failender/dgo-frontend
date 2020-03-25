@@ -25,6 +25,10 @@
         <mat-icon *ngIf="creatingUser"><mat-spinner color="accent" diameter="20" ></mat-spinner></mat-icon><span *ngIf="!creatingUser">Erstellen</span>
       </button>
 
+      <div class="ui-g">
+        <span>Massenerstellung </span><input type="file" (change)="fileChange($event)">
+      </div>
+
 
 
     </form>

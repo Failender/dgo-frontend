@@ -42,4 +42,23 @@ export class ManageUserComponent implements OnInit {
       });
   }
 
+  fileChange(event) {
+    const files = event.target.files;
+    if (files.length === 1) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = fileObj => {
+        const contents: any = fileObj.target;
+        const text = contents.result;
+
+        this.notificationService.info('Nutzer werden erstellt..')
+        this.userService.createUsers(text)
+          .subscribe(
+            () => this.notificationService.info('Nutzer wurden erstellt')
+          );
+      }
+      reader.readAsText(file);
+    }
+  }
+
 }

@@ -17,6 +17,11 @@ export class UserService {
     return this.http.post(`${environment.rest}user/register`, dto);
   }
 
+  public createUsers(body) {
+    return this.http.post(`${environment.rest}user`, body);
+  }
+
+
 }
 
 
