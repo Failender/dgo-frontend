@@ -7,7 +7,6 @@ import {TableColumn, TableEditEvent} from "../../lib/components/table/table.comp
 import {MatDialog} from "@angular/material/dialog";
 import {TokenService} from "../../authentication/token.service";
 import {NotificationService} from "../../shared/notification.service";
-import {VersionVergleichComponent} from "../../shared/held/version-vergleich/version-vergleich.component";
 
 @Component({
   selector: 'app-meine-helden',
@@ -33,9 +32,8 @@ export class MeineHeldenComponent extends AuthenticationRequiredComponent{
   }
 
   private showAllVersions(context) {
-      const id = context.id;
       const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '100vw'})
-      dialogRef.componentInstance.held = id;
+      dialogRef.componentInstance.held = context;
 
     }
 

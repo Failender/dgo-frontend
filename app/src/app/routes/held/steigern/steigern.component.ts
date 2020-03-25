@@ -143,7 +143,7 @@ export class SteigernComponent extends HeldComponent implements OnDestroy{
 
   public addEreignis() {
     const dialogRef = this.dialog.open(AddEreignisDialogComponent);
-    dialogRef.componentInstance.held = this.heldInfo.id;
+    dialogRef.componentInstance.held = this.heldInfo;
     dialogRef.afterClosed()
       .subscribe(result => {
         if(result) {

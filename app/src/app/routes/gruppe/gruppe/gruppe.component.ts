@@ -6,7 +6,6 @@ import {TableColumn, TableEditEvent} from "../../../lib/components/table/table.c
 import {HeldDto, HeldenService} from "../../../lib/helden/helden.service";
 import {GruppenService} from "../../../lib/gruppen.service";
 import {TokenService} from "../../../authentication/token.service";
-import {VersionVergleichComponent} from '../../../shared/held/version-vergleich/version-vergleich.component';
 import {AlleVersionenDialogComponent} from '../../../shared/held/alle-versionen-dialog/alle-versionen-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -51,9 +50,8 @@ export class GruppeComponent implements OnInit, OnDestroy {
   }
 
   private showAllVersions(context) {
-    const id = context.id;
     const dialogRef = this.dialog.open(AlleVersionenDialogComponent, {minWidth: '100vw'})
-    dialogRef.componentInstance.held = id;
+    dialogRef.componentInstance.held = context;
 
   }
 

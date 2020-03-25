@@ -3,7 +3,9 @@ import {Version, VersionService} from '../version/version.service';
 import {Router} from '@angular/router';
 import {MatDialogRef} from '@angular/material/dialog';
 import {TableColumn} from "../../../lib/components/table/table.component";
-import {HeldenService} from "../../../lib/helden/helden.service";
+import {HeldDto, HeldenService} from "../../../lib/helden/helden.service";
+import * as fileSaver from 'file-saver';
+
 
 @Component({
   selector: 'app-alle-versionen-dialog-component',
@@ -13,7 +15,7 @@ import {HeldenService} from "../../../lib/helden/helden.service";
 export class AlleVersionenDialogComponent implements OnInit {
 
 
-  public held: number;
+  public held: HeldDto;
   public versionen: Version[];
 
   public tableColumns: TableColumn[] = [
@@ -41,24 +43,43 @@ export class AlleVersionenDialogComponent implements OnInit {
           name: 'open_in_browser',
 
           click: context => this.loadVersion(context)
+        },
+        {
+          name: 'cloud_download',
+          click: context => this.downloadVersion(context)
         }
       ]
     }
   ];
 
   private loadVersion(context: Version) {
-    this.heldenService.loadHeld(this.held, context.version)
+    this.heldenService.loadHeld(this.held.id, context.version)
       .subscribe(() => {
         this.dialogRef.close();
         this.router.navigateByUrl('/held/pdf');
       });
   }
 
+  private downloadVersion(context: Version) {
+    this.heldenService.getHeldXml(this.held.id, context.version)
+      .subscribe(xml => {
+        console.log(xml);
+
+        const blob = new Blob([xml],
+          { type: 'text/plain;charset=utf-8' });
+
+
+        fileSaver(blob, `${this.held.name}.xml`);
+
+      });
+
+}
+
   constructor(private versionService: VersionService, private heldenService: HeldenService, private router: Router, private dialogRef: MatDialogRef<AlleVersionenDialogComponent>) { }
 
   ngOnInit() {
     if (this.held) {
-      this.versionService.getVersionenForHeld(this.held)
+      this.versionService.getVersionenForHeld(this.held.id)
         .subscribe(data => this.versionen = data);
     } else {
       console.error('Version not set');
