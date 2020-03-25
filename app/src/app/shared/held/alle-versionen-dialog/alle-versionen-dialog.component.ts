@@ -63,7 +63,6 @@ export class AlleVersionenDialogComponent implements OnInit {
   private downloadVersion(context: Version) {
     this.heldenService.getHeldXml(this.held.id, context.version)
       .subscribe(xml => {
-        console.log(xml);
 
         const blob = new Blob([xml],
           { type: 'text/plain;charset=utf-8' });
