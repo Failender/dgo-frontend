@@ -56,7 +56,7 @@ import {MenuService} from './lib/menu/menu.service';
 import {TalenteComponent} from './routes/held/talente/talente.component';
 import {VersionVergleichComponent} from './shared/held/version-vergleich/version-vergleich.component';
 import {EreignisseComponent} from './routes/held/ereignisse/ereignisse.component';
-import { AddGegenstandComponent } from './routes/held/inventar/add-gegenstand/add-gegenstand.component';
+import {AddGegenstandComponent} from './routes/held/inventar/add-gegenstand/add-gegenstand.component';
 
 
 const routes: Routes = [
@@ -84,6 +84,10 @@ const routes: Routes = [
   {
     path: 'meister',
     loadChildren: () => import('./routes/meister/meister.module').then(m => m.MeisterModule)
+  },
+  {
+    path: 'fantasygrounds',
+    loadChildren: () => import('./routes/fantasygrounds/fantasy-grounds.module').then(m => m.FantasyGroundsModule)
   },
   {
     path: 'gruppe',
@@ -263,6 +267,11 @@ export class AppModule {
         route: 'administration/manage-user',
         condition:  () => menuService.permission('CREATE_USER')
       },
+      {
+        displayName: 'Fantasygrounds',
+        iconName: '',
+        route: 'fantasygrounds'
+      }
     ].forEach(item => menuService.registerItem(item));
 
     if (!environment.production) {

@@ -44,9 +44,9 @@ export class HeldenService {
 
   public getHeldXml(held: number, version: number): Observable<any> {
 
+    // @ts-ignore
     return this.http.get<any>(`${env.rest}helden/held/${held}/${version}/xml`, { responseType: 'text' });
   }
-
 
 
   public loadHeld(held: number, version: number, setActive = true): Observable<HeldDaten> {

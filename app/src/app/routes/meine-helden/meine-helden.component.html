@@ -1,6 +1,6 @@
 
 
-<button mat-raised-button (click)="syncDso()">Mit Dsa Online synchronisieren</button>
+<button mat-raised-button (click)="syncDso()" *ngIf="false">Mit Dsa Online synchronisieren</button>
 <button mat-raised-button (click)="syncHeldenOnline()">Mit Helden Online synchronisieren</button>
 <app-table [data]="helden" [columns]="tableColumns" (edit)="onEdit($event)"></app-table>
 
