@@ -4,7 +4,42 @@
 
   <mat-card-content>
     <div class="ui-g">
-      <span>Massenerstellung </span><input type="file" (change)="fileChange($event)">
+      <span>Upload </span><input type="file" (change)="fileChange($event)">
     </div>
   </mat-card-content>
 </mat-card>
+
+<ng-container *ngIf="exportedHelden">
+  <mat-card *ngFor="let info of exportedHelden">
+    <mat-card-title>
+      {{info.name}}
+
+    </mat-card-title>
+    <mat-card-content>
+      <div>
+        <mat-form-field *ngIf="campaignInformation && campaignInformation.characters && campaignInformation.characters.length !== 0" >
+          <mat-select [(ngModel)]="info.campaignId" (ngModelChange)="onHeldChange(info, $event)">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let held of campaignInformation.characters" [value]="held.id">{{held.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-checkbox [(ngModel)]="info.export">
+          Exportieren
+        </mat-checkbox>
+      </div>
+
+      <div *ngIf="info.campaignData">LeP: {{info.campaignData.currentLep}}</div>
+      <div *ngIf="info.campaignData && info.campaignData.currentAsp">AsP: {{info.campaignData.currentAsp}}</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <button mat-raised-button (click)="export()" color="primary" [disabled]="!campaignInformation">Export</button>
+    </mat-card-content>
+  </mat-card>
+
+</ng-container>

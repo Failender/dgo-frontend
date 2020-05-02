@@ -61,7 +61,7 @@ import {AddGegenstandComponent} from './routes/held/inventar/add-gegenstand/add-
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'meine-helden', component: MeineHeldenComponent},
+  {path: 'meine-gruppenHelden', component: MeineHeldenComponent},
   {
     path: 'held',
     children: [
@@ -194,7 +194,7 @@ export class AppModule {
       {
         displayName: 'Meine Helden',
         iconName: '',
-        route: 'meine-helden',
+        route: 'meine-gruppenHelden',
         condition: menuService.authenticated.bind(menuService)
       },
       {
@@ -270,7 +270,8 @@ export class AppModule {
       {
         displayName: 'Fantasygrounds',
         iconName: '',
-        route: 'fantasygrounds'
+        route: 'fantasygrounds',
+        condition: () => menuService.authenticated.bind(this)
       }
     ].forEach(item => menuService.registerItem(item));
 
