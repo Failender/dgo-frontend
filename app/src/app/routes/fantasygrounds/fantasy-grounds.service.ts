@@ -21,7 +21,7 @@ export class FantasyGroundsService {
   }
 
   public export(settings: ExportSettings) {
-    return this.http.post<MigrationResult>(`${environment.rest}fantasygrounds/export`, settings);
+    return this.http.post<Blob>(`${environment.rest}fantasygrounds/export`, settings, {responseType: 'blob' as 'json' });
   }
 }
 

@@ -57,7 +57,6 @@ export class FantasyGroundsComponent implements OnInit, OnDestroy {
     this.campaignInformation = campaignInformation;
     this.exportedHelden.forEach(entry => {
       if (!campaignInformation) {
-        entry.held = null;
         entry.campaignData = null;
         return;
       }
@@ -92,17 +91,15 @@ export class FantasyGroundsComponent implements OnInit, OnDestroy {
     });
 
     this.fantasyGroundsService.export({characters: exportCharacters}).subscribe(result => {
-      const element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(result.xml));
-      element.setAttribute('download', 'db.xml');
-
-      element.style.display = 'none';
-      document.body.appendChild(element);
-
-      element.click();
-
-      document.body.removeChild(element);
+      this.download(result, 'db.xml');
     });
+  }
+
+  private download (content: Blob, filename) {
+    const a = document.createElement('a');
+    a.href = window.URL.createObjectURL(content);
+    a.download = filename;
+    a.click();
   }
 
 
