@@ -93,6 +93,7 @@ export class FantasyGroundsComponent implements OnInit, OnDestroy {
     this.fantasyGroundsService.export({characters: exportCharacters}).subscribe(result => {
       this.download(result, 'db.xml');
     });
+    this.campaignInformation = null;
   }
 
   private download (content: Blob, filename) {

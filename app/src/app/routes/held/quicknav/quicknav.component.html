@@ -5,12 +5,12 @@
 
       <button mat-stroked-button routerLink="/held/pdf" [disabled]="activate('/held/pdf')">Pdf</button>
       <button mat-stroked-button routerLink="/held/talente" [disabled]="activate('/held/talente')">Talente</button>
-      <button mat-stroked-button routerLink="/held/uebersicht" [disabled]="activate('/held/uebersicht')">Übersicht</button>
-      <button mat-stroked-button routerLink="/held/inventar"  [disabled]="activate('/held/inventar')">Inventar</button>
-      <button mat-stroked-button routerLink="/held/geld" [disabled]="activate('/held/geld')">Geld</button>
+<!--      <button mat-stroked-button routerLink="/held/uebersicht" [disabled]="activate('/held/uebersicht')">Übersicht</button>-->
+<!--      <button mat-stroked-button routerLink="/held/inventar"  [disabled]="activate('/held/inventar')">Inventar</button>-->
+<!--      <button mat-stroked-button routerLink="/held/geld" [disabled]="activate('/held/geld')">Geld</button>-->
       <button mat-stroked-button routerLink="/held/ereignisse" [disabled]="activate('/held/ereignisse')">Ereignisse</button>
       <button mat-stroked-button routerLink="/held/zauber" *ngIf="hasZauber()"[disabled]="activate('/held/zauber')">Zauber</button>
-      <button mat-stroked-button routerLink="/held/zauberspeicher" *ngIf="hasZauberSpeicher()" [disabled]="activate('/held/zauberspeicher')">Zauberspeicher</button>
+<!--      <button mat-stroked-button routerLink="/held/zauberspeicher" *ngIf="hasZauberSpeicher()" [disabled]="activate('/held/zauberspeicher')">Zauberspeicher</button>-->
       <button mat-stroked-button routerLink="/held/steigern"  [disabled]="activate('/held/steigern')" *ngIf="canSteigern()">Steigern</button>
     </mat-card>
 

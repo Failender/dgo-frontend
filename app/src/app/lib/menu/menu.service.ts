@@ -48,8 +48,9 @@ export class MenuService {
 
 
   constructor(private heldenService: HeldenService, private tokenService: TokenService) {
-    merge(this.heldenService.heldSub
-      .pipe(filter(value => !!value)), this.tokenService.tokenObs)
+    merge(
+      this.heldenService.heldSub.pipe(filter(value => !!value)),
+      this.tokenService.tokenObs)
       .subscribe(() => {
         this.checkItemsVisiblity();
       });
@@ -63,6 +64,8 @@ export class MenuService {
 
   private checkItemsVisibility(item: NavItem) {
     if (item.condition) {
+      if (item.displayName === 'Fantasygrounds') {
+      }
       item.hidden = !item.condition();
     }
     if (item.children) {

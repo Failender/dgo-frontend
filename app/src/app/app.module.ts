@@ -231,21 +231,25 @@ export class AppModule {
           {
             displayName: 'Übersicht',
             iconName: '',
-            route: 'held/uebersicht'
+            route: 'held/uebersicht',
+            condition: () => false
           },
           {
             displayName: 'Inventar',
             iconName: '',
-            route: 'held/inventar'
+            route: 'held/inventar',
+            condition: () => false
           }, {
             displayName: 'Steigern',
             iconName: '',
-            route: 'held/steigern'
+            route: 'held/steigern',
+            condition: () => false
           },
           {
             displayName: 'Geld',
             iconName: '',
-            route: 'held/geld'
+            route: 'held/geld',
+            condition: () => false
           },
           {
             displayName: 'Zauber',
@@ -271,7 +275,6 @@ export class AppModule {
         displayName: 'Fantasygrounds',
         iconName: '',
         route: 'fantasygrounds',
-        condition: () => menuService.authenticated.bind(this)
       }
     ].forEach(item => menuService.registerItem(item));
 
