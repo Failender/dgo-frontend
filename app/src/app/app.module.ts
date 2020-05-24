@@ -61,7 +61,7 @@ import {AddGegenstandComponent} from './routes/held/inventar/add-gegenstand/add-
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'meine-gruppenHelden', component: MeineHeldenComponent},
+  {path: 'meine-helden', component: MeineHeldenComponent},
   {
     path: 'held',
     children: [
@@ -194,7 +194,7 @@ export class AppModule {
       {
         displayName: 'Meine Helden',
         iconName: '',
-        route: 'meine-gruppenHelden',
+        route: 'meine-helden',
         condition: menuService.authenticated.bind(menuService)
       },
       {
